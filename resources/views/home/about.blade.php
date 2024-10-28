@@ -69,9 +69,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-12 col-md-12 p-0">
-                   <img src="{{asset('home/images/minancecert.jpeg')}}" alt="image">
+                   <img src="{{asset('home/images/certificate.jpg')}}" alt="image">
                 </div>
             </div>
         </div>

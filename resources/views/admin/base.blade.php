@@ -36,7 +36,7 @@
         >
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('admin/dashboard')}}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.admin.dashboard') }}">
             <div class="sidebar-brand-icon rotate-n-15">
                 {{--                <i class="fas fa-laugh-wink"></i>--}}
             </div>
@@ -48,7 +48,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="{{url('admin/dashboard')}}">
+            <a class="nav-link" href="{{ route('admin.admin.dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -61,67 +61,20 @@
             Interface
         </div>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Utilities</h6>
-                    <a class="collapse-item" href="{{url('admin/investments')}}">Investments</a>
-{{--                    <a class="collapse-item" href="{{url('admin/deposits')}}">Deposits</a>--}}
-                    <a class="collapse-item" href="{{url('admin/packages')}}">Investment Package</a>
-                    <a class="collapse-item" href="{{url('admin/investors')}}">Investors</a>
-                    <a class="collapse-item" href="{{url('admin/withdrawals')}}">Withdrawals</a>
-                    <a class="collapse-item" href="{{url('admin/transfers')}}">Transfers</a>
-                    <a class="collapse-item" href="{{url('admin/accounts')}}">Managed Accounts</a>
-                </div>
-            </div>
+            <a class="nav-link" href="{{route('admin.delivery.index')}}">
+                <i class="fas fa-fw fa-train"></i>
+                <span>Logistics Section</span></a>
         </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOperations"
-               aria-expanded="true" aria-controls="collapseOperations">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Operations</span>
-            </a>
-            <div id="collapseOperations" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Operations</h6>
-                    <a class="collapse-item" href="{{url('admin/coins')}}">Wallet</a>
-                    <a class="collapse-item" href="{{url('admin/settings')}}">Settings</a>
-                    <a class="collapse-item" href="{{route('admin.promo.index')}}">Promos</a>
-                    <a class="collapse-item" href="{{route('admin.notification.index')}}">Notifications</a>
-                    <a class="collapse-item" href="{{route('admin.accounts.duration.index')}}">Managed Account Duration</a>
-                </div>
-            </div>
+            <a class="nav-link" href="{{route('admin.flight.index')}}">
+                <i class="fas fa-fw fa-plane"></i>
+                <span>Flight Section</span></a>
         </li>
 
 
         <!-- Divider -->
         <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Addons
-        </div>
-
-
-    @if($user->is_admin ==1)
-        <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('account/dashboard')}}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Investor Section</span></a>
-            </li>
-    @endif
-
 
     <!-- Nav Item - Tables -->
         <li class="nav-item">

@@ -89,10 +89,6 @@
                     </div>
 
 
-
-                    <div class="col-12">
-                        <p class="create">Don’t have an account? <a href="{{route('register')}}">Sign up</a></p>
-                    </div>
                 </div>
             </form>
         </div>

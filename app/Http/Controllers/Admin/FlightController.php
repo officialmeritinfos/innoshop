@@ -169,7 +169,7 @@ class FlightController extends Controller
     {
         $ticket = FlightTicket::where([
             'flight_number' => $id
-        ])->first();
+        ])->firstOrFail();
         $settings = GeneralSetting::find(1);
         return view('admin.flight.print', compact('ticket','settings'));
     }

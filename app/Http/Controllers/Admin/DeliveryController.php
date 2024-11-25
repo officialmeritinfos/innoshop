@@ -235,7 +235,7 @@ class DeliveryController extends Controller
     {
         $delivery = Delivery::where([
             'reference' => $id
-        ])->first();
+        ])->firstOrFail();
         $stages = $delivery->stages()->orderBy('created_at', 'desc')->get();
         $settings = GeneralSetting::find(1);
         return view('admin.delivery.invoice', compact('delivery', 'stages','settings'));

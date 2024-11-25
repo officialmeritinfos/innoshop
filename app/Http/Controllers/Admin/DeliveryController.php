@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Defaults\Regular;
 use App\Http\Controllers\Controller;
+use App\Mail\DeliveryCompletedMail;
 use App\Mail\DeliveryCreatedMail;
 use App\Mail\DeliveryUpdatedMail;
 use App\Models\Delivery;
+use App\Models\DeliveryStage;
 use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,7 +71,7 @@ class DeliveryController extends Controller
                 'shipment_date' => 'nullable|date',
                 'delivery_date' => 'nullable|date',
                 'shipment_mode' => 'nullable|string|max:255',
-                'status' => 'nullable|string|in:pending,in-transit,delivered,cancelled',
+                'status' => 'required|string|in:pending,in-transit,delivered,cancelled,on-hold',
             ]);
 
             // Handle file upload
@@ -107,11 +109,6 @@ class DeliveryController extends Controller
             logger('Error adding Delivery '. $exception->getMessage());
             return back()->with('error', $exception->getMessage());
         }
-    }
-    //delivery details
-    public function deliveryDetail($ref)
-    {
-
     }
     //Edit Delivery
     public function edit($id)
@@ -153,7 +150,7 @@ class DeliveryController extends Controller
                 'shipment_date' => 'nullable|date',
                 'delivery_date' => 'nullable|date',
                 'shipment_mode' => 'nullable|string|max:255',
-                'status' => 'nullable|string|in:pending,in-transit,delivered,cancelled',
+                'status' => 'required|string|in:pending,in-transit,delivered,cancelled,on-hold',
             ]);
 
             $delivery = Delivery::findOrFail($id);
@@ -172,13 +169,22 @@ class DeliveryController extends Controller
 
             $delivery->update($validatedData);
 
-            // Notify sender and receiver about the update
-            if ($delivery->sender_email) {
-                Mail::to($delivery->sender_email)->send(new DeliveryUpdatedMail($delivery, 'sender'));
-            }
+            if ($delivery->status!='delivered'){
+                // Notify sender and receiver about the update
+                if ($delivery->sender_email) {
+                    Mail::to($delivery->sender_email)->send(new DeliveryUpdatedMail($delivery, 'sender'));
+                }
 
-            if ($delivery->receiver_email) {
-                Mail::to($delivery->receiver_email)->send(new DeliveryUpdatedMail($delivery, 'receiver'));
+                if ($delivery->receiver_email) {
+                    Mail::to($delivery->receiver_email)->send(new DeliveryUpdatedMail($delivery, 'receiver'));
+                }
+            }else{
+                if ($delivery->sender_email) {
+                    Mail::to($delivery->sender_email)->send(new DeliveryCompletedMail($delivery, 'sender'));
+                }
+                if ($delivery->receiver_email) {
+                    Mail::to($delivery->receiver_email)->send(new DeliveryCompletedMail($delivery, 'receiver'));
+                }
             }
 
             DB::commit();
@@ -204,6 +210,33 @@ class DeliveryController extends Controller
         $delivery->delete();
 
         return redirect()->route('admin.delivery.index')->with('success', 'Delivery deleted successfully.');
+    }
+    //delivery details
+    public function deliveryDetail($ref)
+    {
+        $delivery = Delivery::where([
+            'reference' =>  $ref
+        ])->firstOrFail();
+
+        $web = GeneralSetting::find(1);
+        $user = Auth::user();
+
+        $dataView =[
+            'siteName' => $web->name,
+            'pageName' => 'Delivery Detail',
+            'user'     =>  $user,
+            'delivery' => $delivery,
+            'stages'   => DeliveryStage::where('delivery_id',$delivery->id)->latest()->get()
+        ];
+        return view('admin.delivery.detail',$dataView);
+    }
+    //print
+    public function print($id)
+    {
+        $delivery = Delivery::findOrFail($id);
+        $stages = $delivery->stages()->orderBy('created_at', 'desc')->get();
+        $settings = GeneralSetting::find(1);
+        return view('admin.delivery.invoice', compact('delivery', 'stages','settings'));
     }
 
 }

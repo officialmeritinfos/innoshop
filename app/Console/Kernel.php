@@ -4,8 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\CheckDeposit;
-use App\Console\Commands\InvestmentReturn;
+use App\Console\Commands\ProcessQueues;
 
 class Kernel extends ConsoleKernel
 {
@@ -19,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         //$schedule->command('check:deposit')->hourly()->withoutOverlapping();
-        $schedule->command('investment:return')->everyMinute()->withoutOverlapping();
+        $schedule->command('queue:process')->everyMinute()->withoutOverlapping();
     }
 
     /**

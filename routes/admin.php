@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Coins;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\DeliveryController;
+use App\Http\Controllers\Admin\DeliveryStageController;
 use App\Http\Controllers\Admin\Deposits;
 use App\Http\Controllers\Admin\FlightController;
 use App\Http\Controllers\Admin\Investments;
@@ -48,9 +49,17 @@ Route::post('delivery/new/process',[DeliveryController::class,'processNewDeliver
 //Edit Delivery
 Route::get('delivery/{id}/edit',[DeliveryController::class,'edit'])->name('delivery.edit');
 Route::post('delivery/{id}/edit/process',[DeliveryController::class,'update'])->name('delivery.edit.process');
-
 //Delete
 Route::delete('delivery/{id}', [DeliveryController::class, 'destroy'])->name('delivery.delete');
+//Print
+Route::get('delivery/{id}/print', [DeliveryController::class, 'print'])->name('delivery.print');
+/*=================== DELIVERY STAGE ===================== */
+Route::get('delivery/{id}/stages/new', [DeliveryStageController::class, 'create'])->name('delivery.stage.new');
+Route::post('delivery/{id}/stages', [DeliveryStageController::class, 'store'])->name('delivery.stage.store');
+Route::get('delivery/stage/{id}/edit', [DeliveryStageController::class, 'edit'])->name('delivery.stage.edit');
+Route::post('delivery/stage/{id}', [DeliveryStageController::class, 'update'])->name('delivery.stage.update');
+Route::delete('delivery/stage/{id}', [DeliveryStageController::class, 'destroy'])->name('delivery.stage.delete');
+
 
 /*===================FLIGHT ROUTE ========================*/
 Route::get('flight/index',[FlightController::class,'landingPage'])->name('flight.index');

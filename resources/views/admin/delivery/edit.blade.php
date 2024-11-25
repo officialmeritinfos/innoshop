@@ -95,6 +95,7 @@
                         <select name="status" id="status" class="form-control">
                             <option value="pending" {{ $delivery->status === 'pending' ? 'selected' : '' }}>Pending</option>
                             <option value="in-transit" {{ $delivery->status === 'in-transit' ? 'selected' : '' }}>In-Transit</option>
+                            <option value="in-transit" {{ $delivery->status === 'on-hold' ? 'selected' : '' }}>On-Hold</option>
                             <option value="delivered" {{ $delivery->status === 'delivered' ? 'selected' : '' }}>Delivered</option>
                             <option value="cancelled" {{ $delivery->status === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                         </select>

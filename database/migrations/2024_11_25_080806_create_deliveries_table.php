@@ -35,7 +35,7 @@ class CreateDeliveriesTable extends Migration
             $table->date('delivery_date')->nullable();
             $table->string('shipment_mode')->nullable();
             $table->string('tracking_number')->unique()->nullable();
-            $table->enum('status', ['pending', 'in-transit', 'delivered', 'cancelled'])->default('pending');
+            $table->enum('status', ['pending', 'in-transit', 'delivered', 'cancelled','on-hold'])->default('pending');
             $table->timestamps();
         });
 

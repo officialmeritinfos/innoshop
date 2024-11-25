@@ -51,6 +51,9 @@
                                     @case('cancelled')
                                         <span class="badge badge-secondary">Cancelled</span>
                                         @break
+                                    @case('on-hold')
+                                        <span class="badge badge-secondary">On Hold</span>
+                                        @break
                                     @default
                                         <span class="badge badge-danger">Unknown</span>
                                 @endswitch

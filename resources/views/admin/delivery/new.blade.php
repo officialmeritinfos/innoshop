@@ -90,6 +90,7 @@
                     <select name="status" id="status" class="form-control">
                         <option value="pending">Pending</option>
                         <option value="in-transit">In-Transit</option>
+                        <option value="on-hold">On-Hold</option>
                         <option value="delivered">Delivered</option>
                         <option value="cancelled">Cancelled</option>
                     </select>

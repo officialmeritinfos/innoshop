@@ -9,11 +9,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DeliveryCreatedMail extends Mailable implements ShouldQueue
+class DeliveryCompletedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
     public $delivery;
     public $recipientType;
+
     /**
      * Create a new message instance.
      *
@@ -33,12 +35,12 @@ class DeliveryCreatedMail extends Mailable implements ShouldQueue
     public function build()
     {
         $subject = ($this->recipientType === 'sender')
-            ? 'Delivery Confirmation - Reference: ' . $this->delivery->reference
-            : 'You Have a Package Coming - Tracking ID: ' . $this->delivery->tracking_number;
+            ? 'Your Delivery Has Been Successfully Delivered - Reference: ' . $this->delivery->reference
+            : 'A Package Has Been Delivered to You - Tracking ID: ' . $this->delivery->tracking_number;
         return $this->subject($subject)
             ->from(config('mail.from.address'), config('app.name'))
             ->replyTo(config('mail.mailers.smtp.username'), 'Customer Support')
-            ->view('emails.delivery_created')
+            ->view('emails.delivery_completed')
             ->with([
                 'delivery' => $this->delivery,
                 'recipientType' => $this->recipientType,

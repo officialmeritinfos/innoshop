@@ -25,11 +25,7 @@ class HomeController extends Controller
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Home Page',
-            'packages'  => Package::where('status',1)->get(),
-            'deposits'=>Investment::where('status','1')->orWhere('status','4')->orderBy('id','desc')->limit(10)->get(),
-            'withdrawals'=>Withdrawal::where('status','!=',3)->orderBy('id','desc')->limit(10)->get(),
             'services'  =>Service::where('status',1)->get(),
-            'sectors'  =>Service::where('status',1)->where('isSector',1)->get()
         ];
 
         return view('home.home',$dataView);

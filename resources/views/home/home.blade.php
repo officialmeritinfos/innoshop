@@ -1,571 +1,600 @@
 @extends('home.base')
 @section('content')
 
-    @push('css')
-        <style>
-            .single-price {
-                text-align: center;
-                background: #262626;
-                transition: .7s;
-                margin-top: 20px;
-            }
-            .single-price h3 {
-                font-size: 30px;
-                color: #000;
-                font-weight: 600;
-                text-align: center;
-                margin: 0;
-                margin-top: -80px;
-                margin-bottom: 1rem;
-                font-family: poppins;
-                color: #fff;
-            }
-            .single-price h4 {
-                font-size: 20px;
-                font-weight: 500;
-                color: #fff;
-            }
-            .single-price h4 span.sup {
-                vertical-align: text-top;
-                font-size: 15px;
-            }
-            .deal-top {
-                position: relative;
-                background: #104547;
-                font-size: 16px;
-                text-transform: uppercase;
-                padding: 136px 24px 0;
-            }
-            .deal-top::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: -50px;
-                width: 0;
-                height: 0;
-                border-top: 50px solid #104547;
-                border-left: 175px solid transparent;
-                border-right: 183px solid transparent;
-            }
-            .deal-bottom {
-                padding: 56px 16px 0;
-            }
-            .deal-bottom ul {
-                margin: 0;
-                padding: 0;
-            }
-            .deal-bottom  ul li {
-                font-size: 16px;
-                color: #fff;
-                font-weight: 300;
-                margin-top: 16px;
-                border-top: 1px solid #E4E4E4;
-                padding-top: 16px;
-                list-style: none;
-            }
-            .btn-area a {
-                display: inline-block;
-                font-size: 18px;
-                color: #fff;
-                background: #104547;
-                padding: 8px 64px;
-                margin-top: 32px;
-                border-radius: 4px;
-                margin-bottom: 40px;
-                text-transform: uppercase;
-                font-weight: bold;
-                text-decoration: none;
-            }
 
-
-            .single-price:hover {
-                background: #104547;
-            }
-            .single-price:hover .deal-top {
-                background: #262626;
-            }
-            .single-price:hover .deal-top:after {
-                border-top: 50px solid #262626;
-            }
-            .single-price:hover .btn-area a {
-                background: #262626;
-            }
-            /* ignore the code below */
-
-
-            .link-area
-            {
-                position:fixed;
-                bottom:20px;
-                left:20px;
-                padding:15px;
-                border-radius:40px;
-                background:#104547;
-            }
-            .link-area a
-            {
-                text-decoration:none;
-                color:#fff;
-                font-size:25px;
-            }
-            small {
-                font-size: 12px;
-                text-transform: initial;
-            }
-        </style>
-    @endpush
-
-
-    <!-- Start Main Banner Area -->
-    <div class="main-banner-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12">
-                    <div class="main-banner-content">
-                        <span class="sub-title">WELCOME TO {{strtoupper($siteName)}}</span>
-                        <h1>Trade & Invest like a Pro with {{$siteName}}</h1>
-                        <p>
-                            Build your financial portfolio in Gold Mining, Real Estate; invest in medical cannabis
-                            and in cryptocurrency; earn and save for your retirements, receive proper financial
-                            advice and planning service with {{$siteName}}
-                        </p>
-                        <div class="btn-box">
-                            <a href="{{route('register')}}" class="default-btn">Get Started <i class="ri-arrow-right-line"></i></a>
-                            <a href="{{route('login')}}" class="default-btn">Login <i class="ri-arrow-right-line"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12">
-                    <div class="main-banner-image">
-                        <img src="{{asset('home/img/banner/banner1.png')}}" alt="image">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Banner Area -->
-
-    <!-- Start Services Area -->
-    <div class="services-area pt-100">
-        <div class="container">
-            <div class="section-title">
-                <span class="sub-title">SERVICES</span>
-                <h2>Our Dedicated Services</h2>
-                <p>We offer a wide-range of services which allows our users to earn unlimitedly.</p>
-            </div>
-
-            <div class="services-slides owl-carousel owl-theme">
-                @foreach($services as $service)
-                    <div class="single-services-box">
-                        <div class="image">
-                            <a href="{{route('service.details',['id'=>$service->id])}}">
-                                <img src="{{asset('home/serv/'.$service->photo)}}" alt="image">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h3>
+    <!-- Banner Section Start -->
+    <div class="banner-slider owl-carousel owl-theme">
+        <div class="banner-item banner-bg-one">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="banner-text">
+                            <h1>Your Gateway to Seamless Travel Experiences</h1>
                             <p>
-                                {{$service->short}}
+                                From planning your dream vacation to booking flights and logistics, {{$siteName}} is here to
+                                make your journey effortless and memorable. Your adventure starts with us.
                             </p>
-                            <a href="{{route('service.details',['id'=>$service->id])}}" class="default-btn">Read More <i class="ri-arrow-right-line"></i></a>
-                        </div>
-                    </div>
-                @endforeach
 
-            </div>
-        </div>
-    </div>
-    <!-- End Services Area -->
-
-    <!-- Start About Area -->
-    <div class="about-area ptb-100">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12">
-                    <div class="about-image">
-                        <img src="{{asset('home/img/about/about1.png')}}" alt="image">
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12">
-                    <div class="about-content">
-                        <span class="sub-title">ABOUT {{strtoupper($siteName)}}</span>
-                        <h2>Your Pathway to Financial Freedom</h2>
-                        <p>
-                           Founded in 2012, we are a global investment agency helping individuals build their financial dreams into reality. From a humble beginning, we have grown to become a notable force in the investment industry with over 40K+ users.
-                        </p>
-                        <p>
-                            We are your all-in-one destination for navigating the world of investments. Specializing in Crypto Mining, stocks, retirement planning, gold, medical cannabis, and oil and gas, {{$siteName}} is
-                            your gateway to a diverse range of lucrative opportunities.
-                        </p>
-                        <p>
-                            At {{$siteName}}, we're not just an investment platform; we're your financial ally on the path to
-                            success. Our mission is to empower investors with the knowledge and tools they need to make informed
-                            decisions across various financial landscapes.
-                        </p>
-                        <div class="row justify-content-center">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                                <div class="single-about-box">
-                                    <div class="icon">
-                                        <i class="ri-star-line"></i>
-                                    </div>
-                                    <h3>Proficiency</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                                <div class="single-about-box">
-                                    <div class="icon">
-                                        <i class="ri-settings-2-line"></i>
-                                    </div>
-                                    <h3>AI-Integrated</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                                <div class="single-about-box">
-                                    <div class="icon">
-                                        <i class="ri-line-chart-line"></i>
-                                    </div>
-                                    <h3>Result-driven</h3>
-                                </div>
+                            <div class="banner-btn">
+                                <a href="{{url('contact')}}" class="default-btn">Book a Quote</a>
                             </div>
                         </div>
-                        <a href="{{url('/')}}" class="default-btn">Read More <i class="ri-arrow-right-line"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End About Area -->
 
-    <!-- Start Funfacts Area -->
-    <div class="funfacts-area bg-color">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                    <div class="single-funfacts-box">
-                        <h3><span class="odometer" data-count="40">00</span><span class="sign">K+</span></h3>
-                        <p>Investors</p>
-                    </div>
-                </div>
+        <div class="banner-item banner-bg-two">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="banner-text">
+                            <h1>Logistics Made Simple</h1>
+                            <p>
+                                From small packages to large freight, {{$siteName}} ensures secure and timely delivery. Your
+                                business deserves reliable logistics—trust the experts.
+                            </p>
 
-                <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                    <div class="single-funfacts-box">
-                        <h3><span class="odometer" data-count="100">00</span><span class="sign">M+</span></h3>
-                        <p>Investments</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                    <div class="single-funfacts-box">
-                        <h3><span class="odometer" data-count="90">00</span><span class="sign">M+</span></h3>
-                        <p>Payouts Made</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                    <div class="single-funfacts-box">
-                        <h3><span class="odometer" data-count="108">00</span><span class="sign">+</span></h3>
-                        <p>Expert Staff</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Funfacts Area -->
-
-    <!-- Start Projects Area -->
-    <div class="projects-area pt-100 pb-70">
-        <div class="container">
-            <div class="section-title">
-                <span class="sub-title">Our Industries</span>
-                <h2>You can checkout the Industries we trade on</h2>
-            </div>
-
-            <div class="row justify-content-center">
-                @foreach($sectors as $project)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-projects-box">
-                            <img src="{{asset('home/serv/'.$project->photo)}}" alt="image">
-                            <h3>{{$project->title}}</h3>
-                            <span>Financial</span>
+                            <div class="banner-btn">
+                                <a href="{{url('contact')}}" class="default-btn">Get a Free Quote</a>
+                            </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="banner-item banner-bg-three">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="banner-text">
+                            <h1>Your Partner in Hassle-Free Travel</h1>
+                            <p>
+                                At {{$siteName}}, we don’t just offer services; we craft experiences. From tours to logistics,
+                                every detail is handled with care and precision.
+                            </p>
+
+                            <div class="banner-btn">
+                                <a href="{{url('contact')}}" class="default-btn">Get a Free Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- End Projects Area -->
+    <!-- Banner Section End -->
 
-
-    <div class="pricing-area" style="margin-bottom: 5rem;margin-top: 5rem;">
+    <!-- Features Section Start -->
+    <div class="features-section">
         <div class="container">
-            <div class="section-title">
-                <span class="sub-title">Our Packages</span>
-                <h2>Specialized Investment Packages</h2>
-            </div>
             <div class="row justify-content-center">
-                @foreach($packages as $package)
-                    @inject('option','App\Defaults\Custom')
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="single-price">
-                            <div class="deal-top">
-                                <h3>{{$package->name}}</h3>
-                                <h4> {{$package->roi}}%/ <span class="sup">{{$option->getReturnType($package->returnType)}}</span> </h4>
-                                <small class="text-white">{{$package->note}}</small>
-                            </div>
-                            <div class="deal-bottom">
-                                <ul class="deal-item">
-                                    <li>
-                                        Price: ${{number_format($package->minAmount,2)}} - @if($package->isUnlimited !=1)
-                                            ${{number_format($package->maxAmount,2)}}
-                                        @else
-                                            Unlimited
-                                        @endif
-                                    </li>
-                                    <li>Profit return: {{$package->roi}}% after {{$option->getReturnType($package->returnType)}}</li>
-                                    <li>Contract Duration: {{$package->Duration}}</li>
-                                    <li>Referral Bonus: {{$package->referral}}% </li>
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp" data-wow-duration="1s">
+                    <div class="feature-card">
+                        <i class="icofont-fast-delivery"></i>
+                        <span>87,357 KM</span>
+                        <h3>Total Delivered</h3>
+                        <p>
+                            We’ve covered over 87,000 kilometers delivering excellence. From packages to logistics, our commitment
+                            to efficiency and reliability knows no bounds.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp" data-wow-duration="1s">
+                    <div class="feature-card">
+                        <i class="icofont-location-pin"></i>
+                        <span>120</span>
+                        <h3>Countries Served</h3>
+                        <p>
+                            Our global reach spans 120 countries, connecting businesses and individuals across the globe with
+                            timely and secure delivery solutions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp" data-wow-duration="1s">
+                    <div class="feature-card">
+                        <i class="icofont-users-alt-3"></i>
+                        <span>3.2K</span>
+                        <h3>Customers Served</h3>
+                        <p>
+                            Join the 3,200+ satisfied customers who trust {{$siteName}} for their logistics, travel, and vacation
+                            needs. Your satisfaction drives us forward.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 wow animate__animated animate__fadeInUp" data-wow-duration="1s">
+                    <div class="feature-card">
+                        <i class="icofont-thumbs-up"></i>
+                        <span>27</span>
+                        <h3>Years Experience</h3>
+                        <p>
+                            With 27 years of industry expertise, we’ve honed our skills to deliver unparalleled services in
+                            travel, logistics, and beyond.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features Section End -->
+
+    <!-- About Section Start -->
+    <section class="about-section pt-100">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-5 wow animate__animated animate__fadeInUp" data-wow-duration="1s">
+                    <div class="about-img">
+                        <img src="{{asset('home/img/about/1.jpg')}}" alt="about image">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-text">
+                        <div class="section-title">
+                            <span>About Us</span>
+                            <h2>We Provide Fast & Safe Service to Our Customer</h2>
+                        </div>
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="mission-tab" data-bs-toggle="tab" href="#mission" role="tab" aria-controls="mission" aria-selected="false">Our Mission</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="goal-tab" data-bs-toggle="tab" href="#goal" role="tab" aria-controls="goal" aria-selected="false">Our Goal</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                                <p>
+                                    At {{$siteName}}, we believe in creating exceptional experiences through reliable and efficient services.
+                                    For over two decades, we’ve been a trusted partner for logistics, travel, and vacation solutions.
+                                    Our team is committed to meeting your needs with precision, ensuring your journey or delivery is smooth and stress-free.
+                                </p>
+                                <p>We pride ourselves on:</p>
+                                <ul>
+                                    <li>Delivering packages and goods with utmost care.</li>
+                                    <li>Connecting people across the globe through seamless travel.</li>
+                                    <li>Providing tailored vacation and tour services that leave lasting memories.</li>
                                 </ul>
-                                <div class="btn-area">
-                                    <a href="{{route('register')}}">Get Started</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Start Testimonial Area -->
-    <div class="testimonial-area ptb-100 bg-fafafa">
-        <div class="container">
-            <div class="section-title">
-                <span class="sub-title">TESTIMONIALS</span>
-                <h2>Hear what our clients say</h2>
-                <p>
-                    Don't take our words for it, hear from our active clients
-                </p>
-            </div>
-
-            <div class="testimonial-slides owl-carousel owl-theme">
-                <div class="single-testimonial-box">
-                    <div class="row align-items-center">
-                        <div class="col-lg-8 col-md-8">
-                            <div class="testimonial-desc">
-                                <i class="ri-double-quotes-l"></i>
                                 <p>
-                                    Investing with {{$siteName}} has been a game-changer for my financial world.
-                                    My first investment of $150 grew to yield over $1000 and that increased my faith in them.
+                                    At {{$siteName}}, we turn challenges into opportunities and strive to exceed expectations with every interaction.
                                 </p>
-                                <div class="info">
-                                    <h3>Silver Alex</h3>
-                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <div class="testimonial-image">
-                                <img src="https://ui-avatars.com/api/?name=Silver+alex" alt="image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-testimonial-box">
-                    <div class="row align-items-center">
-                        <div class="col-lg-8 col-md-8">
-                            <div class="testimonial-desc">
-                                <i class="ri-double-quotes-l"></i>
+                            <div class="tab-pane fade" id="mission" role="tabpanel" aria-labelledby="mission-tab">
                                 <p>
-                                    {{$siteName}} is simply the best. I started out trading cryptocurrencies on Binance but
-                                    after so many losses, I decided to seek for a real Broker to help me;{{$siteName}} has been
-                                    that real broker for me for the past 1 year
+                                    Our mission is simple: to simplify travel, logistics, and vacation planning for individuals and businesses worldwide. We are dedicated to:
                                 </p>
-                                <div class="info">
-                                    <h3>Sarah T.</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <div class="testimonial-image">
-                                <img src="https://ui-avatars.com/api/?name=Sarah+T" alt="image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-testimonial-box">
-                    <div class="row align-items-center">
-                        <div class="col-lg-8 col-md-8">
-                            <div class="testimonial-desc">
-                                <i class="ri-double-quotes-l"></i>
+                                <ul>
+                                    <li>Providing safe, reliable, and efficient services.</li>
+                                    <li>Building lasting relationships with our customers based on trust and excellence.</li>
+                                    <li>Leveraging technology to enhance every aspect of the customer experience.</li>
+                                </ul>
                                 <p>
-                                    Navigating the world of financial freedom has been a hectic journey for me until I met with
-                                    {{$siteName}}. Since then, I just relax and plan my vacation from my returns on {{$siteName}}.
+                                    {{$siteName}} is here to redefine convenience and reliability across all our services.
                                 </p>
-                                <div class="info">
-                                    <h3>Edward Anderson</h3>
-                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="goal" role="tabpanel" aria-labelledby="goal-tab">
+                                <p>Our goal is to be the go-to partner for all your logistics and travel needs. By 2030, we aim to:</p>
+                                <ul>
+                                    <li>Expand our network to over 200 countries.</li>
+                                    <li>Serve over 10,000 satisfied customers annually.</li>
+                                    <li>Innovate and lead in sustainable logistics and travel solutions.</li>
+                                </ul>
+                                <p>
+                                    With {{$siteName}}, your satisfaction is not just a promise—it’s a guarantee.
+                                </p>
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-4">
-                            <div class="testimonial-image">
-                                <img src="https://ui-avatars.com/api/?name=Edwards+A" alt="image">
-                            </div>
+                        <div class="theme-btn">
+                            <a href="{{url('about')}}" class="default-btn">Know More</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Testimonial Area -->
+    </section>
+    <!-- About Section End -->
 
-
-    <!-- Start Free Quote Area -->
-    <div class="free-quote-area bg-color">
+    <!-- Transport System Section Start -->
+    <section class="transport-section pb-70">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 col-md-12">
-                    <div class="free-quote-content">
-                        <span class="sub-title">FREE CALCULATOR</span>
-                        <h2>Calculate your Earning</h2>
+            <div class="section-title text-center">
+                <span>Our Services</span>
+                <h2>We Provide Products All over The World</h2>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-sm-6 wow animate__animated animate__fadeInUp" data-wow-duration="1s">
+                    <div class="transport-card">
+                        <div class="transport-img">
+                            <img src="{{asset('home/img/tour.jpg')}}" alt="transport image">
+                        </div>
+                        <div class="transport-text">
+                            <i class="icofont-airplane-alt"></i>
+                            <h3> Tour Services</h3>
+                            <p>
+                                Explore the world with {{$siteName}}’s premium tour services. We offer guided tours, adventure
+                                expeditions, and cultural experiences tailored to your preferences.
+                            </p>
+                            <ul>
+                                <li>Customizable itineraries for solo and group travelers</li>
+                                <li>Expert local guides to enrich your journey</li>
+                                <li>All-inclusive packages covering transport, meals, and activities</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-7 col-md-12">
-                    <div class="free-quote-form">
-                        <h3>SEE WHAT YOUR EARNING COULD BE</h3>
-                        <form action="{{route('calculate.return')}}" method="post">
-                            @include('templates.notification')
-                            @csrf
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label>Your Amount</label>
-                                        <input type="text" class="form-control" name="amount">
-                                    </div>
+                <div class="col-lg-4 col-sm-6 wow animate__animated animate__fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                    <div class="transport-card">
+                        <div class="transport-img">
+                            <img src="{{asset('home/img/vacation.jpg')}}" alt="transport image">
+                        </div>
+                        <div class="transport-text">
+                            <i class="icofont-truck-loaded"></i>
+                            <h3>Vacation Services</h3>
+                            <p class="card-text">
+                                Escape the ordinary with our exclusive vacation packages. From tropical retreats to luxury cruises, we create experiences that rejuvenate and inspire.
+                            </p>
+                            <ul>
+                                <li>Beach, mountain, and city vacations</li>
+                                <li>Luxury accommodations and exclusive activities</li>
+                                <li>Family, couple, or solo-friendly options</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-6   wow animate__animated animate__fadeInUp" data-wow-duration="1s"  data-wow-delay=".6s">
+                    <div class="transport-card">
+                        <div class="transport-img">
+                            <img src="{{asset('home/img/services/3.jpg')}}" alt="transport image">
+                        </div>
+                        <div class="transport-text">
+                            <i class="icofont-sail-boat-alt-1"></i>
+                            <h3>Travel Agency Service</h3>
+                            <p class="card-text">
+                                Simplify your travel plans with {{$siteName}}’s full-service travel agency. From booking flights to hotel reservations, we handle all the details for a seamless journey.
+                            </p>
+                            <ul>
+                                <li>Personalized travel planning for any destination</li>
+                                <li>Special packages for business and leisure travelers</li>
+                                <li>24/7 support for last-minute changes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-6   wow animate__animated animate__fadeInUp" data-wow-duration="1s"  data-wow-delay=".6s">
+                    <div class="transport-card">
+                        <div class="transport-img">
+                            <img src="{{asset('home/img/visa-prep.webp')}}" alt="transport image">
+                        </div>
+                        <div class="transport-text">
+                            <i class="icofont-sail-boat-alt-1"></i>
+                            <h3>Visa Preparation Service</h3>
+                            <p class="card-text">
+                                Let {{$siteName}} assist with all your visa needs. From application guidance to document verification, we ensure a smooth visa process for your travel.
+                            </p>
+                            <ul>
+                                <li>Step-by-step visa application support</li>
+                                <li>Expert advice on document requirements</li>
+                                <li>Visa processing for tourism, work, and study</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-6   wow animate__animated animate__fadeInUp" data-wow-duration="1s"  data-wow-delay=".6s">
+                    <div class="transport-card">
+                        <div class="transport-img">
+                            <img src="{{asset('home/img/Flight_Tracking_Solution_Map.jpg')}}" alt="transport image">
+                        </div>
+                        <div class="transport-text">
+                            <i class="icofont-sail-boat-alt-1"></i>
+                            <h3>Flight Tracking</h3>
+                            <p class="card-text">
+                                Stay updated with real-time flight tracking by {{$siteName}}. Monitor your flight’s status, delays, and changes at your fingertips.
+                            </p>
+                            <ul>
+                                <li>Real-time updates on departures and arrivals</li>
+                                <li>Notifications for schedule changes</li>
+                                <li>Accessible on any device, anytime</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-sm-6   wow animate__animated animate__fadeInUp" data-wow-duration="1s"  data-wow-delay=".6s">
+                    <div class="transport-card">
+                        <div class="transport-img">
+                            <img src="{{asset('home/img/banner/1.jpg')}}" alt="transport image">
+                        </div>
+                        <div class="transport-text">
+                            <i class="icofont-sail-boat-alt-1"></i>
+                            <h3>Logistics and Freight</h3>
+                            <p class="card-text">
+                                At {{$siteName}}, we specialize in providing reliable and efficient logistics and freight solutions. Whether you're shipping small parcels or large cargo, we ensure your goods are handled with care and delivered on time.
+                            </p>
+                            <ul>
+                                <li><strong>Air Freight:</strong> Fast and secure delivery for time-sensitive shipments.</li>
+                                <li><strong>Road Freight:</strong> Affordable and flexible solutions for domestic and regional transport.</li>
+                                <li><strong>Ocean Freight:</strong> Cost-effective shipping for large volumes of goods across international waters.</li>
+                                <li><strong>Rail Freight:</strong> Eco-friendly transportation for bulk goods over long distances.</li>
+                                <li><strong>Warehouse Solutions:</strong> Secure storage and inventory management tailored to your needs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Transport System Section End -->
+
+    <!-- Why Choose Section Start -->
+    <section class="why-choose-section">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 p-0">
+                    <div class="why-choose-img">
+                        <div class="shipping-text">
+                            <h3>Know Shipping Location</h3>
+                            <p>Track ID will be on your document file.</p>
+                            <form>
+                                <div class="form-group">
+                                    <input type="text"  class="form-control" placeholder="Enter Track ID">
                                 </div>
 
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label>Your Email</label>
-                                        <input type="text" class="form-control" name="email">
-                                    </div>
-                                </div>
+                                <button type="submit" class="shipping-btn">
+                                    Track Now
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <label>Package</label>
-                                        <select class="form-select" name="package">
-                                            <option value="">Select a Package</option>
-                                            @foreach($packages as $package)
-                                                <option value="{{$package->id}}">{{$package->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+                <div class="col-lg-6 p-0">
+                    <div class="why-choose-text">
+                        <div class="section-title">
+                            <h2>Why People Choose {{$siteName}}?</h2>
+                        </div>
 
-                                <div class="col-lg-6 col-md-6">
+                        <div class="accordions">
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item1">
+                                    <i class="icofont-fast-delivery"></i>
+                                    <h2>Fast & Safe Delivery <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item1">
+                                    <p>
+                                        At {{$siteName}}, speed and safety are our top priorities. We ensure your parcels and
+                                        goods are delivered promptly and securely to their destination, no matter the size or distance.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item2">
+                                    <i class="icofont-ssl-security"></i>
+                                    <h2>Product Security <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item2">
+                                    <p>
+                                        Your goods are precious, and we treat them as such. Our logistics team uses cutting-edge
+                                        technology and robust protocols to safeguard your shipments throughout the journey.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item3">
+                                    <i class="icofont-diamond"></i>
+                                    <h2>Price Oriented <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item3">
+                                    <p>
+                                        Affordable and transparent pricing is at the core of our services. We offer competitive
+                                        rates without compromising on quality, making us the best choice for cost-effective logistics solutions.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item4">
+                                    <i class="icofont-ui-browser"></i>
+                                    <h2>Secured Payment <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item4">
+                                    <p>
+                                        Trust is essential, and our payment systems are designed to provide maximum security.
+                                        With multiple secure payment options, you can transact with confidence and ease.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item5">
+                                    <i class="icofont-live-support"></i>
+                                    <h2>24/7 Support <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item5">
+                                    <p>
+                                        Need help at any hour? Our dedicated customer support team is available 24/7 to assist
+                                        you with tracking, inquiries, or resolving issues swiftly.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item6">
+                                    <i class="icofont-like"></i>
+                                    <h2>Well Experienced <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item6">
+                                    <p>
+                                        With over two decades of expertise in logistics, freight, and travel, {{$siteName}} has
+                                        the knowledge and resources to handle your needs with unmatched professionalism and reliability.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Why Choose Section End -->
+
+    <!-- Get Quote Section Start -->
+    <div class="get-quote-section quote-bg pt-100 pb-100">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <div class="quote-text">
+
+                        <h2>Track & Verify Flight Tickets</h2>
+                        <p>
+                            With our system you can track any flight, and be sure that the ticket shown to you is real!
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 wow animate__animated animate__bounceInUp" data-wow-duration="1s">
+                    <div class="quote-form">
+                        <h2>Track & Verify Flight Ticket </h2>
+
+                        <form>
+
+                            <div class="row justify-content-center">
+                                <div class="col-md-12 col-12 pr-0">
                                     <div class="form-group">
-                                        <button type="submit" class="default-btn">Receive my Earning Calculation<i class="ri-arrow-right-line"></i></button>
+                                        <input type="text" class="form-control" placeholder="PNR" required minlength="6" maxlength="6">
                                     </div>
                                 </div>
                             </div>
+
+                            <button type="submit">Submit </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="shape3"><img src="{{asset('home/img/shape/shape8.png')}}" alt="image"></div>
-    </div>
-    <!-- End Free Quote Area -->
 
-    <!-- Start Blog Area -->
-    <div class="blog-area pt-100 pb-70">
+        <div class="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <!-- Get Quote Section End -->
+
+    <!-- Feedback Section Strat -->
+    <section class="feedback-section feedback-bg pt-100">
         <div class="container">
-            <div class="section-title">
-                <span class="sub-title">Latest Transactions</span>
-                <h2>Most Recent Transactions</h2>
+            <div class="section-title text-center">
+                <span>Feedbacks</span>
+                <h2>Feedback From Our Clients</h2>
+                <p>Do not take our words for it, read what others say.</p>
             </div>
 
-            <div class="row">
+            <div class="feedback-slider owl-carousel owl-theme">
+                <div class="feedback-items">
+                    <i class="icofont-quote-right"></i>
+                    <p>
+                        Adept Xpress has completely transformed the way we handle logistics. Their speed and reliability are unmatched, and their customer service is always available to assist with any questions. I highly recommend their services for both businesses and individuals!
+                    </p>
 
-                <div class="col-md-6">
-                    <div class="sec-title_title" style="margin-bottom: 3rem;margin-top: 3rem;">Recent Deposits</div>
-                    <table class="table align-middle mb-0 bg-white">
-                        <thead class="bg-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($deposits as $deposit)
-                            @inject('option','App\Defaults\Custom')
-                            <tr>
-                                <td>{{$option->getInvestor($deposit->user)}}</td>
-                                <td>${{number_format($deposit->amount,2)}}</td>
-                            </tr>
-                        @endforeach
-
-                        </tbody>
-                    </table>
-
+                    <img src="{{asset('home/img/feedback/client-1.png')}}" alt="client image">
+                    <h3>Joe Johnson</h3>
+                    <span>Business Owner</span>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="sec-title_title" style="margin-bottom: 3rem;margin-top: 3rem;">Latest Withdrawals</div>
-                    <table class="table align-middle mb-0 bg-white">
-                        <thead class="bg-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($withdrawals as $withdrawal)
-                            @inject('option','App\Defaults\Custom')
-                            <tr>
-                                <td>{{$option->getInvestor($withdrawal->user)}}</td>
-                                <td>${{number_format($withdrawal->amount,2)}}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                <div class="feedback-items">
+                    <i class="icofont-quote-right"></i>
+                    <p>
+                        I used Adept Xpress for my vacation planning, and they exceeded all my expectations. From flight bookings
+                        to hotel reservations, everything was seamless. They took the stress out of my travel plans, and I couldn’t be happier.
+                    </p>
 
+                    <img src="{{asset('home/img/feedback/client-2.png')}}" alt="client image">
+                    <h3>Mr. McMachman</h3>
+                    <span> Frequent Traveler</span>
                 </div>
 
+                <div class="feedback-items">
+                    <i class="icofont-quote-right"></i>
+                    <p>I was amazed by the level of care and attention given to my shipment. The real-time tracking feature kept me informed
+                        every step of the way, and my package arrived on time and in perfect condition. Adept Xpress is my go-to for all my logistics needs!
+                    </p>
+
+                    <img src="http://ui-avatars.com/api/?name=John Doe" alt="client image">
+                    <h3>John Doe(Not Real Name)</h3>
+                    <span>Travel Tracking(Escaped from scammers)</span>
+                </div>
             </div>
         </div>
     </section>
-    <!-- End News One -->
+    <!-- Feedback Section End -->
 
-
-    <!-- Start Blog Area -->
-    <div class="blog-area pt-100 pb-70">
+    <!-- Company Section Start -->
+    <div class="company-section">
         <div class="container">
-            <div class="section-title">
-                <span class="sub-title">OUR BLOGS</span>
-                <h2>Latest News in the industry</h2>
+            <div class="company-slider owl-carousel owl-theme">
+                <div class="company-logo">
+                    <a href="index"><img src="{{asset('home/img/company/1.png')}}" alt="logo"></a>
+                </div>
+                <div class="company-logo">
+                    <a href="index"><img src="{{asset('home/img/company/2.png')}}" alt="logo"></a>
+                </div>
+                <div class="company-logo">
+                    <a href="index"><img src="{{asset('home/img/company/3.png')}}" alt="logo"></a>
+                </div>
+                <div class="company-logo">
+                    <a href="index"><img src="{{asset('home/img/company/4.png')}}" alt="logo"></a>
+                </div>
+                <div class="company-logo">
+                    <a href="index"><img src="{{asset('home/img/company/5.png')}}" alt="logo"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Company Section End -->
+
+    <!-- Blog Section Start -->
+    <section class="blog-section pt-100 pb-70">
+        <div class="container">
+            <div class="section-title text-center">
+                <span>Latest News</span>
+                <h2>News of Our Transportation</h2>
+                <p></p>
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12">
-                    <div class="single-blog-post">
-                        <rssapp-wall id="38kEBNRCi1vuK60z"></rssapp-wall>
-                        <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
+                <div class="col-lg-4 col-sm-6 wow animate__animated animate__fadeInUp" data-wow-duration="1s">
+                    <div class="blog-card">
+                        <div class="blog-img">
+                            <a href="#">
+                                <img src="{{asset('home/img/blog/1.png')}}" alt="blog image">
+                            </a>
+                        </div>
+                        <div class="blog-text">
+
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>
-    <!-- End Blog Area -->
+    </section>
+    <!-- Blog Section End -->
 
 
 @endsection

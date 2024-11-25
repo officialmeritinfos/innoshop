@@ -570,11 +570,14 @@ h3 {
 }
 
 .banner-bg-one {
-  background-image: url(../img/banner/1.jpg);
+  background-image: url(../img/banner/3.jpg);
 }
 
 .banner-bg-two {
-  background-image: url(../img/banner/2.jpg);
+  background-image: url(../img/banner/1.jpg);
+}
+.banner-bg-three {
+  background-image: url(../img/banner/4.jpg);
 }
 
 /* Banner CSS End */

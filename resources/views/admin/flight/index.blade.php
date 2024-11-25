@@ -22,7 +22,7 @@
                     <th>Arrival</th>
                     <th>Class</th>
                     <th>Status</th>
-                    <th>Flight Status</th> <!-- Added Flight Status -->
+                    <th>Flight Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -38,18 +38,17 @@
                         <td>{{ $ticket->arrival_airport }}</td>
                         <td>{{ ucfirst($ticket->class) }}</td>
                         <td>
-                        <span class="badge {{ $ticket->status === 'booked' ? 'badge-success' : ($ticket->status === 'cancelled' ? 'badge-danger' : 'badge-secondary') }}">
-                            {{ ucfirst($ticket->status) }}
-                        </span>
+                            <span class="badge {{ $ticket->status === 'booked' ? 'badge-success' : ($ticket->status === 'cancelled' ? 'badge-danger' : 'badge-secondary') }}">
+                                {{ ucfirst($ticket->status) }}
+                            </span>
                         </td>
                         <td>
-                            <!-- Display Flight Status with Badges -->
                             <span class="badge
                             {{ $ticket->flight_status === 'open' ? 'badge-info' :
                                ($ticket->flight_status === 'closed' ? 'badge-dark' :
                                ($ticket->flight_status === 'delayed' ? 'badge-warning' : 'badge-danger')) }}">
-                            {{ ucfirst($ticket->flight_status) }}
-                        </span>
+                                {{ ucfirst($ticket->flight_status) }}
+                            </span>
                         </td>
                         <td>
                             <a href="{{ route('admin.flight_tickets.show', $ticket->id) }}" class="btn btn-info btn-sm">
@@ -58,11 +57,19 @@
                             <a href="{{ route('admin.flight_tickets.edit', $ticket->id) }}" class="btn btn-warning btn-sm">
                                 <i class="fa fa-edit"></i> Edit
                             </a>
+                            <!-- Delete Button -->
+                            <form action="{{ route('admin.flight_tickets.destroy', $ticket->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this ticket?');">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="10" class="text-center">No tickets found</td>
+                        <td colspan="11" class="text-center">No tickets found</td>
                     </tr>
                 @endforelse
                 </tbody>

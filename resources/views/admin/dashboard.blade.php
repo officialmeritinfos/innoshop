@@ -15,7 +15,7 @@
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Total Packages Sent </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                0
+                                {{$total_packages}}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -35,7 +35,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                Total Completed Delivery </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                               0
+                               {{$completed_packages}}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -56,7 +56,7 @@
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Total Pending Delivery </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                              0
+                              {{$pending_packages}}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -76,7 +76,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                Total Flights </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                0
+                                {{$total_tickets}}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -96,7 +96,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Completed Flights </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                0
+                                {{$completed_flights}}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -116,7 +116,7 @@
                             <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                                 Pending Flights </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                0
+                                {{$pending_flights}}
                             </div>
                         </div>
                         <div class="col-auto">

@@ -173,4 +173,24 @@ class FlightController extends Controller
         $settings = GeneralSetting::find(1);
         return view('admin.flight.print', compact('ticket','settings'));
     }
+
+    public function destroy($id)
+    {
+        try {
+            // Find the flight ticket by ID
+            $ticket = FlightTicket::findOrFail($id);
+
+            // Delete the ticket
+            $ticket->delete();
+
+            // Redirect back with success message
+            return redirect()->route('admin.flight.index')
+                ->with('success', 'Flight ticket deleted successfully!');
+        } catch (\Exception $e) {
+            // Handle any errors
+            return redirect()->route('admin.flight.index')
+                ->with('error', 'Failed to delete flight ticket: ' . $e->getMessage());
+        }
+    }
+
 }

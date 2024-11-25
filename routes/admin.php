@@ -69,6 +69,9 @@ Route::get('flight/flight-tickets/{id}/edit', [FlightController::class, 'edit'])
 Route::put('flight/flight-tickets/{id}', [FlightController::class, 'update'])->name('flight_tickets.update');
 //display
 Route::get('flight/flight-tickets/{id}', [FlightController::class, 'show'])->name('flight_tickets.show');
+//Delete
+Route::delete('flight/flight-tickets/{id}', [FlightController::class, 'destroy'])->name('flight_tickets.destroy');
+
 
 
 //Logout

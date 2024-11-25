@@ -6,7 +6,7 @@
         <div class="card mt-4">
             <div class="card-header">
                 <h4 class="text-center">Delivery Details</h4>
-                <a href="{{ route('admin.delivery.print', $delivery->id) }}" target="_blank" class="btn btn-outline-success btn-sm">
+                <a href="{{ route('delivery.print', $delivery->reference) }}" target="_blank" class="btn btn-outline-success btn-sm">
                     <i class="fa fa-print"></i> Print
                 </a>
             </div>

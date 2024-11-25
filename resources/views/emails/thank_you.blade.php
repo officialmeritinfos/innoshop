@@ -76,7 +76,7 @@
         <p>We hope you had a pleasant experience. We look forward to serving you again in the future.</p>
     </div>
     <div class="footer">
-        &copy; {{ date('Y') }} Your Airline Company. All rights reserved.
+        &copy; {{ date('Y') }} {{config('app.name')}}. All rights reserved.
     </div>
 </div>
 </body>

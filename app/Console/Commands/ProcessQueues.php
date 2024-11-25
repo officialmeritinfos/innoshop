@@ -52,9 +52,6 @@ class ProcessQueues extends Command
 
         $this->info('Cleaning up failed jobs...');
 
-        // Optionally, clean up old failed jobs
-        $this->call('queue:flush');
-
         $this->info('Queue processing complete.');
     }
 }

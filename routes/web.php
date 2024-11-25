@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DeliveryController;
+use App\Http\Controllers\Admin\FlightController;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\RecoverPassword;
 use App\Http\Controllers\Auth\Register;
@@ -52,3 +54,9 @@ Route::get('agriculture',[HomeController::class,'agriculture']);
 //Calculate return
 Route::post('calculate-return',[HomeController::class,'calculateReturn'])
     ->name('calculate.return');
+
+
+//Flight Ticket Printing
+Route::get('flight/flight-tickets/{id}/print', [FlightController::class, 'print'])->name('flight_tickets.print');
+//Delivery Printing
+Route::get('delivery/{id}/print', [DeliveryController::class, 'print'])->name('delivery.print');

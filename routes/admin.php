@@ -51,8 +51,6 @@ Route::get('delivery/{id}/edit',[DeliveryController::class,'edit'])->name('deliv
 Route::post('delivery/{id}/edit/process',[DeliveryController::class,'update'])->name('delivery.edit.process');
 //Delete
 Route::delete('delivery/{id}', [DeliveryController::class, 'destroy'])->name('delivery.delete');
-//Print
-Route::get('delivery/{id}/print', [DeliveryController::class, 'print'])->name('delivery.print');
 /*=================== DELIVERY STAGE ===================== */
 Route::get('delivery/{id}/stages/new', [DeliveryStageController::class, 'create'])->name('delivery.stage.new');
 Route::post('delivery/{id}/stages', [DeliveryStageController::class, 'store'])->name('delivery.stage.store');
@@ -63,6 +61,14 @@ Route::delete('delivery/stage/{id}', [DeliveryStageController::class, 'destroy']
 
 /*===================FLIGHT ROUTE ========================*/
 Route::get('flight/index',[FlightController::class,'landingPage'])->name('flight.index');
+//create
+Route::get('flight/flight-tickets/create', [FlightController::class, 'create'])->name('flight_tickets.create');
+Route::post('flight/flight-tickets', [FlightController::class, 'store'])->name('flight_tickets.store');
+//edit
+Route::get('flight/flight-tickets/{id}/edit', [FlightController::class, 'edit'])->name('flight_tickets.edit');
+Route::put('flight/flight-tickets/{id}', [FlightController::class, 'update'])->name('flight_tickets.update');
+//display
+Route::get('flight/flight-tickets/{id}', [FlightController::class, 'show'])->name('flight_tickets.show');
 
 
 //Logout

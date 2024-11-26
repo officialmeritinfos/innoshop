@@ -513,7 +513,9 @@
                 <div class="feedback-items">
                     <i class="icofont-quote-right"></i>
                     <p>
-                        {{$web->name}} has completely transformed the way we handle logistics. Their speed and reliability are unmatched, and their customer service is always available to assist with any questions. I highly recommend their services for both businesses and individuals!
+                        {{$web->name}} has completely transformed the way we handle logistics. Their speed and reliability are unmatched,
+                        and their customer service is always available to assist with any questions. I highly recommend their
+                        services for both businesses and individuals!
                     </p>
 
                     <img src="{{asset('home/img/feedback/client-1.png')}}" alt="client image">
@@ -539,9 +541,9 @@
                         every step of the way, and my package arrived on time and in perfect condition. {{$web->name}} is my go-to for all my logistics needs!
                     </p>
 
-                    <img src="http://ui-avatars.com/api/?name=John Doe" alt="client image">
-                    <h3>John Doe(Not Real Name)</h3>
-                    <span>Travel Tracking(Escaped from scammers)</span>
+                    <img src="http://ui-avatars.com/api/?name=Anton Sławosz" alt="client image">
+                    <h3>Anton Sławosz</h3>
+                    <span>Business Owner</span>
                 </div>
             </div>
         </div>

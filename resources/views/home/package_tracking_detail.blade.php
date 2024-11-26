@@ -157,9 +157,12 @@
                 </div>
             </div>
             @if($package->photo)
-                <div class="text-center">
-                    <img src="{{ asset($package->photo) }}" alt="Delivery Photo" class="delivery-photo">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8">
+                        <img src="{{ asset($package->photo) }}" alt="Delivery Photo" class="img-fluid rounded shadow">
+                    </div>
                 </div>
+
             @endif
         </div>
     </div>

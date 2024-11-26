@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice - Delivery Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -157,32 +159,34 @@
     <!-- Delivery Stages -->
     <div class="stages-section">
         <h3>Delivery Stages</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Location</th>
-                <th>Status</th>
-                <th>Remarks</th>
-                <th>Date</th>
-            </tr>
-            </thead>
-            <tbody>
-            @forelse($stages as $index => $stage)
+        <div class="table table-responsive">
+            <table>
+                <thead>
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $stage->location }}</td>
-                    <td>{{ ucfirst($stage->status) }}</td>
-                    <td>{{ $stage->remark }}</td>
-                    <td>{{ $stage->created_at->format('d M Y, H:i') }}</td>
+                    <th>#</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th>Date</th>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="5" class="text-center">No stages available</td>
-                </tr>
-            @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @forelse($stages as $index => $stage)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $stage->location }}</td>
+                        <td>{{ ucfirst($stage->status) }}</td>
+                        <td>{{ $stage->remark }}</td>
+                        <td>{{ $stage->created_at->format('d M Y, H:i') }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center">No stages available</td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Delivery Image -->
@@ -208,5 +212,6 @@
         window.print();
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -519,8 +519,8 @@
                     </p>
 
                     <img src="{{asset('home/img/feedback/client-1.png')}}" alt="client image">
-                    <h3>Joe Johnson</h3>
-                    <span>Business Owner</span>
+                    <h3>J. Johnson</h3>
+                    <span>Entrepreneur</span>
                 </div>
 
                 <div class="feedback-items">
@@ -532,7 +532,7 @@
 
                     <img src="{{asset('home/img/feedback/client-2.png')}}" alt="client image">
                     <h3>Mr. McMachman</h3>
-                    <span> Frequent Traveler</span>
+                    <span>Photographer</span>
                 </div>
 
                 <div class="feedback-items">
@@ -543,7 +543,7 @@
 
                     <img src="http://ui-avatars.com/api/?name=Anton Sławosz" alt="client image">
                     <h3>Anton Sławosz</h3>
-                    <span>Business Owner</span>
+                    <span>Botanist</span>
                 </div>
             </div>
         </div>

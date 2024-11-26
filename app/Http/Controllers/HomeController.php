@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Delivery;
+use App\Models\DeliveryStage;
 use App\Models\Deposit;
+use App\Models\FlightTicket;
 use App\Models\GeneralSetting;
 use App\Models\Guest;
 use App\Models\Investment;
@@ -39,25 +42,9 @@ class HomeController extends Controller
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Company Overview',
-            'packages'  => Package::where('status',1)->get(),
-            'services'  =>Service::where('status',1)->get(),
-            'sectors'  =>Service::where('status',1)->where('isSector',1)->get()
         ];
 
         return view('home.about',$dataView);
-    }
-    public function plans()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Packages',
-            'packages'  => Package::where('status',1)->get()
-        ];
-
-        return view('home.plans',$dataView);
     }
     public function terms()
     {
@@ -67,7 +54,6 @@ class HomeController extends Controller
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Terms and Conditions',
-            'packages'  => Package::where('status',1)->get()
         ];
 
         return view('home.terms',$dataView);
@@ -80,7 +66,6 @@ class HomeController extends Controller
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Privacy Policy',
-            'packages'  => Package::where('status',1)->get()
         ];
 
         return view('home.privacy',$dataView);
@@ -93,37 +78,12 @@ class HomeController extends Controller
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Frequently Asked Questions',
-            'packages'  => Package::where('status',1)->get()
         ];
 
         return view('home.faq',$dataView);
     }
-    public function services()
-    {
-        $web = GeneralSetting::where('id',1)->first();
 
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Services',
-            'packages'  => Package::where('status',1)->get()
-        ];
 
-        return view('home.service',$dataView);
-    }
-    public function estate()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Real Estates',
-            'packages'  => Package::where('status',1)->get()
-        ];
-
-        return view('home.estates',$dataView);
-    }
     public function contact()
     {
         $web = GeneralSetting::where('id',1)->first();
@@ -132,222 +92,122 @@ class HomeController extends Controller
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Contact us',
-            'packages'  => Package::where('status',1)->get()
         ];
 
         return view('home.contact',$dataView);
     }
-    public function buyBtc()
+
+    public function tour()
     {
         $web = GeneralSetting::where('id',1)->first();
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
-            'pageName'  => 'Where to Buy Bitcoin',
-            'packages'  => Package::where('status',1)->get()
+            'pageName'  => 'Tour Services',
         ];
 
-        return view('home.buy_btc',$dataView);
+        return view('home.tour',$dataView);
     }
-    //service detail
-    public function serviceDetail($id)
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $service = Service::where('id',$id)->firstOrFail();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => $service->title,
-            'service'  => $service
-        ];
-
-        return view('home.service_detail',$dataView);
-    }
-    //security
-    public function security()
+    public function travel()
     {
         $web = GeneralSetting::where('id',1)->first();
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
-            'pageName'  => 'Security Information',
-            'packages'  => Package::where('status',1)->get()
+            'pageName'  => 'Travel Agency Services',
         ];
 
-        return view('home.security',$dataView);
+        return view('home.travel',$dataView);
     }
-
-    public function realEstate()
+    public function logistics()
     {
         $web = GeneralSetting::where('id',1)->first();
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
-            'pageName'  => 'Real Estate',
-            'packages'  => Package::where('status',1)->get()
+            'pageName'  => 'Logistics Services',
         ];
 
-        return view('home.estates',$dataView);
+        return view('home.logistics',$dataView);
     }
-    public function nft()
+    public function visa()
     {
         $web = GeneralSetting::where('id',1)->first();
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
-            'pageName'  => 'NFT',
-            'packages'  => Package::where('status',1)->get()
+            'pageName'  => 'Visa Preparation Services',
         ];
 
-        return view('home.nft',$dataView);
+        return view('home.visa',$dataView);
     }
-    public function gold()
+    public function flightTracking()
     {
         $web = GeneralSetting::where('id',1)->first();
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
-            'pageName'  => 'Gold',
-            'packages'  => Package::where('status',1)->get()
+            'pageName'  => 'Flight Tracking Services',
         ];
 
-        return view('home.gold',$dataView);
+        return view('home.flight',$dataView);
     }
-    public function retirement()
+    //process package
+    public function processPackage(Request  $request)
     {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Retirement',
-            'packages'  => Package::where('status',1)->get()
-        ];
-
-        return view('home.retirement',$dataView);
-    }
-    public function forex()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Foreign Exchange',
-            'packages'  => Package::where('status',1)->get()
-        ];
-
-        return view('home.forex',$dataView);
-    }
-    public function stocks()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Stocks & ETFs',
-            'packages'  => Package::where('status',1)->get()
-        ];
-
-        return view('home.stocks',$dataView);
-    }
-    public function agriculture()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Agriculture',
-            'packages'  => Package::where('status',1)->get()
-        ];
-
-        return view('home.agriculture',$dataView);
-    }
-    public function career()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Career',
-            'packages'  => Package::where('status',1)->get()
-        ];
-
-        return view('home.career',$dataView);
-    }
-    //calculate possible return
-    public function calculateReturn(Request  $request)
-    {
-        $web = GeneralSetting::where('id',1)->first();
-        $validator = Validator::make($request->input(),[
-            'amount'=>['required','numeric'],
-            'email'=>['required','email'],
-            'package'=>['required','exists:packages,id']
-        ]);
-        if ($validator->fails()){
-            return back()->with('errors',$validator->errors());
-        }
-        $input = $validator->validated();
-
-        $packageExists = Package::where('id',$input['package'])->first();
-
-        //check if amount matches
-        if ($packageExists->isUnlimited !=1){
-            if ($packageExists->maxAmount < $input['amount']){
-                return back()->with('error','Amount cannot be greater than maximum amount');
-            }
-        }
-        if ($packageExists->minAmount > $input['amount']){
-            return back()->with('error','Amount cannot be less than minimum amount');
-        }
-
-        //get the return type attached to investment package
-        $returnType = ReturnType::where('id',$packageExists->returnType)->first();
-        //do calculations for the investment
-        $roi = $packageExists->roi;
-        $profitPerReturn = $input['amount']*($roi/100);
-
-        $totalProfit = $profitPerReturn*$packageExists->numberOfReturns;
-
-        $guest = Guest::firstOrCreate([
-            'email'=>$input['email']
+        $request->validate([
+            'tracking_id' => 'required|string|max:255',
         ]);
 
-        $message = "Here is your calculation request: if you Invest <b>$".$input['amount']."</b> in the Package <b>".$packageExists->name."</b>;
-        you will earn <b>$".$profitPerReturn."</b> ".$returnType->name.". For the period of ".$packageExists->Duration.", you will earn a
-        total of <b>$".$totalProfit."</b>.
-        <br/>";
+        $trackingId = $request->input('tracking_id');
+        $package = Delivery::where('tracking_number', $trackingId)->first();
 
-        $guest->notify(new InvestmentMail($guest,$message,'Calculated Return on '.$web->name));
+        if (!$package) {
+            return redirect()->back()->with('error','Tracking ID not found. Please try again.');
+        }
 
-        return back()->with('success','Calculation sent to your mail');
+        return redirect(route('home.package.detail',['ref'=>$package->reference]))->with('success','Package found');
+    }
+    //package detail
+    public function packageDetail($ref)
+    {
+        $package = Delivery::where('reference', $ref)->firstOrFail();
+
+        $stages = DeliveryStage::where('delivery_id', $package->id)->orderBy('created_at', 'asc')->get();
+        $web = GeneralSetting::find(1);
+
+        return view('home.package_tracking_detail', compact('package', 'stages','web'));
 
     }
-    public function estateDetail($id)
+    //process flight
+    public function processFLight(Request $request)
     {
-        $web = GeneralSetting::where('id',1)->first();
+        $request->validate([
+            'pnr' => 'required|string|max:6|min:6',
+        ]);
 
-        $estate = RealEstate::where('id',$id)->firstOrFail();
+        $pnr = $request->input('pnr');
+        $flight = FlightTicket::where('pnr', $pnr)->first();
 
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Real Estates',
-            'packages'  => Package::where('status',1)->get(),
-            'estate'    => $estate
-        ];
+        if (!$flight) {
+            return redirect()->back()->with('error','PNR not found. Please try again.');
+        }
 
-        return view('home.estate_detail',$dataView);
+        return redirect(route('home.flight.detail',['pnr'=>$flight->pnr]))->with('success','Flight found');
+    }
+    //flight detail
+    public function flightDetail($pnr)
+    {
+        $flight = FlightTicket::where('pnr', $pnr)->firstOrFail();
+        $web = GeneralSetting::find(1);
+
+        return view('home.flight_tracking_detail', compact('flight','web'));
+
     }
 }
 

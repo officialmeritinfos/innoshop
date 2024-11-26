@@ -342,14 +342,16 @@
     <section class="why-choose-section">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-lg-6 p-0">
+                <div class="col-lg-6 p-0" id="tracking-package">
                     <div class="why-choose-img">
                         <div class="shipping-text">
                             <h3>Know Shipping Location</h3>
                             <p>Track ID will be on your document file.</p>
-                            <form>
+                            <form method="post" action="{{route('tracking.package.process')}}">
+                                @include('templates.notification')
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text"  class="form-control" placeholder="Enter Track ID">
+                                    <input type="text"  class="form-control" placeholder="Enter Track ID" name="tracking_id">
                                 </div>
 
                                 <button type="submit" class="shipping-btn">
@@ -456,7 +458,7 @@
     <div class="get-quote-section quote-bg pt-100 pb-100">
         <div class="container">
             <div class="row align-items-center justify-content-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6" id="tracking-flight">
                     <div class="quote-text">
 
                         <h2>Track & Verify Flight Tickets</h2>
@@ -467,16 +469,18 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 wow animate__animated animate__bounceInUp" data-wow-duration="1s">
+                <div class="col-lg-6 wow animate__animated animate__bounceInUp" data-wow-duration="1s" >
                     <div class="quote-form">
                         <h2>Track & Verify Flight Ticket </h2>
 
-                        <form>
-
+                        <form method="post" action="{{route('tracking.flight.process')}}">
+                            @csrf
+                            @include('templates.notification')
                             <div class="row justify-content-center">
                                 <div class="col-md-12 col-12 pr-0">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="PNR" required minlength="6" maxlength="6">
+                                        <input type="text" class="form-control" placeholder="PNR" required minlength="6" maxlength="6"
+                                        name="pnr">
                                     </div>
                                 </div>
                             </div>
@@ -509,7 +513,7 @@
                 <div class="feedback-items">
                     <i class="icofont-quote-right"></i>
                     <p>
-                        Adept Xpress has completely transformed the way we handle logistics. Their speed and reliability are unmatched, and their customer service is always available to assist with any questions. I highly recommend their services for both businesses and individuals!
+                        {{$web->name}} has completely transformed the way we handle logistics. Their speed and reliability are unmatched, and their customer service is always available to assist with any questions. I highly recommend their services for both businesses and individuals!
                     </p>
 
                     <img src="{{asset('home/img/feedback/client-1.png')}}" alt="client image">
@@ -520,7 +524,7 @@
                 <div class="feedback-items">
                     <i class="icofont-quote-right"></i>
                     <p>
-                        I used Adept Xpress for my vacation planning, and they exceeded all my expectations. From flight bookings
+                        I used {{$web->name}} for my vacation planning, and they exceeded all my expectations. From flight bookings
                         to hotel reservations, everything was seamless. They took the stress out of my travel plans, and I couldn’t be happier.
                     </p>
 
@@ -532,7 +536,7 @@
                 <div class="feedback-items">
                     <i class="icofont-quote-right"></i>
                     <p>I was amazed by the level of care and attention given to my shipment. The real-time tracking feature kept me informed
-                        every step of the way, and my package arrived on time and in perfect condition. Adept Xpress is my go-to for all my logistics needs!
+                        every step of the way, and my package arrived on time and in perfect condition. {{$web->name}} is my go-to for all my logistics needs!
                     </p>
 
                     <img src="http://ui-avatars.com/api/?name=John Doe" alt="client image">

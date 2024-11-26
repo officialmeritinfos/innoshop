@@ -19,41 +19,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('index',[HomeController::class,'index']);
 Route::get('about',[HomeController::class,'about']);
-Route::get('plans',[HomeController::class,'plans']);
-Route::get('plan',[HomeController::class,'plans']);
 Route::get('terms',[HomeController::class,'terms']);
 Route::get('terms',[HomeController::class,'terms']);
-Route::get('services',[HomeController::class,'services']);
-Route::get('service/{id}/details',[HomeController::class,'serviceDetail'])
-    ->name('service.details');
-Route::get('estate/{id}/details',[HomeController::class,'serviceDetail'])
-    ->name('estate.details');
+Route::get('privacy',[HomeController::class,'privacy']);
 Route::get('faqs',[HomeController::class,'faqs']);
 Route::get('faq',[HomeController::class,'faqs']);
-Route::get('security',[HomeController::class,'security']);
-Route::get('estate',[HomeController::class,'estate']);
 Route::get('contact',[HomeController::class,'contact']);
-Route::get('loan',[HomeController::class,'loan']);
-Route::get('privacy',[HomeController::class,'privacy']);
-Route::get('career',[HomeController::class,'career']);
-Route::get('buy-btc',[HomeController::class,'buyBtc']);
-Route::get('register',[Register::class,'landingPage']);
 //Services
-Route::get('realestate',[HomeController::class,'realEstate']);
-Route::get('retirement',[HomeController::class,'retirement']);
-Route::get('stocks',[HomeController::class,'stocks']);
-Route::get('nft',[HomeController::class,'nft']);
-Route::get('forex',[HomeController::class,'forex']);
-Route::get('gold',[HomeController::class,'gold']);
-Route::get('agriculture',[HomeController::class,'agriculture']);
+Route::get('tour',[HomeController::class,'tour']);
+Route::get('travel',[HomeController::class,'travel']);
+Route::get('logistics',[HomeController::class,'logistics']);
+Route::get('visa',[HomeController::class,'visa']);
+Route::get('flight-tracking',[HomeController::class,'flightTracking']);
+
+Route::post('tracking/package/process',[HomeController::class,'processPackage'])
+    ->name('tracking.package.process');
+Route::post('tracking/flight/process',[HomeController::class,'processFLight'])
+    ->name('tracking.flight.process');
 
 
-//Calculate return
-Route::post('calculate-return',[HomeController::class,'calculateReturn'])
-    ->name('calculate.return');
+Route::get('tracking/flight/{pnr}/detail',[HomeController::class,'flightDetail'])->name('home.flight.detail');
+Route::get('tracking/package/{ref}/detail',[HomeController::class,'packageDetail'])->name('home.package.detail');
+
 
 
 //Flight Ticket Printing

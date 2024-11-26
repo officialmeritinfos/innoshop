@@ -29,6 +29,39 @@
     <title>{{$pageName}} - {{$siteName}}</title>
     <!-- Favicon Link -->
     <link rel="icon" type="image/png" href="{{asset('home/img/'.$web->logo)}}">
+    @stack('css')
+    <style>
+        .watkey {
+            z-index: 9;
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            padding: 4px;
+            border: 1px solid #0d9f16;
+            border-radius: 50%;
+        }
+    </style>
+
+    <style>
+        /* Custom CSS for the Float widget */
+        .telegram-float-widget {
+            position: fixed;
+            left: 10px;
+            /* Adjust the left positioning as needed */
+            bottom: 10rem;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+
+        .whatsapp-float-widget {
+            position: fixed;
+            left: 70px;
+            /* Adjust the left positioning as needed */
+            bottom: 10px;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body>
 <!-- PreLoader Start -->
@@ -74,24 +107,7 @@
                 <div class="header-right">
                     <ul class="header-social">
                         <li>
-                            <a href="https://www.facebook.com/login/" target="_blank">
-                                <i class="icofont-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/i/flow/login" target="_blank">
-                                <i class="icofont-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/" target="_blank">
-                                <i class="icofont-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/" target="_blank">
-                                <i class="icofont-linkedin"></i>
-                            </a>
+                            <div id="google_translate_element"></div>
                         </li>
                     </ul>
                 </div>
@@ -107,7 +123,7 @@
     <div class="mobile-nav">
         <a href="index" class="logo">
             <img src="{{asset('home/img/'.$web->logo)}}" class="main-logo" alt="logo" style="width: 70px;">
-            <img src="{{asset('home/img/'.$web->logo)}}" class="white-logo" alt="logo" style="width: 70px;">
+            <img src="{{asset('home/img/'.$web->logo2)}}" class="white-logo" alt="logo" style="width: 70px;">
         </a>
     </div>
 
@@ -116,8 +132,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="index">
-                    <img src="{{asset('home/img/'.$web->logo)}}" class="main-logo" alt="logo">
-                    <img src="{{asset('home/img/'.$web->logo)}}" class="white-logo" alt="logo">
+                    <img src="{{asset('home/img/'.$web->logo)}}" class="main-logo" alt="logo" style="width: 80px;">
+                    <img src="{{asset('home/img/'.$web->logo2)}}" class="white-logo" alt="logo" style="width: 80px;">
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
@@ -148,6 +164,17 @@
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">Tracking</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a href="{{route('home')}}#tracking-package" class="nav-link">Track Package</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('home')}}#tracking-flight" class="nav-link">Track Flight</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle">Pages</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
@@ -162,6 +189,9 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{$web->whatsappSupport}}" target="_blank" class="nav-link">Call On Whatsapp</a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{url('contact')}}" class="nav-link">Contact Us</a>
                         </li>
@@ -202,7 +232,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="footer-widget">
                     <a href="index">
-                        <img src="{{asset('home/img/'.$web->logo)}}" alt="logo">
+                        <img src="{{asset('home/img/'.$web->logo2)}}" alt="logo">
                     </a>
                     <ul>
                         @if($web->phone)
@@ -303,13 +333,20 @@
         </div>
     </div>
     <div class="copyright-area">
-        <p>© <span>{{$siteName}}</span> </p>
+        <p>© <span>{{$siteName}}</span>. License number <a href="#">{{$web->licenseNumber}}</a> </p>
     </div>
 
     <div class="lines">
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
+    </div>
+
+    <div class="telegram-float-widget">
+        <a href="https://wa.me/{{$web->phone}}" target="_blank">
+            <img src="https://cdn2.iconfinder.com/data/icons/social-media-applications/64/social_media_applications_23-whatsapp-256.png"
+                 alt="" width="50">
+        </a>
     </div>
 </footer>
 <!-- Footer Area End -->
@@ -338,5 +375,23 @@
 <script src="{{asset('home/js/meanmenu.js')}}"></script>
 <!-- Custom JS -->
 <script src="{{asset('home/js/custom.js')}}"></script>
+<script type="text/javascript">
+    window.onload = function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = '3b6a28dd2836347279fbd083cfd527b21d827203';
+    window.smartsupp||(function(d) {
+        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+        c.type='text/javascript';c.charset='utf-8';c.async=true;
+        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
 </body>
 </html>

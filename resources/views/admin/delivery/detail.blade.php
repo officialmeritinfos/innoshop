@@ -45,7 +45,7 @@
                     <i class="fa fa-plus"></i> Add Stage
                 </a>
             </div>
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>

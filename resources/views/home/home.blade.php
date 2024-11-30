@@ -121,6 +121,168 @@
     </div>
     <!-- Features Section End -->
 
+    <!-- Why Choose Section Start -->
+    <section class="why-choose-section">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 p-0" id="tracking-package">
+                    <div class="why-choose-img">
+                        <div class="shipping-text">
+                            <h3>Know Shipping Location</h3>
+                            <p>Track ID will be on your document file.</p>
+                            <form method="post" action="{{route('tracking.package.process')}}">
+                                @include('templates.notification')
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text"  class="form-control" placeholder="Enter Track ID" name="tracking_id">
+                                </div>
+
+                                <button type="submit" class="shipping-btn">
+                                    Track Now
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 p-0">
+                    <div class="why-choose-text">
+                        <div class="section-title">
+                            <h2>Why People Choose {{$siteName}}?</h2>
+                        </div>
+
+                        <div class="accordions">
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item1">
+                                    <i class="icofont-fast-delivery"></i>
+                                    <h2>Fast & Safe Delivery <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item1">
+                                    <p>
+                                        At {{$siteName}}, speed and safety are our top priorities. We ensure your parcels and
+                                        goods are delivered promptly and securely to their destination, no matter the size or distance.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item2">
+                                    <i class="icofont-ssl-security"></i>
+                                    <h2>Product Security <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item2">
+                                    <p>
+                                        Your goods are precious, and we treat them as such. Our logistics team uses cutting-edge
+                                        technology and robust protocols to safeguard your shipments throughout the journey.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item3">
+                                    <i class="icofont-diamond"></i>
+                                    <h2>Price Oriented <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item3">
+                                    <p>
+                                        Affordable and transparent pricing is at the core of our services. We offer competitive
+                                        rates without compromising on quality, making us the best choice for cost-effective logistics solutions.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item4">
+                                    <i class="icofont-ui-browser"></i>
+                                    <h2>Secured Payment <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item4">
+                                    <p>
+                                        Trust is essential, and our payment systems are designed to provide maximum security.
+                                        With multiple secure payment options, you can transact with confidence and ease.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item5">
+                                    <i class="icofont-live-support"></i>
+                                    <h2>24/7 Support <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item5">
+                                    <p>
+                                        Need help at any hour? Our dedicated customer support team is available 24/7 to assist
+                                        you with tracking, inquiries, or resolving issues swiftly.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-title" data-tab="item6">
+                                    <i class="icofont-like"></i>
+                                    <h2>Well Experienced <i class="icofont-stylish-right down-arrow"></i></h2>
+                                </div>
+                                <div class="accordion-content" id="item6">
+                                    <p>
+                                        With over two decades of expertise in logistics, freight, and travel, {{$siteName}} has
+                                        the knowledge and resources to handle your needs with unmatched professionalism and reliability.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Why Choose Section End -->
+
+    <!-- Get Quote Section Start -->
+    <div class="get-quote-section quote-bg pt-100 pb-100">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6" id="tracking-flight">
+                    <div class="quote-text">
+
+                        <h2>Track & Verify Flight Tickets</h2>
+                        <p>
+                            With our system you can track any flight, and be sure that the ticket shown to you is real!
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 wow animate__animated animate__bounceInUp" data-wow-duration="1s" >
+                    <div class="quote-form">
+                        <h2>Track & Verify Flight Ticket </h2>
+
+                        <form method="post" action="{{route('tracking.flight.process')}}">
+                            @csrf
+                            @include('templates.notification')
+                            <div class="row justify-content-center">
+                                <div class="col-md-12 col-12 pr-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="PNR" required minlength="6" maxlength="6"
+                                               name="pnr">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit">Submit </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <!-- Get Quote Section End -->
+
     <!-- About Section Start -->
     <section class="about-section pt-100">
         <div class="container">
@@ -338,167 +500,7 @@
     </section>
     <!-- Transport System Section End -->
 
-    <!-- Why Choose Section Start -->
-    <section class="why-choose-section">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 p-0" id="tracking-package">
-                    <div class="why-choose-img">
-                        <div class="shipping-text">
-                            <h3>Know Shipping Location</h3>
-                            <p>Track ID will be on your document file.</p>
-                            <form method="post" action="{{route('tracking.package.process')}}">
-                                @include('templates.notification')
-                                @csrf
-                                <div class="form-group">
-                                    <input type="text"  class="form-control" placeholder="Enter Track ID" name="tracking_id">
-                                </div>
 
-                                <button type="submit" class="shipping-btn">
-                                    Track Now
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 p-0">
-                    <div class="why-choose-text">
-                        <div class="section-title">
-                            <h2>Why People Choose {{$siteName}}?</h2>
-                        </div>
-
-                        <div class="accordions">
-                            <div class="accordion-item">
-                                <div class="accordion-title" data-tab="item1">
-                                    <i class="icofont-fast-delivery"></i>
-                                    <h2>Fast & Safe Delivery <i class="icofont-stylish-right down-arrow"></i></h2>
-                                </div>
-                                <div class="accordion-content" id="item1">
-                                    <p>
-                                        At {{$siteName}}, speed and safety are our top priorities. We ensure your parcels and
-                                        goods are delivered promptly and securely to their destination, no matter the size or distance.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <div class="accordion-title" data-tab="item2">
-                                    <i class="icofont-ssl-security"></i>
-                                    <h2>Product Security <i class="icofont-stylish-right down-arrow"></i></h2>
-                                </div>
-                                <div class="accordion-content" id="item2">
-                                    <p>
-                                        Your goods are precious, and we treat them as such. Our logistics team uses cutting-edge
-                                        technology and robust protocols to safeguard your shipments throughout the journey.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <div class="accordion-title" data-tab="item3">
-                                    <i class="icofont-diamond"></i>
-                                    <h2>Price Oriented <i class="icofont-stylish-right down-arrow"></i></h2>
-                                </div>
-                                <div class="accordion-content" id="item3">
-                                    <p>
-                                        Affordable and transparent pricing is at the core of our services. We offer competitive
-                                        rates without compromising on quality, making us the best choice for cost-effective logistics solutions.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <div class="accordion-title" data-tab="item4">
-                                    <i class="icofont-ui-browser"></i>
-                                    <h2>Secured Payment <i class="icofont-stylish-right down-arrow"></i></h2>
-                                </div>
-                                <div class="accordion-content" id="item4">
-                                    <p>
-                                        Trust is essential, and our payment systems are designed to provide maximum security.
-                                        With multiple secure payment options, you can transact with confidence and ease.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <div class="accordion-title" data-tab="item5">
-                                    <i class="icofont-live-support"></i>
-                                    <h2>24/7 Support <i class="icofont-stylish-right down-arrow"></i></h2>
-                                </div>
-                                <div class="accordion-content" id="item5">
-                                    <p>
-                                        Need help at any hour? Our dedicated customer support team is available 24/7 to assist
-                                        you with tracking, inquiries, or resolving issues swiftly.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <div class="accordion-title" data-tab="item6">
-                                    <i class="icofont-like"></i>
-                                    <h2>Well Experienced <i class="icofont-stylish-right down-arrow"></i></h2>
-                                </div>
-                                <div class="accordion-content" id="item6">
-                                    <p>
-                                        With over two decades of expertise in logistics, freight, and travel, {{$siteName}} has
-                                        the knowledge and resources to handle your needs with unmatched professionalism and reliability.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Why Choose Section End -->
-
-    <!-- Get Quote Section Start -->
-    <div class="get-quote-section quote-bg pt-100 pb-100">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-6" id="tracking-flight">
-                    <div class="quote-text">
-
-                        <h2>Track & Verify Flight Tickets</h2>
-                        <p>
-                            With our system you can track any flight, and be sure that the ticket shown to you is real!
-                        </p>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-6 wow animate__animated animate__bounceInUp" data-wow-duration="1s" >
-                    <div class="quote-form">
-                        <h2>Track & Verify Flight Ticket </h2>
-
-                        <form method="post" action="{{route('tracking.flight.process')}}">
-                            @csrf
-                            @include('templates.notification')
-                            <div class="row justify-content-center">
-                                <div class="col-md-12 col-12 pr-0">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="PNR" required minlength="6" maxlength="6"
-                                        name="pnr">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit">Submit </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="lines">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-    </div>
-    <!-- Get Quote Section End -->
 
     <!-- Feedback Section Strat -->
     <section class="feedback-section feedback-bg pt-100">

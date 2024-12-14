@@ -83,7 +83,7 @@
     <!-- Header Section -->
     <div class="email-header">
         <!-- Add Logo -->
-        <img src="{{ asset('images/company-logo.png') }}" alt="Company Logo">
+        <img src="{{ asset('home/img/'.$web->logo) }}" alt="Company Logo">
         <h1>Booking Confirmation</h1>
         <p>Your booking request has been successfully received!</p>
     </div>
@@ -92,7 +92,8 @@
     <div class="email-body">
         <p>Dear {{ $booking->name }},</p>
         <p>
-            Thank you for choosing our service for your travel needs. We have received your booking request and will process it shortly. Below are the details of your booking:
+            Thank you for choosing our service for your travel needs. We have received your booking request and will process it shortly.
+            Below are the details of your booking:
         </p>
 
         <!-- Booking Details Table -->
@@ -106,10 +107,10 @@
                 <td>{{ \Carbon\Carbon::parse($booking->departure_date)->format('F j, Y') }}</td>
             </tr>
             @if ($booking->return_date)
-            <tr>
-                <th>Return Date</th>
-                <td>{{ \Carbon\Carbon::parse($booking->return_date)->format('F j, Y') }}</td>
-            </tr>
+                <tr>
+                    <th>Return Date</th>
+                    <td>{{ \Carbon\Carbon::parse($booking->return_date)->format('F j, Y') }}</td>
+                </tr>
             @endif
             <tr>
                 <th>Class</th>
@@ -150,12 +151,12 @@
         </p>
 
         <p>Best regards,</p>
-        <p>The Travel Booking Team</p>
+        <p>{{$web->name}} Team</p>
     </div>
 
     <!-- Footer Section -->
     <div class="email-footer">
-        <p>For inquiries, please contact us at <a href="mailto:support@example.com">support@example.com</a>.</p>
+        <p>For inquiries, please contact us at <a href="mailto:{{$web->email}}">{{$web->email}}</a>.</p>
         <p>&copy; {{ date('Y') }} Your Travel Company. All rights reserved.</p>
     </div>
 </div>

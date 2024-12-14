@@ -72,7 +72,8 @@ Route::get('flight/flight-tickets/{id}', [FlightController::class, 'show'])->nam
 //Delete
 Route::delete('flight/flight-tickets/{id}', [FlightController::class, 'destroy'])->name('flight_tickets.destroy');
 
-
+//Flight Booking
+Route::get('flight/booking/index',[FlightController::class,'bookings'])->name('flight.booking.index');
 
 //Logout
 Route::get('logout',[Login::class,'logout']);

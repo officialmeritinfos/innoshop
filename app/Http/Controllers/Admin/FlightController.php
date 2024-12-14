@@ -7,6 +7,7 @@ use App\Mail\FlightDelayedMailable;
 use App\Mail\FlightTicketMailable;
 use App\Mail\FlightUpdatedMailable;
 use App\Mail\ThankYouMailable;
+use App\Models\FlightBooking;
 use App\Models\FlightTicket;
 use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
@@ -26,10 +27,25 @@ class FlightController extends Controller
             'siteName' => $web->name,
             'pageName' => 'Flight Dashboard',
             'user'     =>  $user,
-            'tickets'  => $tickets = FlightTicket::orderBy('created_at', 'desc')->paginate(10)
+            'tickets'  => FlightTicket::orderBy('created_at', 'desc')->paginate(10)
         ];
 
         return view('admin.flight.index',$dataView);
+    }
+    //landing page
+    public function bookings()
+    {
+        $web = GeneralSetting::find(1);
+        $user = Auth::user();
+
+        $dataView =[
+            'siteName' => $web->name,
+            'pageName' => 'Flight Bookings',
+            'user'     =>  $user,
+            'bookings'  => FlightBooking::orderBy('created_at', 'desc')->paginate(10)
+        ];
+
+        return view('admin.flight.flight_booking',$dataView);
     }
     //create ticket
     public function create()

@@ -71,6 +71,11 @@
                 <i class="fas fa-fw fa-plane"></i>
                 <span>Flight Section</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.flight.booking.index')}}">
+                <i class="fas fa-fw fa-plane"></i>
+                <span>Flight Booking</span></a>
+        </li>
 
 
         <!-- Divider -->

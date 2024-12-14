@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingReceived;
+use App\Models\Country;
 use App\Models\Delivery;
 use App\Models\DeliveryStage;
 use App\Models\Deposit;
+use App\Models\FlightBooking;
 use App\Models\FlightTicket;
 use App\Models\GeneralSetting;
 use App\Models\Guest;
@@ -16,6 +19,7 @@ use App\Models\Service;
 use App\Models\Withdrawal;
 use App\Notifications\InvestmentMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -208,6 +212,61 @@ class HomeController extends Controller
 
         return view('home.flight_tracking_detail', compact('flight','web'));
 
+    }
+    //flight booking
+    public function flightBooking()
+    {
+        $web = GeneralSetting::where('id',1)->first();
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => 'Flight Booking',
+            'services'  =>Service::where('status',1)->get(),
+            'froms'     =>Country::where('status',1)->get(),
+            'tos'       =>Country::where('status',1)->get(),
+            'countries' =>Country::where('status',1)->get(),
+        ];
+
+        return view('home.flight_booking',$dataView);
+    }
+
+    public function processFlightBooking(Request  $request)
+    {
+        $web = GeneralSetting::find(1);
+        //validate request
+        $request->validate([
+            'tripType' => 'required',
+            'departureDate' => 'required|date',
+            'returnDate' => 'nullable|date',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:15',
+            'residence' => 'required|string',
+            'destination' => 'required|string',
+            'nationality' => 'required|string',
+            'class' => 'required|string',
+            'numberOfAdults' => 'required|integer|min:1',
+            'numberOfChildren' => 'required|integer|min:0',
+        ]);
+
+        $booking = FlightBooking::create([
+            'trip_type' => $request->tripType,
+            'departure_date' => $request->departureDate,
+            'return_date' => $request->returnDate,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'departure_country' => $request->residence,
+            'destination_country' => $request->destination,
+            'nationality' => $request->nationality,
+            'class' => $request->class,
+            'number_of_adults' => $request->numberOfAdults,
+            'number_of_children' => $request->numberOfChildren,
+        ]);
+        Mail::to($request->email)->send(new BookingReceived($booking));
+
+        return redirect()->back()->with('success', 'Your booking request has been received.');
     }
 }
 

@@ -28,6 +28,8 @@ Route::get('privacy',[HomeController::class,'privacy']);
 Route::get('faqs',[HomeController::class,'faqs']);
 Route::get('faq',[HomeController::class,'faqs']);
 Route::get('contact',[HomeController::class,'contact']);
+Route::get('flight-booking',[HomeController::class,'flightBooking'])->name('flight-booking');
+Route::post('flight-booking/process',[HomeController::class,'processFlightBooking'])->name('flight-booking.process');
 //Services
 Route::get('tour',[HomeController::class,'tour']);
 Route::get('travel',[HomeController::class,'travel']);

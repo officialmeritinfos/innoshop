@@ -172,6 +172,9 @@
                                 <li class="nav-item">
                                     <a href="{{route('home')}}#tracking-flight" class="nav-link">Track Flight</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('flight-booking')}}" class="nav-link">Flight Booking</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -393,5 +396,6 @@
     })(document);
 </script>
 <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+@stack('js')
 </body>
 </html>

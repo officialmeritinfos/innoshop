@@ -86,7 +86,7 @@
     <!-- Header Section -->
     <div class="email-header">
         <!-- Add Logo -->
-        <img src="{{ asset('images/company-logo.png') }}" alt="Company Logo">
+        <img src="{{ asset('home/img/'.$web->logo) }}" alt="Company Logo">
         <h1>New Booking Received</h1>
         <p>A new booking request has been submitted!</p>
     </div>
@@ -102,7 +102,7 @@
         <table class="details-table">
             <tr>
                 <th>Passenger Name</th>
-                <td>{{ $booking->passenger_name }}</td>
+                <td>{{ $booking->name }}</td>
             </tr>
             <tr>
                 <th>Email</th>
@@ -144,14 +144,6 @@
                 <th>Number of Children</th>
                 <td>{{ $booking->number_of_children }}</td>
             </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ ucfirst($booking->status) }}</td>
-            </tr>
-            <tr>
-                <th>Flight Status</th>
-                <td>{{ ucfirst($booking->flight_status) }}</td>
-            </tr>
         </table>
 
         <p>
@@ -162,11 +154,6 @@
         <p>The Booking System</p>
     </div>
 
-    <!-- Footer Section -->
-    <div class="email-footer">
-        <p>For support, contact <a href="mailto:admin@example.com">admin@example.com</a>.</p>
-        <p>&copy; {{ date('Y') }} Your Travel Company. All rights reserved.</p>
-    </div>
 </div>
 </body>
 </html>

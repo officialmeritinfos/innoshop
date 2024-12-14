@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminBookingNotification;
 use App\Mail\BookingReceived;
 use App\Models\Country;
 use App\Models\Delivery;
 use App\Models\DeliveryStage;
-use App\Models\Deposit;
 use App\Models\FlightBooking;
 use App\Models\FlightTicket;
 use App\Models\GeneralSetting;
-use App\Models\Guest;
-use App\Models\Investment;
-use App\Models\Package;
-use App\Models\RealEstate;
-use App\Models\ReturnType;
 use App\Models\Service;
-use App\Models\Withdrawal;
+use App\Models\User;
 use App\Notifications\InvestmentMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\ReCaptcha;
 
 class HomeController extends Controller
 {
@@ -248,6 +244,7 @@ class HomeController extends Controller
             'class' => 'required|string',
             'numberOfAdults' => 'required|integer|min:1',
             'numberOfChildren' => 'required|integer|min:0',
+            'g-recaptcha-response' => ['required', new ReCaptcha]
         ]);
 
         $booking = FlightBooking::create([
@@ -265,6 +262,12 @@ class HomeController extends Controller
             'number_of_children' => $request->numberOfChildren,
         ]);
         Mail::to($request->email)->send(new BookingReceived($booking));
+
+        $admin = User::where('is_admin',1)->first();
+
+        if (!empty($admin)){
+            Mail::to($admin->email)->send(new AdminBookingNotification($booking));
+        }
 
         return redirect()->back()->with('success', 'Your booking request has been received.');
     }

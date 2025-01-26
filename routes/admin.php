@@ -1,22 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Coins;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Admin\DeliveryStageController;
-use App\Http\Controllers\Admin\Deposits;
 use App\Http\Controllers\Admin\FlightController;
-use App\Http\Controllers\Admin\Investments;
-use App\Http\Controllers\Admin\Investors;
-use App\Http\Controllers\Admin\ManagedAccountDurations;
-use App\Http\Controllers\Admin\ManagedAccounts;
-use App\Http\Controllers\Admin\Notifications;
-use App\Http\Controllers\Admin\Packages;
-use App\Http\Controllers\Admin\PromoController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Settings;
-use App\Http\Controllers\Admin\Transfers;
-use App\Http\Controllers\Admin\WebSettings;
-use App\Http\Controllers\Admin\Withdrawals;
 use App\Http\Controllers\Auth\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -57,8 +48,6 @@ Route::post('delivery/{id}/stages', [DeliveryStageController::class, 'store'])->
 Route::get('delivery/stage/{id}/edit', [DeliveryStageController::class, 'edit'])->name('delivery.stage.edit');
 Route::post('delivery/stage/{id}', [DeliveryStageController::class, 'update'])->name('delivery.stage.update');
 Route::delete('delivery/stage/{id}', [DeliveryStageController::class, 'destroy'])->name('delivery.stage.delete');
-
-
 /*===================FLIGHT ROUTE ========================*/
 Route::get('flight/index',[FlightController::class,'landingPage'])->name('flight.index');
 //create
@@ -71,9 +60,24 @@ Route::put('flight/flight-tickets/{id}', [FlightController::class, 'update'])->n
 Route::get('flight/flight-tickets/{id}', [FlightController::class, 'show'])->name('flight_tickets.show');
 //Delete
 Route::delete('flight/flight-tickets/{id}', [FlightController::class, 'destroy'])->name('flight_tickets.destroy');
-
 //Flight Booking
 Route::get('flight/booking/index',[FlightController::class,'bookings'])->name('flight.booking.index');
+/*================ CATEGORY ROUTE ====================*/
+Route::get('category/index', [CategoryController::class, 'landingPage'])->name('category.index');
+Route::post('category/new/process', [CategoryController::class, 'addCategory'])->name('category.new.process');
+Route::get('category/{id}/details', [CategoryController::class, 'categoryDetail'])->name('category.details');
+Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');//update
+Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');//delete
+/*================ PRODUCT ROUTE ====================*/
+Route::get('products/index', [ProductController::class, 'landingPage'])->name('products.index');
+Route::get('products/new', [ProductController::class, 'newProduct'])->name('products.new');
+Route::post('products/new/process', [ProductController::class, 'processNewProduct'])->name('products.new.process');
+Route::get('products/{id}/edit', [ProductController::class, 'editProduct'])->name('products.edit');
+Route::get('products/{id}/detail', [ProductController::class, 'productDetail'])->name('products.detail');
+Route::post('products/{id}/update', [ProductController::class, 'updateProduct'])->name('products.update');//update
+Route::delete('products/{id}', [ProductController::class, 'deleteProduct'])->name('products.destroy');//delete
+
+
 
 //Logout
 Route::get('logout',[Login::class,'logout']);

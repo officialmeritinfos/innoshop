@@ -23,7 +23,7 @@
     <link href="{{asset('dashboard/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('dashboard/vendors/summernote/summernote-bs5.css')}}">
-
+    @stack('css')
 </head>
 
 <body id="page-top">
@@ -61,6 +61,26 @@
             Interface
         </div>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.category.index')}}">
+                <i class="fas fa-fw fa-shopping-cart"></i>
+                <span>Product Category</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.products.index')}}">
+                <i class="fas fa-fw fa-box"></i>
+                <span>Products</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.delivery.index')}}">
+                <i class="fas fa-fw fa-cart-plus"></i>
+                <span>Orders</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.delivery.index')}}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Users</span></a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.delivery.index')}}">
                 <i class="fas fa-fw fa-train"></i>
@@ -238,6 +258,8 @@
 </script>
 
 <script src="{{asset('dashboard/vendors/summernote/summernote-bs5.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <script>
     $(document).ready(function() {
         $('.summernote').summernote({
@@ -245,6 +267,7 @@
         });
     });
 </script>
+@stack('js')
 </body>
 
 </html>

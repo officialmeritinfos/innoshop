@@ -68,6 +68,11 @@
                                 @endif
                             </select>
                         </div>
+                        <div class="form-group col-md-12 mt-3">
+                            <label for="inputAddress2">Address</label>
+                            <textarea  class="form-control" id="inputAddress2"
+                                       placeholder="Enter Full address" name="address" rows="10">{{$user->country}}</textarea>
+                        </div>
                     </div>
                     <div class="text-center mt-5">
                         <button type="submit" class="btn btn-primary">Update</button>

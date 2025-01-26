@@ -38,7 +38,8 @@ class Settings extends Controller
             'phone'=>['required','string','max:100'],
             'dob'=>['required','date'],
             'country'=>['required','string'],
-            'twoWay'=>['required','numeric']
+            'twoWay'=>['required','numeric'],
+            'address' => ['required','string']
         ]);
 
         if ($validated->fails()){
@@ -49,7 +50,7 @@ class Settings extends Controller
 
         $dataUser = [
             'name'=>$input['name'],'dateOfBirth'=>$input['dob'],'phone'=>$input['phone'],
-            'country'=>$input['country'],'twoWay'=>$input['twoWay']
+            'country'=>$input['country'],'twoWay'=>$input['twoWay'],'address'=>$input['address']
         ];
 
         $updated = User::where('id',$user->id)->update($dataUser);

@@ -28,4 +28,19 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class, 'order_id');
     }
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_items')
+            ->withPivot('price', 'discount_price', 'quantity', 'tax', 'attributes');
+    }
+
+    /**
+     * Relationship with Delivery.
+     * An order can have one delivery.
+     */
+    public function delivery()
+    {
+        return $this->hasOne(Delivery::class);
+    }
+
 }

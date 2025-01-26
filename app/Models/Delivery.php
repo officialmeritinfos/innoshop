@@ -18,4 +18,22 @@ class Delivery extends Model
     {
         return $this->hasMany(DeliveryStage::class);
     }
+
+    /**
+     * Relationship with User.
+     * A delivery belongs to a user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relationship with Order.
+     * A delivery belongs to an order.
+     */
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

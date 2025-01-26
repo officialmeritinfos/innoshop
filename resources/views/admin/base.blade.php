@@ -72,7 +72,7 @@
                 <span>Products</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.delivery.index')}}">
+            <a class="nav-link" href="{{route('admin.orders.index')}}">
                 <i class="fas fa-fw fa-cart-plus"></i>
                 <span>Orders</span></a>
         </li>
@@ -85,16 +85,6 @@
             <a class="nav-link" href="{{route('admin.delivery.index')}}">
                 <i class="fas fa-fw fa-train"></i>
                 <span>Logistics Section</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.flight.index')}}">
-                <i class="fas fa-fw fa-plane"></i>
-                <span>Flight Section</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.flight.booking.index')}}">
-                <i class="fas fa-fw fa-plane"></i>
-                <span>Flight Booking</span></a>
         </li>
 
 

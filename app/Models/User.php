@@ -33,4 +33,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationship with Deliveries.
+     * A user can have many deliveries.
+     */
+    public function deliveries()
+    {
+        return $this->hasMany(Delivery::class);
+    }
 }

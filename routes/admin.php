@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\DeliveryController;
 use App\Http\Controllers\Admin\DeliveryStageController;
 use App\Http\Controllers\Admin\FlightController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Settings;
 use App\Http\Controllers\Auth\Login;
@@ -74,9 +75,14 @@ Route::get('products/new', [ProductController::class, 'newProduct'])->name('prod
 Route::post('products/new/process', [ProductController::class, 'processNewProduct'])->name('products.new.process');
 Route::get('products/{id}/edit', [ProductController::class, 'editProduct'])->name('products.edit');
 Route::get('products/{id}/detail', [ProductController::class, 'productDetail'])->name('products.detail');
-Route::post('products/{id}/update', [ProductController::class, 'updateProduct'])->name('products.update');//update
+Route::put('products/{id}/update', [ProductController::class, 'updateProduct'])->name('products.update');//update
 Route::delete('products/{id}', [ProductController::class, 'deleteProduct'])->name('products.destroy');//delete
-
+Route::put('products/{id}/toggle-status', [ProductController::class, 'toggleStatus'])->name('products.toggle-status');// Toggle Product Status
+/*================ ORDER ROUTE ====================*/
+Route::get('orders/index', [OrderController::class, 'landingPage'])->name('orders.index');
+Route::get('orders/{id}/detail', [OrderController::class, 'orderDetail'])->name('orders.detail');
+Route::put('orders/{id}/mark-payment', [OrderController::class, 'markPayment'])->name('orders.markPayment');
+Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
 
 //Logout

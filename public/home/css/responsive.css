@@ -1,1154 +1,1535 @@
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   /* Default CSS */
+  .ptb-100 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
   .pt-100 {
     padding-top: 50px;
+  }
+  .ptb-70 {
+    padding-top: 20px;
+    padding-bottom: 50px;
+  }
+  .pb-100 {
+    padding-bottom: 50px;
+  }
+  .pt-70 {
+    padding-top: 30px;
   }
   .pb-70 {
     padding-bottom: 20px;
   }
-  .pb-100 {
-    padding-bottom: 50px;
+  .pt-45 {
+    padding-top: 30px;
   }
-  p {
-    font-size: 16px;
+  .ml-30 {
+    margin-left: 0;
   }
-  .section-title {
-    text-align: center;
+  .ml-40 {
+    margin-left: 0;
   }
-  .section-title span {
-    font-size: 15px;
-    margin-bottom: 10px;
+  .default-btn {
+    padding: 10px 30px;
   }
   .section-title h2 {
-    font-size: 25px;
-  }
-  /*------------ Home Page One CSS Start ------------*/
-  /* Header CSS */
-  .header-area {
-    text-align: left !important;
-  }
-  .header-area .header-left ul {
-    text-align: center;
-  }
-  .header-area .header-left ul li {
-    margin-right: 8px;
-  }
-  .header-area .header-left ul li a {
-    font-size: 15px;
-  }
-  .header-area .header-left ul li a i {
-    margin-right: 0;
-  }
-  .header-area .header-right {
-    text-align: center;
-  }
-  .header-area .header-right .header-social li a i {
-    margin: 0 5px;
-  }
-  /* Navbar CSS */
-  .navbar-area .mobile-nav {
-    display: block;
-    position: relative;
-  }
-  .navbar-area .mobile-nav .navbar-nav {
-    height: 300px;
-    overflow-y: scroll;
-  }
-  .navbar-area .mobile-nav .logo {
-    position: absolute;
-    top: 11px;
-    left: 15px;
-    z-index: 99999;
-    max-width: 100px;
-  }
-  .navbar-area .mean-container .mean-bar {
-    background-color: #fff;
-    padding: 0;
-    -webkit-box-shadow: 3px 5px 25px 0 rgba(0, 0, 0, 0.1);
-            box-shadow: 3px 5px 25px 0 rgba(0, 0, 0, 0.1);
-  }
-  .navbar-area .mean-container a.meanmenu-reveal {
-    padding: 15px 15px 0 0;
-    color: #3c0c70;
-  }
-  .navbar-area .mean-container a.meanmenu-reveal span {
-    background: #3c0c70;
-  }
-  .navbar-area .mobile-nav nav .navbar-nav .nav-item a {
-    color: #3c0c70;
-  }
-  .navbar-area .mobile-nav nav .navbar-nav .nav-item a i {
-    display: none;
-  }
-  .navbar-area .main-nav {
-    display: none !important;
-  }
-  /* Banner CSS */
-  .banner-slider .banner-item {
-    height: 100%;
-    padding: 150px 0 150px;
-  }
-  .banner-slider .banner-item .banner-text {
-    padding-bottom: 0;
-  }
-  .banner-slider .banner-item .banner-text h1 {
-    font-size: 25px;
-  }
-  .banner-slider .banner-item .banner-text p {
-    font-size: 16px;
-  }
-  .banner-slider .banner-item .banner-text .banner-btn .default-btn {
-    font-size: 16px;
-    padding: 15px;
-    margin: 0 5px;
-  }
-  .banner-slider .owl-item.active h1 {
-    -webkit-animation: none;
-            animation: none;
-  }
-  .banner-slider .owl-item.active p {
-    -webkit-animation: none;
-            animation: none;
-  }
-  .banner-slider .owl-item.active .banner-btn {
-    -webkit-animation: none;
-            animation: none;
-  }
-  .banner-slider .owl-prev {
-    opacity: 1;
-    bottom: 0;
-    top: inherit;
-    left: -55px;
-    margin: auto !important;
-    bottom: 30px;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    font-size: 20px !important;
-    line-height: 40px !important;
-  }
-  .banner-slider .owl-prev:hover {
-    left: -40px;
-  }
-  .banner-slider .owl-next {
-    top: inherit;
-    left: 0;
-    right: -55px;
-    margin: auto !important;
-    opacity: 1;
-    bottom: 30px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    font-size: 20px !important;
-    line-height: 40px !important;
-  }
-  .banner-slider .owl-next:hover {
-    right: -40px;
-  }
-  .banner-slider:hover .owl-prev {
-    left: -55px;
-  }
-  .banner-slider:hover .owl-next {
-    right: -55px;
-  }
-  /* Feature CSS */
-  .features-section {
-    margin-top: 50px;
-  }
-  .features-section .feature-card {
-    padding: 25px;
-    text-align: center;
-  }
-  .features-section .feature-card i {
-    margin-bottom: 25px;
-  }
-  /* About CSS */
-  .about-section {
-    padding-top: 20px;
-    padding-bottom: 40px;
-  }
-  .about-section .about-img {
-    margin-bottom: 20px;
-  }
-  .about-section .about-img::before, .about-section .about-img::after {
-    display: none;
-  }
-  .about-section .about-text {
-    padding-left: 0;
-    text-align: center;
-  }
-  .about-section .about-text .nav-tabs .nav-item .nav-link {
-    margin: 0 15px;
-    font-size: 16px;
-  }
-  /* Transport System CSS */
-  .transport-section .transport-card .transport-img img {
-    width: 100%;
-  }
-  .transport-section .transport-card .transport-text {
-    padding: 40px 20px 30px;
-  }
-  .transport-section .transport-card .transport-text i {
-    top: -30px;
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
-    line-height: 50px;
-  }
-  .transport-section .transport-card .transport-text h3 {
-    font-size: 20px;
-  }
-  .transport-section .transport-card .transport-text p {
-    font-size: 17px;
-  }
-  /* Why Choose CSS */
-  .why-choose-section {
-    padding-top: 20px;
-  }
-  .why-choose-section .section-title {
-    margin-bottom: 30px;
-  }
-  .why-choose-section .why-choose-text {
-    padding: 40px 15px 30px;
-  }
-  .why-choose-section .why-choose-text .accordions .accordion-item {
+    font-size: 24px;
+    margin-top: 0;
     margin-bottom: 15px;
   }
-  .why-choose-section .why-choose-text .accordions .accordion-item .accordion-title {
-    padding: 15px 20px 10px 55px;
+  .section-title .view-btn {
+    position: inherit;
   }
-  .why-choose-section .why-choose-text .accordions .accordion-item .accordion-title i {
-    top: 12px;
-  }
-  .why-choose-section .why-choose-text .accordions .accordion-item .accordion-title h2 {
-    font-size: 16px;
-  }
-  .why-choose-section .why-choose-img .shipping-text {
-    border-radius: 0;
-    padding: 45px 30px;
-    position: relative;
-    top: 0;
-    right: 0;
-  }
-  /* Get Quote CSS */
-  .get-quote-section .quote-text {
-    padding-right: 0;
-    margin-bottom: 30px;
-  }
-  .get-quote-section .quote-text .offer-text span {
-    font-size: 16px;
-  }
-  .get-quote-section .quote-text .offer-text p {
-    padding-left: 15px;
-    font-size: 16px;
-  }
-  .get-quote-section .quote-text h2 {
-    font-size: 22px;
-    line-height: 1.5;
-  }
-  .get-quote-section .quote-form h2 {
-    font-size: 25px;
-    margin-bottom: 10px;
-  }
-  .get-quote-section .quote-form .pr-0 {
-    padding-right: 15px !important;
-  }
-  .get-quote-section .quote-form form button {
-    font-size: 17px;
-    padding: 10px 20px;
-    width: 100%;
-  }
-  /* Worker CSS */
-  .worker-section .worker-card .worker-img img {
-    width: 100%;
-  }
-  /* Testimonial CSS */
-  .feedback-section {
-    padding-bottom: 150px;
-  }
-  .feedback-section .feedback-slider .owl-prev {
-    left: 30px;
-    opacity: 1;
-    top: inherit;
-    bottom: -100px;
-  }
-  .feedback-section .feedback-slider .owl-next {
-    top: inherit;
-    right: 30px;
-    opacity: 1;
-    bottom: -100px;
-  }
-  .feedback-section .feedback-slider:hover .owl-next {
-    right: 30px;
-  }
-  .feedback-section .feedback-slider:hover .owl-prev {
-    left: 30px;
-  }
-  /* Company CSS */
-  .company-section {
-    margin-top: 50px;
-  }
-  /* Blog CSS */
-  .blog-section .blog-card .blog-img img {
-    width: 100%;
-  }
-  .blog-section .blog-card .blog-text {
-    padding: 22px;
-  }
-  .blog-section .blog-card .blog-text h3 {
-    font-size: 20px;
-  }
-  /* Newsletter CSS */
-  .newsletter-section {
-    margin-bottom: 50px;
-  }
-  .newsletter-section .newsletter-area {
-    padding: 15px;
+  /* Default CSS End */
+  /* Top Header Area CSS */
+  .top-header-social {
+    display: block;
+    text-align: center;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
   }
-  .newsletter-section .newsletter-area h2 {
-    font-size: 25px;
-    line-height: 1.4;
+  .top-header-social ul li {
+    margin-right: 15px;
   }
-  .newsletter-section .newsletter-area .newsletter-form {
+  .top-header-social ul li .title {
+    font-size: 15px;
+  }
+  .top-header-social ul li a img {
+    width: 16px;
+    height: 16px;
+  }
+  .top-header-right {
+    float: none;
     text-align: center;
+    max-width: 270px;
+    margin: 0 auto;
   }
-  .newsletter-section .newsletter-area .newsletter-form .form-control {
-    height: 50px;
-    margin-bottom: 10px;
-  }
-  .newsletter-section .newsletter-area .newsletter-form .default-btn {
-    position: relative;
-    font-size: 16px;
-    padding: 8px 20px;
-    margin-bottom: 30px;
-    right: 0;
-  }
-  .newsletter-section img {
-    position: relative;
-    right: 0;
-    top: 0;
-    max-width: unset;
-    width: 100%;
-  }
-  /* Footer CSS */
-  .footer-area {
-    padding-top: 50px;
-  }
-  .footer-area .footer-widget img {
-    margin-bottom: 20px;
-    max-width: 120px;
-  }
-  .footer-area .footer-widget .footer-social {
-    margin-top: 25px;
-  }
-  .footer-area .footer-widget h3 {
-    font-size: 25px;
-    margin-bottom: 20px;
-  }
-  .footer-area .footer-widget ul li {
+  .top-header-right .top-contact {
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 5px;
   }
-  .footer-area .copyright-area {
-    margin-top: 20px;
+  .top-header-right .top-contact::before {
+    display: none;
   }
-  /*------------ Home Page One CSS End ------------*/
-  /*------------ Home Page Two CSS Start ------------*/
-  /* Banner CSS */
-  .banner-style-two {
-    height: 100% !important;
-    padding-top: 150px;
+  .top-header-right .top-contact h3 {
+    font-size: 15px;
+    color: #211e2f;
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+  .top-header-right .currency-list {
+    margin-left: -20px;
+  }
+  .top-header-right .language-list {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Top Header Area CSS End */
+  /* Nav Area CSS */
+  .nav-bottom {
+    display: none;
+  }
+  .mobile-nav .logo img {
+    max-width: 110px;
+  }
+  .side-nav-responsive {
+    display: block;
+  }
+  /* Nav Area CSS End */
+  /* Banner Area CSS */
+  .banner-area {
     padding-bottom: 50px;
   }
-  .banner-style-two .banner-text {
-    text-align: center !important;
-    padding-bottom: 50px;
+  .banner-item {
+    padding-top: 100px;
+    padding-bottom: 0;
   }
-  .banner-style-two .banner-text h1 {
-    font-size: 30px;
-  }
-  .banner-style-two .banner-text .theme-btn .default-btn {
-    padding: 15px 20px;
-  }
-  .banner-style-two .quote-form {
-    margin-bottom: 30px;
-  }
-  .banner-style-two .quote-form form .form-check-inline {
-    margin-right: 10px;
-  }
-  .banner-style-two .quote-form form .form-check-inline .form-check-label {
-    font-size: 14px;
-  }
-  /* Transport CSS */
-  .transport-style-two {
-    margin-top: 50px;
-  }
-  /* Why Choose CSS */
-  .choose-style-two .why-choose-image {
-    margin-bottom: 30px;
-  }
-  .choose-style-two .choose-card h3 {
-    font-size: 18px;
-  }
-  /* Track Product CSS */
-  .track-product {
-    padding-bottom: 50px;
-  }
-  .track-product .track-text {
+  .banner-item .content {
     text-align: center;
   }
-  .track-product .track-text h2 {
-    font-size: 25px;
-  }
-  .track-product .track-text .newsletter-form .form-control {
-    height: 50px;
-    margin-bottom: 10px;
-  }
-  .track-product .track-text .newsletter-form .default-btn {
-    position: relative;
-    padding: 5px 25px;
-    top: 0;
-  }
-  /* Facilities CSS */
-  .facilities-section .facilities-text h2 {
-    font-size: 25px;
-  }
-  .facilities-section .facilities-text ul {
-    margin-bottom: 25px;
-  }
-  .facilities-section .facilities-text ul li {
-    font-size: 17px;
-  }
-  .facilities-section .facilities-text .theme-btn {
-    margin-bottom: 30px;
-  }
-  .facilities-section .facilities-text .theme-btn .default-btn {
+  .banner-item .content span {
     font-size: 16px;
-    padding: 15px 20px;
   }
-  .facilities-section .facilities-img {
-    height: 250px;
+  .banner-item .content h1 {
+    font-size: 30px;
+    max-width: 220px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  /* Company CSS */
-  .company-style-two {
-    margin-top: 0;
-    padding-top: 0;
-  }
-  /* Blog Section CSS */
-  .blog-section .blog-card .blog-text p {
-    font-size: 17px;
-  }
-  /* Contact CSS */
-  .contact-section .contact-img {
-    height: 200px;
-    margin-bottom: 30px;
-  }
-  .contact-section .contact-area {
-    text-align: center;
-  }
-  .contact-section .contact-area h2 {
-    font-size: 25px;
+  .banner-item .content p {
+    font-size: 16px;
     margin-bottom: 20px;
   }
-  .contact-section .contact-area .form-group .form-control {
-    height: 50px;
-  }
-  .contact-section .contact-area .default-btn {
-    padding: 5px 20px 8px;
-  }
-  /* Newsletter CSS */
-  .newsletter-style-two {
+  .banner-item .banner-img {
+    margin-top: -70px;
     margin-bottom: 0;
-    padding-bottom: 50px;
   }
-  /*------------ Home Page Two CSS End ------------*/
-  /*------------ Home Page Three CSS Start ------------*/
-  /* Banner CSS */
-  .banner-style-three {
-    height: 100%;
-    padding: 150px 0 100px;
+  .banner-side h2 {
+    font-size: 24px;
   }
-  .banner-style-three .banner-text {
-    text-align: center !important;
+  .banner-side .banner-side-item .banner-side-content {
+    padding: 15px;
   }
-  .banner-style-three .banner-text h1 {
-    font-size: 22px;
-    margin-bottom: 30px;
+  .banner-side .banner-side-item .banner-side-content h3 {
+    max-width: 100%;
   }
-  .banner-style-three .banner-text .theme-btn {
+  .banner-slider-area {
+    background-color: #f2fcff;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner-slider-area .owl-dots {
+    bottom: 85px;
+  }
+  .banner-shape {
+    display: none;
+  }
+  .banner-slider-item {
+    padding: 130px 0 150px;
+  }
+  .banner-slider-item .content {
+    max-width: 300px;
+  }
+  .banner-slider-item .content span {
+    font-size: 16px;
+  }
+  .banner-slider-item .content h1 {
+    margin-top: 5px;
+    font-size: 35px;
     margin-bottom: 15px;
   }
-  .banner-style-three .banner-text .theme-btn .default-btn {
-    padding: 15px 15px;
-    font-size: 15px;
+  .banner-slider-item .content p {
+    margin-bottom: 30px;
+    margin-bottom: 15px;
   }
-  .banner-style-three .banner-image {
-    position: relative;
-    padding: 15px;
-  }
-  .banner-style-three .banner-shape {
+  .banner-shape-area {
     display: none;
   }
-  /* Testimonial CSS */
-  .feedback-style-three .feedback-slider-area .owl-next, .feedback-style-three .feedback-slider-area .owl-prev {
-    opacity: 1;
-    top: 35%;
-    width: 35px;
-    height: 35px;
-    font-size: 17px !important;
-    line-height: 35px !important;
-  }
-  .feedback-style-three .feedback-slider-area .owl-prev {
+  .banner-style-area .owl-dots {
     left: 0;
-  }
-  .feedback-style-three .feedback-slider-area .owl-prev:hover {
-    left: 0px;
-  }
-  .feedback-style-three .feedback-slider-area .owl-next {
     right: 0;
+    bottom: 70px;
   }
-  .feedback-style-three .feedback-slider-area .owl-next:hover {
-    right: 0px;
+  .banner-style-item .content {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 30px;
   }
-  .feedback-style-three .feedback-slider-area:hover .owl-next {
-    right: 0;
-  }
-  .feedback-style-three .feedback-slider-area:hover .owl-prev {
-    left: 0;
-  }
-  /*------------ Home Page Three CSS End ------------*/
-  /*------------ About Page CSS Start ------------*/
-  /* Page Title CSS */
-  .page-title {
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
-  .page-title .title-text h2 {
-    font-size: 30px;
-  }
-  /*  Why Choose CSS */
-  .why-choose-section .why-choose-text .accordions {
-    margin: auto;
-  }
-  /* Footer CSS */
-  .footer-area .lines .line {
-    left: 50%;
-  }
-  /*------------ About Page CSS End ------------*/
-  /*------------ Service Page Two CSS Start ------------*/
-  /* Transport CSS */
-  .transport-style-four .transport-card {
-    padding: 0;
-  }
-  .transport-style-four .transport-card a i {
-    width: 40px !important;
-    height: 40px !important;
-    font-size: 20px !important;
-    line-height: 40px !important;
-  }
-  /*------------ Service Page Two CSS End ------------*/
-  /*------------ Service Details Page CSS Start ------------*/
-  /* Service Details CSS */
-  .service-details-area .service-post-area .post-img img {
-    width: 100%;
-  }
-  .service-details-area .service-sidebar .service-features h3, .service-details-area .service-sidebar .contact-us h3, .service-details-area .service-sidebar .download-brochure h3 {
-    font-size: 20px;
-  }
-  .service-details-area .service-sidebar .service-features ul li, .service-details-area .service-sidebar .contact-us ul li, .service-details-area .service-sidebar .download-brochure ul li {
-    font-size: 15px;
-  }
-  /* Company CSS */
-  .company-style-three {
-    margin-top: 10px;
-  }
-  /*------------ Service Details Page CSS End ------------*/
-  /*------------ 404 Page CSS Start ------------*/
-  .error-section::before {
-    display: none;
-  }
-  .error-section h2 {
-    font-size: 35px;
-  }
-  /*------------ 404 Page CSS End ------------*/
-  /*------------ Contact Page CSS Start ------------*/
-  .contact-style-two .contact-area {
-    padding: 15px;
-  }
-  /*------------ Contact Page CSS End ------------*/
-  .blog-details-area .blog-sidebar .blog-widget .post-item .post-info {
-    padding-top: 0;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  /* Default CSS */
-  .pt-100 {
-    padding-top: 70px;
-  }
-  .pb-70 {
-    padding-bottom: 40px;
-  }
-  .pb-100 {
-    padding-bottom: 70px;
-  }
-  p {
+  .banner-style-item .content span {
     font-size: 16px;
   }
-  .section-title {
+  .banner-style-item .content h1 {
+    font-size: 35px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .banner-style-item .content p {
+    font-size: 16px;
+  }
+  .banner-style-item .banner-style-img {
+    position: inherit;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin-bottom: 120px;
+  }
+  .banner-style-item .banner-style-img img {
+    max-width: 100%;
+  }
+  /* Banner Area CSS End */
+  .inner-banner .inner-title {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .inner-banner .inner-title h3 {
+    font-size: 30px;
+  }
+  /* Page Inner Area CSS */
+  .page-inner-item .page-inner-img {
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
   }
-  .section-title span {
-    margin-bottom: 10px;
+  .page-inner-item-2 .content {
+    margin-left: 0;
   }
-  .section-title h2 {
-    font-size: 30px;
+  .page-inner-item-2 .page-inner-img {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
-  /*------------ Home Page One CSS Start ------------*/
-  /* Header CSS */
-  .header-area .header-left ul li {
-    margin-right: 14px;
+  /* Page Inner Area CSS End */
+  .about-content h2 {
+    font-size: 26px;
   }
-  .header-area .header-left ul li a {
-    font-size: 16px;
-  }
-  .header-area .header-left ul li a i {
-    margin-right: 5px;
-  }
-  .header-area .header-right .header-social::before {
-    left: -10px;
-  }
-  /* Navbar CSS */
-  .navbar-area .mobile-nav {
-    display: block;
-    position: relative;
-  }
-  .navbar-area .mobile-nav .navbar-nav {
-    height: 300px;
-    overflow-y: scroll;
-  }
-  .navbar-area .mobile-nav .logo {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    z-index: 99999;
-    max-width: 100px;
-  }
-  .navbar-area .mean-container .mean-bar {
-    background-color: #fff;
-    padding: 0;
-    -webkit-box-shadow: 3px 5px 25px 0 rgba(0, 0, 0, 0.1);
-            box-shadow: 3px 5px 25px 0 rgba(0, 0, 0, 0.1);
-  }
-  .navbar-area .mean-container a.meanmenu-reveal {
-    padding: 15px 15px 0 0;
-    color: #3c0c70;
-  }
-  .navbar-area .mean-container a.meanmenu-reveal span {
-    background: #3c0c70;
-  }
-  .navbar-area .mobile-nav nav .navbar-nav .nav-item a {
-    color: #3c0c70;
-  }
-  .navbar-area .mobile-nav nav .navbar-nav .nav-item a i {
-    display: none;
-  }
-  .navbar-area .main-nav {
-    display: none !important;
-  }
-  /* Banner CSS */
-  .banner-slider .banner-item {
-    height: 100%;
-  }
-  .banner-slider .banner-item .banner-text {
-    padding-bottom: 100px;
-    padding-top: 150px;
-  }
-  .banner-slider .banner-item .banner-text h1 {
-    font-size: 45px;
-  }
-  .banner-slider .banner-item .banner-text p {
-    max-width: 565px;
-  }
-  .banner-slider .owl-prev {
-    opacity: 1;
-    top: 50%;
-    left: 30px;
-    margin: auto !important;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    font-size: 20px !important;
-    line-height: 40px !important;
-  }
-  .banner-slider .owl-prev:hover {
-    left: -40px;
-  }
-  .banner-slider .owl-next {
-    top: 50%;
-    right: 30px;
-    margin: auto !important;
-    opacity: 1;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    font-size: 20px !important;
-    line-height: 40px !important;
-  }
-  .banner-slider .owl-next:hover {
-    right: -40px;
-  }
-  .banner-slider .owl-prev:hover {
-    left: 30px;
-  }
-  .banner-slider .owl-next:hover {
-    right: 30px;
-  }
-  /* Feature CSS */
-  .features-section {
-    margin-top: 70px;
-  }
-  /* About CSS */
-  .about-section {
-    padding-bottom: 70px;
-  }
-  .about-section .about-img {
-    margin-bottom: 30px;
-  }
-  .about-section .about-img::before {
-    display: none;
-  }
-  .about-section .about-img::after {
-    display: none;
-  }
-  .about-section .about-img img {
-    width: 100%;
-  }
-  .about-section .about-text {
-    padding-left: 0;
-  }
-  /* Why Choose CSS */
-  .why-choose-section .why-choose-text .section-title p {
-    margin: auto;
-  }
-  .why-choose-section .why-choose-img .shipping-text {
-    border-radius: 0;
-    padding: 45px 30px;
-    position: relative;
-    top: 0;
-    right: 0;
-    width: 100%;
-  }
-  /* Get Qoute CSS */
-  .get-quote-section .theme-btn {
-    margin-bottom: 30px;
-  }
-  /* Worker Section CSS */
-  .worker-section .worker-card .worker-img img {
-    width: 100%;
-  }
-  /* Testimonial CSS */
-  .feedback-section {
-    padding-bottom: 70px;
-  }
-  .feedback-section .feedback-slider .owl-prev {
-    left: 30px;
-    opacity: 1;
-    top: 80px;
-  }
-  .feedback-section .feedback-slider .owl-next {
-    top: 80px;
-    right: 30px;
-    opacity: 1;
-  }
-  .feedback-section .feedback-slider:hover .owl-next {
-    right: 30px;
-  }
-  .feedback-section .feedback-slider:hover .owl-prev {
-    left: 30px;
-  }
-  /* Compnay CSS */
-  .company-section {
-    margin-top: 70px;
-  }
-  /* Newsletter CSS */
-  .newsletter-section {
-    margin-bottom: 70px;
-  }
-  .newsletter-section .newsletter-area .newsletter-form {
-    margin-bottom: 70px;
-  }
-  .newsletter-section img {
-    position: relative;
-    right: 0;
-    top: 0;
-    max-width: 100%;
-    margin: auto;
-    left: 0;
-  }
-  /* Footer CSS */
-  .footer-area {
-    padding-top: 70px;
-  }
-  .footer-area .footer-widget h3 {
-    font-size: 25px;
+  .about-text-content {
     margin-bottom: 20px;
   }
-  .footer-area .copyright-area {
-    margin-top: 40px;
+  .about-text-content h2 {
+    font-size: 26px;
   }
-  /*------------ Home Page One CSS End ------------*/
-  /*------------ Home Page Two CSS Start ------------*/
-  /* Banner CSS */
-  .banner-style-two {
-    height: 100% !important;
+  /* Product Banner Area CSS */
+  .product-banner-item .product-banner-img {
+    margin-top: 20px;
+    margin-right: 0;
+    margin-left: 0;
   }
-  .banner-style-two .banner-text {
-    text-align: center !important;
-    padding-top: 150px;
-    padding-bottom: 50px;
+  .product-banner-item .product-banner-img-rs {
+    margin-top: -30px;
   }
-  .banner-style-two .banner-text h1 {
-    font-size: 40px;
+  .product-banner-item-rs {
+    padding-bottom: 0;
+    padding-top: 35px;
   }
-  .banner-style-two .banner-text .theme-btn {
-    margin-bottom: 40px;
-  }
-  .banner-style-two .banner-text .theme-btn .default-btn {
-    padding: 15px 20px;
-  }
-  .banner-style-two .quote-form {
-    margin-bottom: 50px;
-  }
-  /* About CSS */
-  .about-section {
-    padding-top: 40px;
-  }
-  /* Transport CSS */
-  .transport-style-two {
-    margin-top: 70px;
-  }
-  /* Why Choose CSS */
-  .choose-style-two .choose-card h3 {
-    font-size: 17px;
-  }
-  /* Track Product */
-  .track-product {
-    padding-bottom: 70px;
-  }
-  /* Facilities CSS */
-  .facilities-section .facilities-text .theme-btn {
+  .product-banner-card {
+    text-align: center;
+    padding: 40px 20px;
     margin-bottom: 30px;
   }
-  .facilities-section .facilities-img {
-    height: 400px;
+  .product-banner-card h3 {
+    font-size: 24px;
   }
-  /* Company Section */
-  .company-style-two {
-    padding-top: 0;
-    margin-top: 0;
-    padding-bottom: 70px;
+  /* Product Banner Area CSS End */
+  .work-card {
+    padding: 20px 20px 15px;
+    text-align: center;
   }
-  /* Contact CSS */
-  .contact-section .contact-img {
-    height: 400px;
-    margin-bottom: 30px;
+  .work-card .number {
+    display: none;
   }
-  /* Newsletter CSS */
-  .newsletter-style-two {
+  .work-card .work-icon {
+    margin-left: auto;
+    right: auto;
+    margin-bottom: 5px;
+  }
+  .work-card .work-icon i {
+    font-size: 50px;
+  }
+  .work-card .work-icon h3 {
+    font-size: 18px;
+    margin-left: 5px;
+  }
+  /*All Product Area CSS */
+  .all-product-area .section-title h2 {
+    position: relative;
+    top: -7px;
+    line-height: 1.4;
     margin-bottom: 0;
-    padding-bottom: 70px;
   }
-  /* Footer CSS */
-  .footer-area .lines .line {
-    left: 50%;
+  .all-product-text h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
   }
-  /*------------ Home Page Two CSS End ------------*/
-  /*------------ Home Page Three CSS Start ------------*/
-  /* Banner CSS */
-  .banner-style-three {
-    height: 100%;
-    padding: 150px 0 100px;
+  .all-product-area .filter-menu {
+    text-align: left;
   }
-  .banner-style-three .banner-text {
-    text-align: center !important;
+  .all-product-area .filter-menu li {
+    margin-right: 20px;
   }
-  .banner-style-three .banner-text h1 {
-    font-size: 45px;
-    margin-bottom: 30px;
+  .all-product-item .all-product-content {
+    padding: 15px;
+    position: relative;
   }
-  .banner-style-three .banner-text .theme-btn {
-    margin-bottom: 20px;
+  .all-product-item .all-product-content .add-cart-btn {
+    bottom: 17px;
   }
-  .banner-style-three .banner-text .theme-btn .default-btn {
-    padding: 15px 15px;
+  /*All Product Area CSS End */
+  /*New Collections Area CSS */
+  .new-collections-text h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  .new-collections-area .filter-menu {
+    text-align: left;
+  }
+  .new-collections-area .filter-menu li {
+    margin-right: 10px;
     font-size: 15px;
   }
-  .banner-style-three .banner-image {
-    position: relative;
-    margin: auto;
+  /*New Collections Area CSS End */
+  /* Product Area CSS */
+  .shop-page-banner::before {
+    height: 30%;
   }
-  .banner-style-three .banner-shape {
-    display: none;
+  .shop-page-banner .content {
+    padding: 30px 20px 20px;
   }
-  /* Testimonial CSS */
-  .feedback-style-three .feedback-slider-area .owl-next, .feedback-style-three .feedback-slider-area .owl-prev {
-    opacity: 1;
-    top: 35%;
-    width: 35px;
-    height: 35px;
-    font-size: 17px !important;
-    line-height: 35px !important;
+  .shop-page-banner .content h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
   }
-  .feedback-style-three .feedback-slider-area .owl-prev {
-    left: 0;
+  .shop-page-banner .content p {
+    font-size: 16px;
+    margin-bottom: 0;
   }
-  .feedback-style-three .feedback-slider-area .owl-prev:hover {
-    left: 0px;
-  }
-  .feedback-style-three .feedback-slider-area .owl-next {
-    right: 0;
-  }
-  .feedback-style-three .feedback-slider-area .owl-next:hover {
-    right: 0px;
-  }
-  .feedback-style-three .feedback-slider-area:hover .owl-next {
-    right: 0;
-  }
-  .feedback-style-three .feedback-slider-area:hover .owl-prev {
-    left: 0;
-  }
-  /*------------ Home Page Three CSS End ------------*/
-  /*------------ About Page CSS Start ------------*/
-  .why-choose-section .why-choose-text .accordions {
-    margin: auto;
-  }
-  /*------------ About Page CSS End ------------*/
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  /* Default CSS */
-  .section-title h2 {
+  .shop-page-banner .content span {
     font-size: 35px;
   }
-  /*------------ Home Page One CSS Start ------------*/
-  /* Header CSS */
-  .header-area .header-right .dropdown {
-    right: 40px;
+  .shop-page-banner .content .default-btn {
+    margin-top: 15px;
   }
-  .header-area .header-right .header-social::before {
-    left: -12px;
-  }
-  .header-area .header-right .header-social li a i {
-    font-size: 20px;
-    margin: 0 0 0 10px;
-  }
-  /* Banner CSS */
-  .banner-slider .banner-item {
-    height: 100%;
-  }
-  .banner-slider .banner-item .banner-text {
-    padding-bottom: 100px;
-    padding-top: 150px;
-  }
-  .banner-slider .banner-item .banner-text h1 {
-    font-size: 60px;
-  }
-  .banner-slider .banner-item .banner-text p {
-    max-width: 565px;
-  }
-  .banner-slider .owl-prev {
-    opacity: 1;
-    top: 50%;
-    left: 30px;
-    margin: auto !important;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    font-size: 20px !important;
-    line-height: 40px !important;
-  }
-  .banner-slider .owl-prev:hover {
-    left: -40px;
-  }
-  .banner-slider .owl-next {
-    top: 50%;
-    right: 30px;
-    margin: auto !important;
-    opacity: 1;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    font-size: 20px !important;
-    line-height: 40px !important;
-  }
-  .banner-slider .owl-next:hover {
-    right: -40px;
-  }
-  .banner-slider .owl-prev:hover {
-    left: 30px;
-  }
-  .banner-slider .owl-next:hover {
-    right: 30px;
-  }
-  /* Feature CSS */
-  .features-section {
-    margin-top: 100px;
-  }
-  .features-section .feature-card {
-    padding: 20px;
-  }
-  .features-section .feature-card span {
-    font-size: 18px;
-  }
-  .features-section .feature-card h3 {
-    font-size: 18px;
-  }
-  .features-section .feature-card p {
-    font-size: 17px;
-  }
-  /* About Section CSS */
-  .about-section {
-    padding-top: 70px;
-    padding-bottom: 100px;
-  }
-  /* Worker CSS */
-  .worker-section .worker-card .worker-text {
-    padding: 15px;
-  }
-  .worker-section .worker-card .worker-text h3 {
-    font-size: 20px;
-  }
-  /* Feedback CSS */
-  .feedback-section {
-    padding-bottom: 100px;
-  }
-  .feedback-section .feedback-slider .feedback-items {
-    max-width: 350px;
-  }
-  .feedback-section .feedback-slider .owl-prev {
-    left: -15px;
-    opacity: 1;
-  }
-  .feedback-section .feedback-slider .owl-next {
-    right: -15px;
-    opacity: 1;
-  }
-  .feedback-section .feedback-slider:hover .owl-prev {
-    left: -15px;
-  }
-  .feedback-section .feedback-slider:hover .owl-next {
-    right: -15px;
-  }
-  /* Company CSS */
-  .company-section {
-    margin-top: 100px;
-  }
-  /* Newsletter CSS */
-  .newsletter-section .newsletter-area .newsletter-form .default-btn {
+  .shop-page-banner img {
     position: relative;
+    margin-top: 0;
+  }
+  .side-bar-offer {
+    padding: 30px 20px 0;
+  }
+  .side-bar-offer h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  .side-bar-offer .shop-btn {
+    font-size: 16px;
+  }
+  .shop-side-item {
+    text-align: center;
+    padding: 20px 15px 10px;
+  }
+  .shop-side-item h3 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .shop-side-item img {
+    position: inherit;
+    top: 0;
+    right: 0;
+    max-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .shop-side-item .shop-btn {
+    margin-bottom: 10px;
+  }
+  .shop-topper .shop-topper-title h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .shop-topper .shop-topper-title h3 span {
+    font-size: 14px !important;
+  }
+  .shop-desc-content span {
+    font-size: 16px;
+  }
+  .shop-desc-content h3 {
+    margin-top: 5px;
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+  .shop-desc-content .shop-desc-list .shop-desc-review {
+    margin-bottom: 10px;
+  }
+  .shop-desc-content .shop-desc-list .shop-desc-share-list {
+    display: block;
+    float: none;
+    margin-bottom: 7px;
+  }
+  .shop-desc-content h4 {
+    font-size: 26px;
+    margin-bottom: 0;
+  }
+  .shop-desc-content .shop-add-btn {
+    margin-top: 10px;
+  }
+  .shop-desc-content .shop-add-btn .default-btn {
+    border: none;
+    margin-right: 10px;
+  }
+  .products-details-tab .tabs li {
+    margin-right: 0;
+  }
+  .products-details-tab .tabs li a {
+    font-size: 15px;
+    padding: 10px 24px;
+    border-radius: 50px;
+  }
+  .products-tabs-decs h3 {
+    font-size: 26px;
+  }
+  .products-tabs-decs span {
+    font-size: 16px;
+  }
+  .products-tabs-decs .products-tabs-content h2 {
+    font-size: 26px;
+  }
+  .product-tab-bottom .tittle {
+    font-size: 16px;
+  }
+  .product-tab-bottom .product-tag {
+    position: inherit;
+    bottom: 0;
     right: 0;
   }
-  .newsletter-section img {
-    right: 25px;
-    top: 30px;
-    max-width: 270px;
+  .products-reviews-content h3 {
+    font-size: 26px;
   }
-  /*------------ Home Page One CSS End ------------*/
-  /*------------ Home Page Two CSS Start ------------*/
-  /* Track CSS */
-  .track-product {
-    padding-bottom: 100px;
-  }
-  /* Facilities CSS */
-  .facilities-section .facilities-text h2 {
-    font-size: 30px;
-  }
-  .facilities-section .facilities-text ul li {
+  .products-reviews-content .rating {
     font-size: 18px;
   }
-  /* Company CSS */
-  .company-style-two {
-    margin-top: 0;
-    padding-top: 0;
-  }
-  /*------------ Home Page Two CSS End ------------*/
-  /*------------ Home Page Three CSS Start ------------*/
-  /* Banner CSS */
-  .banner-style-three {
-    height: 100%;
-    padding: 150px 0 100px;
-  }
-  .banner-style-three .banner-text {
-    max-width: 475px;
-  }
-  .banner-style-three .banner-text h1 {
-    font-size: 50px;
-    margin-bottom: 30px;
-  }
-  .banner-style-three .banner-text .theme-btn {
-    margin-bottom: 20px;
-  }
-  .banner-style-three .banner-text .theme-btn .default-btn {
-    padding: 15px 15px;
+  .products-reviews-content p {
     font-size: 15px;
+    margin-bottom: 15px;
   }
-  .banner-style-three .banner-image {
-    max-width: 450px;
+  .products-reviews .side-left {
+    width: 100%;
+    float: none;
   }
-  .banner-style-three .banner-shape {
+  .products-reviews .middle {
+    width: 80%;
+  }
+  .products-tabs-specifications h2 {
+    font-size: 26px;
+  }
+  .products-tabs-specifications .tabs-specifications-content h3 span {
+    left: 0;
+    position: inherit;
+    line-height: 1.7;
+  }
+  .products-tabs-specifications .tabs-specifications-content-2 h3 span {
+    left: 0;
+    position: inherit;
+    line-height: 1.7;
+  }
+  .products-tabs-specifications .tabs-specifications-content-2 .sm-tab {
+    margin-bottom: 0;
+  }
+  .customer-review .customer-review-item .rating {
+    margin-bottom: 5px;
+  }
+  .customer-review .customer-review-item span {
+    position: inherit;
+    top: 0;
+    left: 0;
+  }
+  .customer-review .customer-review-item p {
+    margin-top: 10px;
+  }
+  /* Product Area CSS End */
+  /* Latest Product Area CSS */
+  .latest-product-shape {
     display: none;
   }
-  /* Testimonial CSS */
-  .feedback-style-three .feedback-slider-area .owl-next, .feedback-style-three .feedback-slider-area .owl-prev {
-    opacity: 1;
-    top: 35%;
-    width: 35px;
-    height: 35px;
-    font-size: 17px !important;
-    line-height: 35px !important;
+  .latest-product-img {
+    padding: 0 0 30px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .feedback-style-three .feedback-slider-area .owl-prev {
+  .latest-product-img::before {
+    display: none;
+  }
+  .latest-product-img img {
+    max-width: 100%;
+  }
+  .latest-product-content {
+    margin-bottom: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .latest-product-content span {
+    font-size: 16px;
+  }
+  .latest-product-content h2 {
+    font-size: 30px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .latest-product-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .latest-product-slider {
+    position: relative;
+    padding-bottom: 50px;
+    padding-top: 50px;
+  }
+  .latest-product-slider .owl-dots {
     left: 0;
-  }
-  .feedback-style-three .feedback-slider-area .owl-prev:hover {
-    left: 0px;
-  }
-  .feedback-style-three .feedback-slider-area .owl-next {
     right: 0;
+    bottom: 45px;
   }
-  .feedback-style-three .feedback-slider-area .owl-next:hover {
-    right: 0px;
+  /* Latest Product Area CSS End */
+  .choose-card {
+    padding: 20px 15px;
+    text-align: center;
   }
-  .feedback-style-three .feedback-slider-area:hover .owl-next {
-    right: 0;
-  }
-  .feedback-style-three .feedback-slider-area:hover .owl-prev {
+  .choose-card i {
+    font-size: 60px;
+    top: 0;
     left: 0;
+    position: inherit;
   }
-  /*------------ Home Page Three CSS End ------------*/
-  /*------------ Service Details Page CSS Start ------------*/
-  .company-style-three {
+  .choose-card h3 {
+    margin-top: 10px;
+    max-width: 100%;
+    font-size: 18px;
+  }
+  .offer-area::before {
+    display: none;
+  }
+  .offer-content-area {
+    padding: 50px 30px;
+  }
+  .offer-content-area h2 {
+    font-size: 24px;
+  }
+  .offer-shape {
+    display: none;
+  }
+  /* Client Area CSS End */
+  .client-shape {
+    display: none;
+  }
+  .client-area .section-title {
+    text-align: center;
+  }
+  .client-area .section-title::after {
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+  }
+  .client-item .quote-icon {
+    display: none;
+  }
+  /* Client Area CSS End */
+  /* Cart Wraps Area */
+  .cart-wraps-area .cart-table {
+    text-align: center;
+  }
+  .cart-wraps-area .cart-table table thead tr th {
+    padding: 10px 40px 10px;
+    white-space: nowrap;
+    font-size: 16px;
+  }
+  .cart-wraps-area .cart-table table thead tr th:first-child {
+    text-align: left;
+    padding-left: 0;
+  }
+  .cart-wraps-area .cart-table table thead tr td {
+    white-space: nowrap;
+  }
+  .cart-wraps-area .cart-table table thead tr td:first-child {
+    text-align: left;
+    padding-left: 0;
+  }
+  .cart-wraps-area .cart-buttons {
+    text-align: center;
+  }
+  .cart-wraps-area .cart-buttons .text-right {
+    text-align: center !important;
     margin-top: 0;
   }
-  /*------------ Service Details Page CSS End ------------*/
-  /*------------ Blog Details Page CSS Start ------------*/
-  .blog-style-three .blog-card .blog-text h3 {
+  .cart-wraps-area .cart-buttons .default-btn {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  .cart-wraps-area .cart-totals {
+    padding: 20px;
+    margin-top: 35px;
+  }
+  .cart-wraps-area .cart-totals h3 {
+    margin-bottom: 18px;
     font-size: 20px;
   }
-  .blog-details-area .blog-sidebar .blog-widget .post-item .post-info {
-    padding-top: 0;
+  .cart-wraps-area .cart-totals ul li {
+    font-size: 14px;
   }
-  /*------------ Blog Details Page CSS End ------------*/
+  .cart-wraps-area .cart-totals .default-btn {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+  .cart-wraps-area .cart-wraps .continue-shopping-box {
+    margin-bottom: 20px;
+  }
+  .cart-wraps-area .cart-calc {
+    padding: 20px !important;
+    margin-top: 30px;
+  }
+  .cart-wraps-area .cart-calc .cart-wraps-form h3 {
+    font-size: 18px;
+  }
+  .cart-wraps-area .cart-calc .cart-wraps-form .form-group select {
+    width: 100%;
+  }
+  .cart-wraps-area .cart-calc .cart-wraps-form .default-btn {
+    width: 100%;
+    text-align: center;
+  }
+  /* Cart Wraps Area End */
+  .account-tab-item {
+    padding: 30px 15px;
+  }
+  .account-tab-item .account-details .account-form .default-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .user-form .contact-form .agree-label {
+    margin-bottom: 50px;
+  }
+  .user-form .contact-form .agree-label .forget {
+    bottom: -30px;
+    right: auto;
+    left: -3px;
+  }
+  .user-form .contact-form .default-btn {
+    width: unset;
+  }
+  .blog-article .article-content .blockquote {
+    margin-left: 0;
+    padding: 20px 30px;
+  }
+  .blog-article .article-content .blockquote i {
+    display: none;
+  }
+  .blog-article .comments-wrap .comment-list li {
+    padding-left: 0;
+  }
+  .blog-article .comments-wrap .comment-list li img {
+    position: inherit;
+    top: 0;
+    left: 0;
+    margin-bottom: 15px;
+  }
+  .blog-article .comments-wrap .comment-list li p {
+    margin-bottom: 10px;
+  }
+  .blog-article .comments-wrap .comment-list li a {
+    position: inherit;
+    top: 0;
+    left: 0;
+  }
+  .contact-form-title h2 {
+    font-size: 25px;
+  }
+  .contact-form {
+    padding: 35px 20px;
+  }
+  /* Error Area */
+  .error-area .error-content {
+    padding-top: 70px;
+    padding-bottom: 65px;
+  }
+  .error-area .error-content h1 {
+    font-size: 100px;
+  }
+  .error-area .error-content h3 {
+    margin-top: 20px;
+    font-size: 26px;
+  }
+  .error-area .error-content p {
+    font-size: 15px;
+    margin-top: 10px;
+    padding: 0 15px;
+  }
+  /* Error Area End */
+  /* Coming Soon */
+  .coming-soon-area .coming-soon-content {
+    padding-top: 50px;
+    padding-bottom: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .coming-soon-area .coming-soon-content h1 {
+    font-size: 30px;
+    line-height: 1.1;
+    margin-top: 0;
+  }
+  .coming-soon-area .coming-soon-content p {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  .coming-soon-area .coming-soon-content #timer {
+    margin-top: 10px;
+  }
+  .coming-soon-area .coming-soon-content #timer div {
+    font-size: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .coming-soon-area .coming-soon-content #timer div span {
+    font-size: 14px;
+    margin-top: -5px;
+  }
+  .coming-soon-area .coming-soon-content #timer div::before {
+    display: none;
+  }
+  .coming-soon-area .coming-soon-content .newsletter-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .coming-soon-area .coming-soon-content .newsletter-form .input-newsletter {
+    height: 55px;
+    padding-left: 13px;
+    font-size: 15px;
+  }
+  .coming-soon-area .coming-soon-content .newsletter-form button {
+    position: relative;
+    font-size: 14px;
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+  }
+  /* Coming Soon End */
+  /* Footer Area CSS */
+  .footer-widget h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  /* Footer Area CSS End */
 }
 
-@media (min-width: 1800px) {
-  .banner-style-three .banner-image {
-    right: 100px;
-    max-width: 650px;
-    border-radius: 10px;
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .section-title h2 {
+    margin-bottom: 0;
+  }
+  .section-title .view-btn {
+    top: 0;
+    right: 0;
+    position: absolute;
+  }
+  .top-header-right {
+    max-width: 100%;
+  }
+  .banner-item .content {
+    text-align: left;
+  }
+  .banner-item .content h1 {
+    font-size: 30px;
+    margin-left: 0;
+    margin-right: unset;
+  }
+  .latest-product-content {
+    margin-left: 0;
+    margin-right: unset;
+    text-align: left;
+  }
+  .banner-side {
+    margin-top: 50px;
+  }
+  .banner-side .banner-side-item .banner-side-content {
+    padding: 15px 7px 15px 7px;
+  }
+  .banner-style-item .content {
+    max-width: 100%;
+  }
+  .banner-style-item .content h1 {
+    max-width: 100%;
+  }
+  .banner-slider-item .content {
+    max-width: 450px;
+  }
+  .product-banner-item .product-banner-img-rs {
+    margin-top: 0;
+  }
+  .product-banner-item-rs {
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+  .all-product-card .content h3 {
+    font-size: 18px;
+  }
+  .all-product-item .all-product-content .add-cart-btn {
+    right: 30px;
+  }
+  .product-banner-card {
+    padding: 40px 20px 40px 100px;
+  }
+  .shop-page-banner::before {
+    height: 50%;
+  }
+  .shop-page-banner img {
+    margin-top: -180px;
+  }
+  .shop-side-item {
+    padding: 15px;
+    text-align: left;
+  }
+  .shop-side-item h3 {
+    margin-left: unset;
+    margin-right: unset;
+  }
+  .shop-side-item img {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    max-width: 140px;
+  }
+  .cart-wraps-area .cart-wraps .continue-shopping-box {
+    margin-bottom: 0;
+  }
+  .user-form .contact-form .agree-label {
+    margin-bottom: 20px;
+  }
+  .user-form .contact-form .agree-label .forget {
+    bottom: auto;
+    right: 0;
+    left: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* Default CSS */
+  .ptb-100 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .pt-100 {
+    padding-top: 50px;
+  }
+  .ptb-70 {
+    padding-top: 20px;
+    padding-bottom: 50px;
+  }
+  .pb-100 {
+    padding-bottom: 50px;
+  }
+  .pt-70 {
+    padding-top: 30px;
+  }
+  .pb-70 {
+    padding-bottom: 20px;
+  }
+  .pt-45 {
+    padding-top: 30px;
+  }
+  .ml-30 {
+    margin-left: 0;
+  }
+  .ml-40 {
+    margin-left: 0;
+  }
+  .default-btn {
+    padding: 10px 30px;
+  }
+  .section-title h2 {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  /* Default CSS End */
+  .top-header-social ul li {
+    margin-right: 15px;
+  }
+  .top-header-social ul li a img {
+    width: 16px;
+    height: 16px;
+  }
+  /* Nav Area CSS */
+  .mobile-nav .logo img {
+    max-width: 110px;
+  }
+  .side-nav-responsive {
+    display: block;
+  }
+  .nav-bottom {
+    display: none;
+  }
+  /* Nav Area CSS End */
+  /* Banner Area CSS */
+  .banner-area {
+    padding-bottom: 50px;
+  }
+  .banner-item {
+    padding-top: 50px;
+    padding-bottom: 0;
+  }
+  .banner-item .content span {
+    font-size: 16px;
+  }
+  .banner-item .content h1 {
+    font-size: 35px;
+  }
+  .banner-item .content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .banner-item .banner-img {
+    margin-top: -50px;
+    margin-bottom: 0;
+  }
+  .banner-side h2 {
+    font-size: 24px;
+  }
+  .banner-side .banner-side-item .banner-side-content {
+    padding: 15px 0;
+  }
+  .banner-shape {
+    display: none;
+  }
+  .banner-slider-area {
+    background-color: #f2fcff;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner-slider-area .owl-dots {
+    bottom: 85px;
+  }
+  .banner-shape {
+    display: none;
+  }
+  .banner-slider-item {
+    padding: 130px 0 150px;
+  }
+  .banner-slider-item .content {
+    max-width: 450px;
+  }
+  .banner-slider-item .content span {
+    font-size: 16px;
+  }
+  .banner-slider-item .content h1 {
+    margin-top: 5px;
+    font-size: 35px;
+    margin-bottom: 15px;
+  }
+  .banner-slider-item .content p {
+    margin-bottom: 30px;
+    margin-bottom: 15px;
+  }
+  .banner-shape-area {
+    display: none;
+  }
+  .banner-style-area .owl-dots {
+    left: 0;
+    right: 0;
+    bottom: 70px;
+  }
+  .banner-style-item .content {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 30px;
+  }
+  .banner-style-item .content span {
+    font-size: 16px;
+  }
+  .banner-style-item .content h1 {
+    font-size: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+  .banner-style-item .content p {
+    font-size: 16px;
+  }
+  .banner-style-item .banner-style-img {
+    position: inherit;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin-bottom: 120px;
+  }
+  .banner-style-item .banner-style-img img {
+    max-width: 100%;
+  }
+  /* Banner Area CSS End */
+  .inner-banner .inner-title {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .inner-banner .inner-title h3 {
+    font-size: 30px;
+  }
+  .all-product-text h2 {
+    font-size: 24px;
+  }
+  .product-banner-card {
+    padding: 40px 20px 40px 100px;
+  }
+  .product-banner-card h3 {
+    font-size: 24px;
+  }
+  .new-collections-text h2 {
+    font-size: 24px;
+  }
+  /* Latest Product Area CSS */
+  .latest-product-shape {
+    display: none;
+  }
+  .latest-product-img {
+    padding: 0 0 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .latest-product-img::before {
+    display: none;
+  }
+  .latest-product-img img {
+    max-width: 100%;
+  }
+  .latest-product-content {
+    margin-left: 0;
+    margin-bottom: 35px;
+  }
+  .latest-product-content span {
+    font-size: 16px;
+  }
+  .latest-product-content h2 {
+    font-size: 30px;
+    max-width: 200px;
+  }
+  .latest-product-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .latest-product-slider {
+    position: relative;
+    padding-bottom: 50px;
+    padding-top: 50px;
+  }
+  .latest-product-slider .owl-dots {
+    left: 0;
+    right: 0;
+    bottom: 45px;
+  }
+  /* Latest Product Area CSS End */
+  .about-content h2 {
+    font-size: 26px;
+  }
+  .about-text-content {
+    margin-bottom: 20px;
+  }
+  .about-text-content h2 {
+    font-size: 26px;
+  }
+  .work-card {
+    padding: 30px 30px 30px 70px;
+  }
+  .work-card .number {
+    font-size: 50px;
+  }
+  .work-card .work-icon {
+    margin-left: 30px;
+  }
+  .offer-content-area {
+    padding: 50px 30px;
+    max-width: 290px;
+  }
+  .offer-content-area h2 {
+    font-size: 24px;
+  }
+  .offer-shape .shape-4 {
+    top: 5%;
+  }
+  /* Client Area CSS End */
+  .client-shape {
+    display: none;
+  }
+  .client-item .quote-icon {
+    display: none;
+  }
+  /* Client Area CSS End */
+  .shop-page-banner {
+    padding: 40px 30px 0;
+  }
+  .shop-page-banner .content {
+    padding: 30px 20px 20px;
+  }
+  .shop-page-banner .content h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+  .shop-page-banner .content p {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+  .shop-page-banner .content span {
+    font-size: 35px;
+  }
+  .shop-page-banner .content .default-btn {
+    margin-top: 15px;
+  }
+  .shop-page-banner img {
+    margin-top: -175px;
+  }
+  .side-bar-offer {
+    text-align: center;
+  }
+  .side-bar-offer img {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .shop-desc-content span {
+    font-size: 16px;
+  }
+  .shop-desc-content h3 {
+    margin-top: 5px;
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+  .shop-desc-content h4 {
+    font-size: 26px;
+    margin-bottom: 0;
+  }
+  .shop-desc-content .shop-add-btn {
+    margin-top: 10px;
+  }
+  .products-details-tab .tabs li {
+    margin-right: 0;
+  }
+  .products-details-tab .tabs li a {
+    font-size: 15px;
+    padding: 10px 24px;
+    border-radius: 50px;
+  }
+  .products-tabs-decs h3 {
+    font-size: 26px;
+  }
+  .products-tabs-decs span {
+    font-size: 16px;
+  }
+  .products-tabs-decs .products-tabs-content h2 {
+    font-size: 26px;
+  }
+  .products-reviews-content h3 {
+    font-size: 26px;
+  }
+  .products-reviews-content .rating {
+    font-size: 18px;
+  }
+  .products-reviews-content p {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+  .products-tabs-specifications h2 {
+    font-size: 26px;
+  }
+  .products-tabs-specifications .tabs-specifications-content .sm-tab-3 {
+    margin-bottom: 22px;
+  }
+  .products-tabs-specifications .tabs-specifications-content-2 .sm-tab-2 {
+    margin-bottom: 35px;
+  }
+  .products-tabs-specifications .tabs-specifications-content-2 .sm-tab {
+    margin-bottom: 50px;
+  }
+  .products-reviews .side {
+    float: left;
+    width: 18%;
+    margin-top: 10px;
+  }
+  .products-reviews .middle {
+    width: 64%;
+  }
+  .contact-form-title h2 {
+    font-size: 25px;
+  }
+  .contact-form {
+    padding: 35px 20px;
+  }
+  /* Error Area */
+  .error-area .error-content {
+    padding-top: 70px;
+    padding-bottom: 65px;
+  }
+  .error-area .error-content h1 {
+    font-size: 120px;
+  }
+  .error-area .error-content h3 {
+    margin-top: 20px;
+    font-size: 30px;
+  }
+  .error-area .error-content p {
+    font-size: 15px;
+    margin-top: 10px;
+    padding: 0 15px;
+  }
+  /* Error Area End */
+  /* Coming Soon */
+  .coming-soon-area .coming-soon-content {
+    padding-top: 50px;
+    padding-bottom: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .coming-soon-area .coming-soon-content h1 {
+    font-size: 40px;
+    line-height: 1.1;
+    margin-top: 0;
+  }
+  .coming-soon-area .coming-soon-content p {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  .coming-soon-area .coming-soon-content #timer {
+    margin-top: 10px;
+  }
+  .coming-soon-area .coming-soon-content #timer div {
+    font-size: 35px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .coming-soon-area .coming-soon-content #timer div span {
+    font-size: 14px;
+    margin-top: -5px;
+  }
+  .coming-soon-area .coming-soon-content #timer div::before {
+    display: none;
+  }
+  .coming-soon-area .coming-soon-content .newsletter-form {
+    margin-top: 20px;
+  }
+  /* Coming Soon End */
+  /* Footer Area CSS */
+  .footer-widget h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  /* Footer Area CSS End */
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .ml-30 {
+    margin-left: 0;
+  }
+  .ml-40 {
+    margin-left: 15px;
+  }
+  .navbar-category .navbar-nav .nav-item-link a {
+    padding: 10px 15px 12px;
+  }
+  .nav-user {
+    padding: 8px 10px 8px;
+    max-width: 190px;
+  }
+  .nav-user ul li.user-icon {
+    margin-right: 5px;
+  }
+  /* Banner Area CSS */
+  .banner-item {
+    padding-top: 100px;
+    padding-bottom: 0;
+  }
+  .banner-item .content span {
+    font-size: 16px;
+  }
+  .banner-item .content h1 {
+    font-size: 45px;
+  }
+  .banner-item .content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .banner-item .banner-img {
+    margin-top: -50px;
+    margin-bottom: 0;
+  }
+  .banner-shape img {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .banner-side .banner-side-item .banner-side-img img {
+    height: 110px;
+  }
+  .banner-side .banner-side-item .banner-side-content h3 {
+    font-size: 16px;
+  }
+  .banner-side .banner-side-item .banner-side-content .rating {
+    font-size: 14px;
+  }
+  .banner-side .banner-side-item .banner-side-content span {
+    font-size: 14px;
+  }
+  .banner-slider-item .content {
+    max-width: 500px;
+  }
+  .banner-slider-item .content h1 {
+    font-size: 40px;
+  }
+  .banner-shape-area .shape-bg img {
+    max-width: 450px;
+  }
+  .banner-style-item .content {
+    max-width: 370px;
+    margin-left: auto;
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
+  .banner-style-item .content span {
+    font-size: 16px;
+  }
+  .banner-style-item .content h1 {
+    font-size: 50px;
+  }
+  .banner-style-item .content p {
+    font-size: 16px;
+  }
+  .banner-style-item .banner-style-img img {
+    max-width: 490px;
+  }
+  .page-inner-item .content h3 {
+    font-size: 22px;
+  }
+  .page-inner-item-2 .content h3 {
+    font-size: 22px;
+  }
+  .page-inner-item-2 .page-inner-img img {
+    max-width: 145px;
+  }
+  .work-card {
+    padding: 30px 30px 30px 70px;
+  }
+  .work-card .number {
+    font-size: 50px;
+  }
+  .work-card .work-icon {
+    margin-left: 30px;
+  }
+  .work-card .work-icon h3 {
+    font-size: 18px;
+  }
+  .best-deal-card {
+    padding: 0 10px 20px;
+  }
+  .best-deal-card .content h3 {
+    font-size: 18px;
+  }
+  .best-deal-card .content span {
+    font-size: 16px;
+  }
+  .product-card .content .rating-tag {
+    position: inherit;
+    top: 0;
+    right: 0;
+    margin-bottom: 5px;
+  }
+  .shop-page-banner .content h3 {
+    font-size: 40px;
+    max-width: 380px;
+  }
+  .shop-page-banner .content span {
+    font-size: 30px;
+  }
+  .shop-page-banner .default-btn {
+    margin-top: 20px;
+  }
+  .shop-side-item img {
+    top: 60px;
+    max-width: 110px;
+  }
+  .side-bar-offer .product-banner-tag {
+    top: 90px;
+    right: 10px;
+  }
+  .side-bar-blog .side-bar-blog-post .item .thumb .full-image {
+    width: 85px;
+    height: 120px;
+  }
+  .flash-sale-card .flash-sale-img #timer {
+    max-width: 170px;
+    text-align: center;
+    background-color: #f7f7ff;
+  }
+  .flash-sale-card .content .rating-tag {
+    position: inherit;
+    top: 0;
+    right: 0;
+  }
+  .product-banner-item .product-banner-img {
+    margin-left: -20px;
+  }
+  .product-banner-card {
+    padding: 50px 20px 50px 110px;
+  }
+  .product-banner-card h2 {
+    font-size: 30px;
+  }
+  .all-product-item .all-product-content {
+    padding: 13px 0;
+    position: relative;
+  }
+  .all-product-card .content .rating-tag {
+    position: inherit;
+    top: 0;
+    margin-bottom: 5px;
+    right: 0;
+  }
+  .products-reviews .side {
+    float: left;
+    width: 18%;
+    margin-top: 10px;
+  }
+  .products-reviews .middle {
+    width: 64%;
+  }
+  .top-rated-card .content .rating-tag {
+    position: inherit;
+    top: 0;
+    margin-bottom: 5px;
+  }
+  .all-product-card .content .rating-tag {
+    position: inherit;
+    top: 0;
+    margin-bottom: 5px;
+  }
+  .latest-product-content {
+    margin-left: 30px;
+    margin-bottom: 35px;
+  }
+  .latest-product-content span {
+    font-size: 16px;
+  }
+  .latest-product-content h2 {
+    font-size: 40px;
+    max-width: 300px;
+  }
+  .latest-product-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .latest-product-slider .owl-dots {
+    bottom: 120px;
+    position: absolute;
+    left: 31%;
+  }
+  .offer-content-area h2 {
+    font-size: 35px;
+  }
+  .choose-card {
+    padding: 20px 20px 20px 80px;
+  }
+  .choose-card i {
+    font-size: 45px;
+    top: 20px;
+    left: 20px;
+  }
+  .choose-card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    max-width: 150px;
+  }
+  .new-product-side .content {
+    padding: 35px;
+    position: relative;
+  }
+  .new-product-side .content .add-card {
+    top: 35px;
+    right: 35px;
+  }
+  .client-shape img {
+    max-width: 950px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .banner-style-area .owl-dots {
+    left: 34.7%;
+  }
+  .banner-style-item .banner-style-img img {
+    max-width: 900px;
+  }
+  .latest-product-shape {
+    left: 15%;
+  }
+  .latest-product-shape img {
+    max-width: 100%;
+  }
+  .banner-shape-area .shape-bg img {
+    max-width: 700px;
+  }
+  .banner-shape-area .shape-1 {
+    left: 3%;
+  }
+  .banner-shape-area .shape-2 {
+    bottom: 35%;
+  }
+  .banner-shape-area .shape-3 {
+    top: 25%;
+  }
+  .banner-shape-area .shape-4 {
+    left: 10%;
+  }
+  .banner-shape-area .shape-9 {
+    top: 10%;
+    right: 10%;
+  }
+  .banner-shape-area .shape-11 {
+    top: 22%;
+  }
+  .banner-shape-area .shape-12 {
+    top: 35%;
+  }
+  .banner-shape-area .shape-8 {
+    right: 33%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+  .container-max {
+    max-width: 1320px;
+    margin: 0 auto;
   }
 }
 /*# sourceMappingURL=responsive.css.map */

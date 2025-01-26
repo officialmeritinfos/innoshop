@@ -74,7 +74,7 @@ class Register extends Controller
             switch ($created->emailVerified){
                 case 1:
                     //SendWelcomeMail::dispatch($created);
-                    $created->notify(new WelcomeMail($created));
+//                    $created->notify(new WelcomeMail($created));
                     $message = "Account was successfully created. Please login";
                     // $created->email_verified_at = $created->markEmailAsVerified();
                     // $created->save();
@@ -88,8 +88,7 @@ class Register extends Controller
             if ($refBy!=0){
                 $referralMessage = "
                         A new registration has been recorded on ".env('APP_NAME')." which was done using your
-                        referral link. Your commission will be credited to you upon user's investment. Thank you for
-                        using ".env('APP_NAME').".
+                        referral link.
                     ";
                 $ref->notify(new InvestmentMail($ref,$referralMessage,'New Referral Registration'));
             }
@@ -123,7 +122,7 @@ class Register extends Controller
 
         EmailVerification::where('email',$email)->delete();
 
-        $user->notify(new WelcomeMail($user));
+//        $user->notify(new WelcomeMail($user));
 
 
         return redirect()->route('login')->with('info','Email successfully verified');

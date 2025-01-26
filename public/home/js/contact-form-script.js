@@ -1,5 +1,5 @@
 /*==============================================================*/
-// Contact Form JS
+// Raque Contact Form  JS
 /*==============================================================*/
 (function ($) {
     "use strict"; // Start of use strict
@@ -7,7 +7,11 @@
         if (event.isDefaultPrevented()) {
             // handle the invalid form...
             formError();
-            submitMSG(false, "Did you fill in the form properly?");
+            submitMSG(false, "Did you fill up the form properly?");
+        } else {
+            // everything looks good!
+            event.preventDefault();
+            submitForm();
         }
     });
 
@@ -25,12 +29,12 @@
             type: "POST",
             url: "assets/php/form-process.php",
             data: "name=" + name + "&email=" + email + "&msg_subject=" + msg_subject + "&phone_number=" + phone_number + "&message=" + message,
-            success : function(statustxt){
-                if (statustxt == "success"){
+            success : function(text){
+                if (text == "success"){
                     formSuccess();
                 } else {
                     formError();
-                    submitMSG(false,statustxt);
+                    submitMSG(false,text);
                 }
             }
         });

@@ -35,6 +35,7 @@ Route::post('update-password',[Settings::class,'processPassword'])->name('passwo
 /*===================DELIVERY ROUTE ========================*/
 Route::get('delivery/index',[DeliveryController::class,'landingPage'])->name('delivery.index');
 Route::get('delivery/{reference}/detail',[DeliveryController::class,'deliveryDetail'])->name('delivery.detail');
+Route::get('delivery/{id}/user',[DeliveryController::class,'userDetails'])->name('delivery.user.detail');
 //Add Delivery
 Route::get('delivery/new',[DeliveryController::class,'newDelivery'])->name('delivery.new');
 Route::post('delivery/new/process',[DeliveryController::class,'processNewDelivery'])->name('delivery.new.process');

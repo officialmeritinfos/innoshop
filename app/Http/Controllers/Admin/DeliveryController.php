@@ -10,6 +10,8 @@ use App\Mail\DeliveryUpdatedMail;
 use App\Models\Delivery;
 use App\Models\DeliveryStage;
 use App\Models\GeneralSetting;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +45,8 @@ class DeliveryController extends Controller
             'siteName' => $web->name,
             'pageName' => 'Create New Delivery',
             'user'     =>  $user,
+            'users'    => User::all(),
+            'orders'   => Order::all()
         ];
 
         return view('admin.delivery.new',$dataView);
@@ -53,6 +57,8 @@ class DeliveryController extends Controller
         DB::beginTransaction();
         try {
             $validatedData = $request->validate([
+                'user_id' => 'required|exists:users,id',
+                'order_id' => 'nullable|exists:orders,id',
                 'sender_name' => 'required|string|max:255',
                 'sender_address' => 'nullable|string|max:255',
                 'sender_phone' => 'nullable|string|max:20',
@@ -73,6 +79,14 @@ class DeliveryController extends Controller
                 'shipment_mode' => 'nullable|string|max:255',
                 'status' => 'required|string|in:pending,in-transit,delivered,cancelled,on-hold',
             ]);
+            //handle if user is selected
+            if ($request->has('use_user_data') && $request->filled('user_id')) {
+                $user = User::find($request->user_id);
+                $validatedData['receiver_name'] = $user->name;
+                $validatedData['receiver_email'] = $user->email;
+                $validatedData['receiver_address'] = $user->address ?? null;
+                $validatedData['receiver_phone'] = $user->phone ?? null;
+            }
 
             // Handle file upload
             if ($request->hasFile('photo')) {
@@ -93,7 +107,7 @@ class DeliveryController extends Controller
             // Create delivery
             $delivery = Delivery::create($validatedData);
 
-            // Send mails to sender and receiver
+            // Send emails to the sender and receiver
             if ($delivery->sender_email) {
                 Mail::to($delivery->sender_email)->send(new DeliveryCreatedMail($delivery, 'sender'));
             }
@@ -101,13 +115,15 @@ class DeliveryController extends Controller
             if ($delivery->receiver_email) {
                 Mail::to($delivery->receiver_email)->send(new DeliveryCreatedMail($delivery, 'receiver'));
             }
+
             DB::commit();
 
-            return redirect()->route('admin.delivery.detail',['reference'=>$delivery->reference])->with('success', 'Delivery added successfully. You can add the stages');
+            return response()->json(['success' => true, 'message' => 'Delivery created successfully!']);
+
         }catch (\Exception $exception){
             DB::rollBack();
             logger('Error adding Delivery '. $exception->getMessage());
-            return back()->with('error', $exception->getMessage());
+            return response()->json(['success' => false, 'message' => 'Failed to create delivery: ' . $exception->getMessage()]);
         }
     }
     //Edit Delivery
@@ -240,5 +256,18 @@ class DeliveryController extends Controller
         $settings = GeneralSetting::find(1);
         return view('admin.delivery.invoice', compact('delivery', 'stages','settings'));
     }
+
+    public function userDetails($id)
+    {
+        $user = User::findOrFail($id);
+
+        return response()->json([
+            'name' => $user->name,
+            'address' => $user->address ?? null,
+            'phone' => $user->phone ?? null,
+            'email' => $user->email,
+        ]);
+    }
+
 
 }

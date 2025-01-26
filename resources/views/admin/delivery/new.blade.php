@@ -3,11 +3,42 @@
 
     <div class="container card">
         <div class="card-header">
-            <h4 class="mt-4 text-center">Add New Delivery</h4>
+            <h4 class="mt-4 text-center">{{ $pageName }}</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.delivery.new.process') }}" method="POST" enctype="multipart/form-data">
+            <form id="deliveryForm" action="{{ route('admin.delivery.new.process') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                <!-- User Selection -->
+                <div class="mb-3">
+                    <label for="user_id" class="form-label">User</label>
+                    <select name="user_id" id="user_id" class="form-control">
+                        <option value="">Select User</option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}" data-url="{{ route('admin.delivery.user.detail', ['id' => $user->id]) }}">
+                                {{ $user->name }} ({{ $user->email }})
+                            </option>
+                        @endforeach
+                    </select>
+                    <small class="text-muted">If the receiver is the user, select the user; otherwise, leave blank.</small>
+                </div>
+
+                <!-- Order Selection -->
+                <div class="mb-3">
+                    <label for="order_id" class="form-label">Order</label>
+                    <select name="order_id" id="order_id" class="form-control">
+                        <option value="">Select Order</option>
+                        @foreach($orders as $order)
+                            <option value="{{ $order->id }}">Order #{{ $order->id }} ({{ $order->created_at->format('d M Y') }})</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Option to Use User Data -->
+                <div class="mb-3 form-check">
+                    <input type="checkbox" name="use_user_data" id="use_user_data" class="form-check-input">
+                    <label for="use_user_data" class="form-check-label">Use user data as receiver details</label>
+                </div>
 
                 <h4>Sender Information</h4>
                 <div class="mb-3">
@@ -45,6 +76,7 @@
                     <input type="email" name="receiver_email" id="receiver_email" class="form-control">
                 </div>
 
+                <!-- Delivery Details -->
                 <div class="mb-3">
                     <label for="origin" class="form-label">Origin</label>
                     <input type="text" name="origin" id="origin" class="form-control" required>
@@ -102,4 +134,63 @@
             </form>
         </div>
     </div>
+
+
+    @push('js')
+        <script>
+            $(document).ready(function () {
+                // Populate receiver fields when user changes
+                $('#user_id').on('change', function () {
+                    const userOption = $(this).find(':selected');
+                    const useUserData = $('#use_user_data').is(':checked');
+                    const url = userOption.data('url');
+
+                    if (useUserData && url) {
+                        $.get(url, function (response) {
+                            $('#receiver_name').val(response.name || '');
+                            $('#receiver_address').val(response.address || '');
+                            $('#receiver_phone').val(response.phone || '');
+                            $('#receiver_email').val(response.email || '');
+                        }).fail(function () {
+                            alert('Failed to fetch user details.');
+                        });
+                    }
+                });
+
+                // AJAX submission for the form
+                $('#deliveryForm').on('submit', function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(this);
+
+                    $.ajax({
+                        url: '{{ route("admin.delivery.new.process") }}',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response.success) {
+                                toastr.success(response.message || 'Delivery added successfully.');
+                                window.location.href = '{{ route("admin.delivery.index") }}';
+                            } else {
+                                toastr.error(response.message || 'An error occurred.');
+                            }
+                        },
+                        error: function (xhr) {
+                            if (xhr.responseJSON && xhr.responseJSON.message) {
+                                toastr.error(xhr.responseJSON.message); // Show server error message
+                            } else if (xhr.responseText) {
+                                toastr.error(xhr.responseText); // Show raw error text
+                            } else {
+                                toastr.error('An unknown error occurred. Please try again.');
+                            }
+                            console.error(xhr.responseText); // Log the full error in console
+                        }
+                    });
+                });
+            });
+        </script>
+
+    @endpush
 @endsection

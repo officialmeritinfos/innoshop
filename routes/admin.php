@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\FlightController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Settings;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -84,7 +85,10 @@ Route::get('orders/index', [OrderController::class, 'landingPage'])->name('order
 Route::get('orders/{id}/detail', [OrderController::class, 'orderDetail'])->name('orders.detail');
 Route::put('orders/{id}/mark-payment', [OrderController::class, 'markPayment'])->name('orders.markPayment');
 Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
-
+/*================ USER ROUTE ====================*/
+Route::get('users/index', [UserController::class, 'landingPage'])->name('users.index');
+Route::get('users/{id}/edit', [UserController::class, 'landingPage'])->name('users.edit');
+Route::get('users/{id}/detail', [UserController::class, 'landingPage'])->name('users.detail');
 
 //Logout
 Route::get('logout',[Login::class,'logout']);

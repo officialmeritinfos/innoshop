@@ -8,6 +8,8 @@ use App\Models\Deposit;
 use App\Models\FlightTicket;
 use App\Models\GeneralSetting;
 use App\Models\Investment;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use App\Models\Withdrawal;
 use Facade\Ignition\Support\Packagist\Package;
@@ -31,6 +33,9 @@ class Dashboard extends Controller
             'total_tickets'=>FlightTicket::count(),
             'completed_flights'=>FlightTicket::where('status', 'completed')->count(),
             'pending_flights'=>FlightTicket::where('status', '!=','completed')->count(),
+            'totalOrders' => Order::count(),
+            'products' => Product::count(),
+            'customers' => User::where('id','!=',$user->id)->count(),
         ];
 
         return view('admin.dashboard',$dataView);

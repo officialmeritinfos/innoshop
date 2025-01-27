@@ -84,6 +84,7 @@ Route::put('products/{id}/toggle-status', [ProductController::class, 'toggleStat
 Route::get('orders/index', [OrderController::class, 'landingPage'])->name('orders.index');
 Route::get('orders/{id}/detail', [OrderController::class, 'orderDetail'])->name('orders.detail');
 Route::put('orders/{id}/mark-payment', [OrderController::class, 'markPayment'])->name('orders.markPayment');
+Route::get('orders/{id}/mark-completed', [OrderController::class, 'markCompleted'])->name('orders.markCompleted');
 Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 /*================ USER ROUTE ====================*/
 Route::get('users/index', [UserController::class, 'landingPage'])->name('users.index');

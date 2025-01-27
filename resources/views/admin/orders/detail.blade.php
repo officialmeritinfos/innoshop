@@ -12,6 +12,9 @@
                     <button class="btn btn-danger btn-sm" onclick="deleteOrder({{ $order->id }})">
                         <i class="fa fa-trash"></i> Delete Order
                     </button>
+                    <a href="{{ route('admin.orders.markCompleted', ['id' => $order->id]) }}" class="btn btn-info mr-2">
+                        Mark as Completed
+                    </a>
                 </div>
             </div>
             <div class="card-body">

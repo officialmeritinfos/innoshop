@@ -1,31 +1,36 @@
-
-<!DOCTYPE html>
-<html lang="zxx">
+<!doctype html>
+<html lang="zxx" >
 <head>
-    <!-- Required meta tags -->
+    <!-- Required Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/animate.css')}}">
-    <!-- Icofont CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/icofont.min.css')}}">
-    <!-- Owl Carousel CSS -->
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/animate.min.css')}}">
+    <!-- Line Awesome Min CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/line-awesome.min.css')}}">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="{{asset('home/fonts/flaticon.css')}}">
+    <!-- Owl Carousel Min CSS -->
     <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}">
-    <!--  Owl Carousel Theme CSS -->
     <link rel="stylesheet" href="{{asset('home/css/owl.theme.default.min.css')}}">
     <!-- Magnific Popup CSS -->
     <link rel="stylesheet" href="{{asset('home/css/magnific-popup.css')}}">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/nice-select.min.css')}}">
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="{{asset('home/css/slick.min.css')}}">
     <!-- Meanmenu CSS -->
     <link rel="stylesheet" href="{{asset('home/css/meanmenu.css')}}">
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{asset('home/css/style.css')}}">
-    <!-- Dark CSS -->
-    <link rel="stylesheet" href="{{asset('home/css/dark.css')}}">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="{{asset('home/css/responsive.css')}}">
-    <!-- Title CSS -->
+
     <title>{{$pageName}} - {{$siteName}}</title>
     <!-- Favicon Link -->
     <link rel="icon" type="image/png" href="{{asset('home/img/'.$web->logo)}}">
@@ -40,6 +45,15 @@
             border: 1px solid #0d9f16;
             border-radius: 50%;
         }
+    </style>
+    <style>
+        .best-deal-image {
+            width: 100%; /* Ensures the image takes the full width of its container */
+            height: 200px; /* Set a fixed height */
+            object-fit: cover; /* Ensures the image maintains aspect ratio while filling the container */
+            border-radius: 8px; /* Optional: adds rounded corners */
+        }
+
     </style>
 
     <style>
@@ -64,338 +78,367 @@
     </style>
 </head>
 <body>
-<!-- PreLoader Start -->
-<div class="loader-content">
+<!-- Pre Loader -->
+<div class="preloader">
     <div class="d-table">
         <div class="d-table-cell">
-            <div class="sk-folding-cube">
-                <div class="sk-cube1 sk-cube"></div>
-                <div class="sk-cube2 sk-cube"></div>
-                <div class="sk-cube4 sk-cube"></div>
-                <div class="sk-cube3 sk-cube"></div>
-            </div>
+            <img src="{{asset('home/images/preloder-img.png')}}" alt="Images">
         </div>
     </div>
 </div>
-<!-- PreLoader End -->
+<!-- End Pre Loader -->
 
-<!-- Header Area Start -->
-<div class="header-area">
+<!-- Top Header Start -->
+<div class="top-header">
     <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-6">
-                <div class="header-left">
-                    <ul>
-                        <li>
-                            <a href="mailto:{{$web->email}}">
-                                <i class="icofont-ui-message"></i>
-                                <span >{{$web->email}}</span>
-                            </a>
-                        </li>
-                        @if($web->phone)
-                            <li>
-                                <a href="tel:{{$web->phone}}">
-                                    <i class="icofont-phone"></i>
-                                    {{$web->phone}} (For Whatsapp Call)
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="header-right">
-                    <ul class="header-social">
-                        <li>
-                            <div id="google_translate_element"></div>
-                        </li>
-                    </ul>
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-8">
+                <div class="top-header-right">
+
+                    <div class="language-list">
+                        <div id="google_translate_element"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Header Area End -->
+<!-- Top Header End -->
 
-<!-- Navbar Area Start -->
+<!-- Start Navbar Area -->
 <div class="navbar-area">
-    <!-- For Mobile Device -->
+    <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
-        <a href="index" class="logo">
-            <img src="{{asset('home/img/'.$web->logo)}}" class="main-logo" alt="logo" style="width: 70px;">
-            <img src="{{asset('home/img/'.$web->logo2)}}" class="white-logo" alt="logo" style="width: 70px;">
+        <a href="{{ route('home') }}" class="logo">
+            <img src="{{asset('home/images/'.$web->logo)}}" alt="Logo">
         </a>
     </div>
 
-    <!-- For Desktop Device -->
+    <!-- Menu For Desktop Device -->
     <div class="main-nav">
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index">
-                    <img src="{{asset('home/img/'.$web->logo)}}" class="main-logo" alt="logo" style="width: 80px;">
-                    <img src="{{asset('home/img/'.$web->logo2)}}" class="white-logo" alt="logo" style="width: 80px;">
+            <nav class="navbar navbar-expand-md navbar-light ">
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img src="{{asset('home/images/'.$web->logo)}}" alt="Logo">
                 </a>
+
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a href="{{url('/')}}" class="nav-link">Home</a>
+                            <a href="{{ route('home') }}" class="nav-link">
+                                Home
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('about')}}" class="nav-link">About</a>
+                            <a href="{{ route('search') }}" class="nav-link">
+                                Search Product
+                            </a>
                         </li>
+
+
                         <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">Services</a>
+                            <a href="#" class="nav-link">
+                                Categories
+                                <i class="las la-caret-down"></i>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{url('tour')}}" class="nav-link">Tour</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('travel')}}" class="nav-link">Travel</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('logistics')}}" class="nav-link">Logistics</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('visa')}}" class="nav-link">Visa Preparation</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('flight-tracking')}}" class="nav-link">Flight Tracking</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">Tracking</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{route('home')}}#tracking-package" class="nav-link">Track Package</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('home')}}#tracking-flight" class="nav-link">Track Flight</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('flight-booking')}}" class="nav-link">Flight Booking</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{url('faqs')}}" class="nav-link">FAQ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('privacy')}}" class="nav-link">Privacy policy</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('terms')}}" class="nav-link">Terms & Conditions</a>
-                                </li>
+                                @foreach(product_categories() as $category)
+                                    <li class="nav-item">
+                                        <a href="{{ route('products.category',['slug'=>$category->slug]) }}" class="nav-link">
+                                            {{ $category->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{$web->whatsappSupport}}" target="_blank" class="nav-link">Call On Whatsapp</a>
+                            <a href="{{route('tracking')}}" class="nav-link">
+                                Track My Order
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('contact')}}" class="nav-link">
+                                Contact
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('contact')}}" class="nav-link">Contact Us</a>
+                            <a href="{{route('terms')}}" class="nav-link">
+                                Terms/Policy
+                            </a>
                         </li>
                     </ul>
+
+                    <div class="nav-side d-display">
+                        <ul class="nav-side-item">
+                            <li>
+                                <a href="{{ route('carts') }}" class="cart-btn">
+                                    <i class="flaticon-shopping-bag"></i>
+                                    <span class="cart">{{cart_item_count()}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </div>
     </div>
-</div>
-<!-- Navbar Area End -->
-@yield('content')
-<!-- Newsletter Section Start -->
-<div class="newsletter-section">
-    <div class="container">
-        <div class="newsletter-area">
-            <h2>Join Newsletter For Daily Update</h2>
-            <div class="col-lg-6 p-0">
-                <form class="newsletter-form" data-bs-toggle="validator">
-                    <input type="email" class="form-control" placeholder="Enter Your Email" name="EMAIL" required autocomplete="off">
 
-                    <button class="default-btn electronics-btn" type="submit">
-                        Subscribe Now
-                    </button>
-
-                    <div id="validator-newsletter" class="form-result"></div>
-                </form>
+    <div class="side-nav-responsive">
+        <div class="container">
+            <div class="dot-menu">
+                <div class="circle-inner">
+                    <div class="circle circle-one"></div>
+                    <div class="circle circle-two"></div>
+                    <div class="circle circle-three"></div>
+                </div>
             </div>
-            <img src="{{asset('home/img/newsletter-img.png')}}" alt="newsletter image">
-        </div>
-    </div>
-</div>
-<!-- Newsletter Section End -->
 
-<!-- Footer Area Start -->
-<footer class="footer-area">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <a href="index">
-                        <img src="{{asset('home/img/'.$web->logo2)}}" alt="logo">
-                    </a>
-                    <ul>
-                        @if($web->phone)
-                            <li>
-                                <i class="icofont-phone"></i>
-                                <a href="tel:{{$web->phone}}">
-                                    {{$web->phone}} (For Whatsapp Calls & Text)
-                                </a>
-                            </li>
-                        @endif
-
-                        <li>
-                            <i class="icofont-ui-message"></i>
-                            <a href="mailto:{{ $web->email }}">
-                                <span >{{ $web->email }}</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <i class="icofont-location-pin"></i>
-                            {{ $web->address }}
-                        </li>
-                    </ul>
-
-                    <div class="footer-social">
-                        <a href="https://www.facebook.com/login/" target="_blank">
-                            <i class="icofont-facebook"></i>
-                        </a>
-                        <a href="https://www.instagram.com/" target="_blank">
-                            <i class="icofont-instagram"></i>
-                        </a>
-                        <a href="https://twitter.com/i/flow/login" target="_blank">
-                            <i class="icofont-twitter"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/" target="_blank">
-                            <i class="icofont-linkedin"></i>
-                        </a>
+            <div class="container">
+                <div class="side-nav-inner">
+                    <div class="side-nav justify-content-center align-items-center">
+                        <div class="side-nav-item">
+                            <ul class="nav-side-item">
+                                <li>
+                                    <a href="{{ route('carts') }}" class="cart-btn">
+                                        <i class="flaticon-shopping-bag"></i>
+                                        <span class="cart">{{cart_item_count()}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<!-- End Navbar Area -->
 
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <h3>Our Services</h3>
-                    <ul>
-                        <li>
-                            <a href="{{url('tour')}}">Tour</a>
-                        </li>
-                        <li>
-                            <a href="{{url('flight-tracking')}}">Flight Tracking</a>
-                        </li>
-                        <li>
-                            <a href="{{url('logistics')}}">Logistics</a>
-                        </li>
-                        <li>
-                            <a href="{{url('travel')}}">Travel</a>
+<!-- Nav Bottom Area -->
+<div class="nav-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="navbar-category">
+                    <ul class="navbar-nav">
+                        <li class="nav-item-link">
+                            <a href="#" class="nav-link-item">
+                                <i class="las la-bars"></i>
+                                All Categories
+                                <i class="las la-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach(product_categories() as $categ)
+                                    <li class="nav-item-link">
+                                        <a href="{{ route('products.category',['slug'=>$categ->slug]) }}" class="nav-link-item">
+                                            {{$categ->name}}
+                                        </a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <h3>Our Support</h3>
-                    <ul>
-                        <li>
-                            <a href="{{url('privacy')}}">Privacy & Policy</a>
-                        </li>
-                        <li>
-                            <a href="{{url('faq')}}">FAQS</a>
-                        </li>
-                        <li>
-                            <a href="{{url('terms')}}">Terms & Conditions</a>
-                        </li>
-                        <li>
-                            <a href="{{url('contact')}}">Contact Us</a>
-                        </li>
-                        <li>
-                            <a href="{{url('about')}}">About Us</a>
-                        </li>
-                    </ul>
+            <div class="col-lg-6 col-md-7">
+                <div class="top-header-form">
+                    <form class="nav-bottom-form" method="get" action="{{ route('search.result') }}">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <div class="form-group search-form">
+                                    <input type="text" class="form-control" placeholder="Search product by name" name="q"
+                                           value="{{ request()->input('q') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1">
+                                <button type="submit">
+                                    <i class="flaticon-searching"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-sm-6">
-                <div class="footer-widget">
-                    <h3>Quick Links</h3>
+            <div class="col-lg-3">
+                <div class="nav-user">
                     <ul>
-                        <li>
-                            <a href="{{url('/')}}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{url('about')}}">About Us</a>
-                        </li>
+                        <li class="user-icon"><i class="lar la-user"></i></li>
+                        @auth
+                            <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                        @else
+                            <li><a href="{{ route('login') }}">Log In</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="copyright-area">
-        <p>© <span>{{$siteName}}</span>. License number <a href="#">{{$web->licenseNumber}}</a> </p>
-    </div>
+</div>
+<!-- Nav Bottom Area End -->
 
-    <div class="lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </div>
+@yield('content')
 
-    <div class="telegram-float-widget">
-        <a href="https://wa.me/{{$web->phone}}" target="_blank">
-            <img src="https://cdn2.iconfinder.com/data/icons/social-media-applications/64/social_media_applications_23-whatsapp-256.png"
-                 alt="" width="50">
-        </a>
+<!-- Footer Area -->
+<footer class="footer-area footer-bg">
+    <div class="container">
+        <div class="footer-top pt-100 pb-70">
+            <div class="row justify-content-end">
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-widget">
+                        <div class="footer-logo">
+                            <a href="{{ route('home') }}">
+                                <img src="{{asset('home/images/'.$web->logo)}}" alt="Images">
+                            </a>
+                        </div>
+                        <p>
+                            {{ $siteName }} is the fastest e-commerce platform to buy all you will ever need, and have
+                            them delivered to your doorstep in a matter of days.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-widget pl-5">
+                        <h3>Contact Us</h3>
+                        <ul class="footer-address">
+                            <li>
+                                <i class="las la-map-marker"></i>
+                                <div class="content">
+                                    <h3>
+                                        {!! $web->address !!}
+                                    </h3>
+                                    <span>Our Location</span>
+                                </div>
+                            </li>
+                            @if($web->phone)
+                                <li>
+                                    <i class="las la-phone"></i>
+                                    <div class="content">
+                                        <h3><a href="tel:{{$web->phone}}">{{ $web->phone }}</a></h3>
+                                        <span>Phone Number</span>
+                                    </div>
+                                </li>
+                            @endif
+
+                            <li>
+                                <i class="lar la-envelope"></i>
+                                <div class="content">
+                                    <h3><a href="mailto:{{$web->email}}">{{ $web->email }}</a></h3>
+                                    <span>Our Email</span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <i class="las la-clock"></i>
+                                <div class="content">
+                                    <h3>9 AM - 5 PM (7 Days)</h3>
+                                    <span>Open Hour</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copy-right-area">
+            <div class="copy-right-text">
+                <p>
+                    Copyright ©2021 - {{date('Y')}} {{$siteName}}. All Rights Reserved.</a>
+                </p>
+            </div>
+        </div>
     </div>
 </footer>
 <!-- Footer Area End -->
 
-<!-- Back top Button -->
-<div class="top-btn">
-    <i class="icofont-scroll-bubble-up"></i>
-</div>
-
-<!-- jQuery first, then Bootstrap JS -->
-<script src="{{asset('home/js/jquery.min.js')}}"></script>
+<!-- Jquery Min JS -->
+<script src="{{asset('home/js/jquery-3.5.1.slim.min.js')}}"></script>
+<!-- Bootstrap Bundle Min JS -->
 <script src="{{asset('home/js/bootstrap.bundle.min.js')}}"></script>
-<!-- Subscribe From JS -->
-<script src="{{asset('home/js/jquery.ajaxchimp.min.js')}}"></script>
-<!-- Form Validator JS -->
-<script src="{{asset('home/js/form-validator.min.js')}}"></script>
-<!-- Contact JS -->
-<script src="{{asset('home/js/contact-form-script.js')}}"></script>
-<!-- Owl Carousel Slider JS -->
+<!-- Owl Carousel Min JS -->
 <script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
-<!-- Magnific Popup JS -->
+<!-- Magnific Popup Min JS -->
 <script src="{{asset('home/js/jquery.magnific-popup.min.js')}}"></script>
-<!-- WOW JS -->
+<!-- Nice Select Min JS -->
+<script src="{{asset('home/js/jquery.nice-select.min.js')}}"></script>
+<!-- Wow Min JS -->
 <script src="{{asset('home/js/wow.min.js')}}"></script>
 <!-- Meanmenu JS -->
 <script src="{{asset('home/js/meanmenu.js')}}"></script>
+<!-- Slick JS -->
+<script src="{{asset('home/js/slick.min.js')}}"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="{{asset('home/js/jquery.ajaxchimp.min.js')}}"></script>
+<!-- Form Validator Min JS -->
+<script src="{{asset('home/js/form-validator.min.js')}}"></script>
+<!-- Contact Form JS -->
+<script src="{{asset('home/js/contact-form-script.js')}}"></script>
+<!-- Jquery Ui Min JS -->
+<script src="{{asset('home/js/jquery-ui.min.js')}}"></script>
+<!-- Mixitup Min JS -->
+<script src="{{asset('home/js/mixitup.min.js')}}"></script>
 <!-- Custom JS -->
 <script src="{{asset('home/js/custom.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <script type="text/javascript">
     window.onload = function googleTranslateElementInit() {
         new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
     }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '3b6a28dd2836347279fbd083cfd527b21d827203';
-    window.smartsupp||(function(d) {
-        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-        c.type='text/javascript';c.charset='utf-8';c.async=true;
-        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-</script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
 @stack('js')
+<script>
+    $(document).ready(function () {
+        $('#loadMoreBtn').on('click', function () {
+            const btn = $(this);
+            const nextPage = btn.data('next-page'); // Get the next page
+            const url = btn.data('url'); // URL for pagination
+            const spinner = $('#loadingSpinner');
+
+            // Show spinner and disable button
+            btn.hide();
+            spinner.show();
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                data: { page: nextPage },
+                success: function (response) {
+                    if (response.trim().length > 0) {
+                        $('#product-container').append(response); // Append new products
+                        btn.data('next-page', nextPage + 1).show(); // Update to next page
+                    } else {
+                        btn.remove(); // No more products
+                    }
+                },
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    alert('An error occurred while loading products.');
+                },
+                complete: function () {
+                    spinner.hide();
+                }
+            });
+        });
+    });
+
+</script>
+<script>
+    $(window).on('load', function () {
+        $('.preloader').fadeOut('slow', function () {
+            $(this).remove();
+        });
+    });
+</script>
+@include('noti_js')
 </body>
 </html>

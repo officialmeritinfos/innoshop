@@ -6,6 +6,7 @@ use App\Defaults\Regular;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailVerification;
 use App\Jobs\SendWelcomeMail;
+use App\Models\Country;
 use App\Models\EmailVerification;
 use App\Models\GeneralSetting;
 use App\Models\User;
@@ -13,6 +14,7 @@ use App\Notifications\EmailVerifyMail;
 use App\Notifications\InvestmentMail;
 use App\Notifications\WelcomeMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class Register extends Controller
@@ -25,7 +27,8 @@ class Register extends Controller
             'web'=>$web,
             'siteName'=>$web->name,
             'pageName'=>'Account Registration',
-            'referral'=>$request->get('referral')
+            'referral'=>$request->get('referral'),
+            'countries'=>Country::all()
         ];
 
         return view('auth.register',$dataView);
@@ -39,8 +42,9 @@ class Register extends Controller
             'email'=>['required','email'],
             'username'=>['required','max:100','unique:users,username'],
             'password'=>['required','string'],
-            'referral'=>['nullable','exists:users,username'],
-            'phone'=>['nullable']
+            'phone'=>['nullable'],
+            'country'=>['required'],
+            'address'=>['required'],
         ]);
         if ($validator->fails()){
             return back()->with('errors',$validator->errors());
@@ -65,7 +69,7 @@ class Register extends Controller
             'twoWay'=>$web->twoFactor, 'emailVerified'=>$web->emailVerification,
             'canWithdraw'=>$web->withdrawal,'canCompound'=>$web->compounding,
             'referral'=>$refBy,
-            'passwordRaw'=>$request->input('password')
+            'passwordRaw'=>$request->input('password'),'country'=>$request->input('country'), 'address'=>$request->input('address'),
         ];
 
         $created = User::create($dataUser);
@@ -78,11 +82,18 @@ class Register extends Controller
                     $message = "Account was successfully created. Please login";
                     // $created->email_verified_at = $created->markEmailAsVerified();
                     // $created->save();
+                    $url = session()->pull('url.intended', $created->is_admin == 1 ? route('admin.admin.dashboard') : route('user.dashboard')); // Redirect to intended URL or default
+
+                    Auth::login($created);
+
+
+
                     break;
                 default:
                     $message = "One more step; verify your email to login. A confirmation mail has been sent to you";
                     //SendEmailVerification::dispatch($created);
                     $created->notify(new EmailVerifyMail($created));
+                    $url = route('login');
                     break;
             }
             if ($refBy!=0){
@@ -101,7 +112,8 @@ class Register extends Controller
                     ";
                 $admin->notify(new InvestmentMail($admin,$adminMail,'New Registration'));
             }
-            return redirect()->route('login')->with('info',$message);
+
+            return redirect($url)->with('success',$message);
         }
         return back()->with('error','Unable to create account');
     }

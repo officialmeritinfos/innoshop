@@ -6,6 +6,7 @@ use App\Defaults\Regular;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailVerification;
 use App\Jobs\SendTwoFactorMail;
+use App\Models\Cart;
 use App\Models\GeneralSetting;
 use App\Models\TwoFactor;
 use App\Models\User;
@@ -42,8 +43,9 @@ class Login extends Controller
             return back()->with('errors',$validator->errors());
         }
         $input = $validator->validated();
+        $sessionId = session()->getId();
         //check if the login checked out
-        if(Auth::attempt(['username' => $request->email, 'password' => $request->password])){
+        if(Auth::attempt(['username' => $request->email, 'password' => $request->password],$request->has('remember'))){
             //is user active
             $user = Auth::user();
             if($user->status !=1)return back()->with('error', 'Account is inactive');
@@ -54,6 +56,29 @@ class Login extends Controller
                 $user->notify(new EmailVerifyMail($user));
                 return back()->with('success','Verification email sent. Please check both your spambox for the mail.');
             }
+            // Fetch the guest cart
+            $guestCart = Cart::where('session_id', $sessionId)->first();
+
+            if ($guestCart) {
+                // Update the cart to the logged-in user
+                $guestCart->update(['user_id' => $user->id, 'session_id' => null]);
+
+                // Merge with existing cart if needed
+                $userCart = Cart::firstOrCreate(['user_id' => $user->id]);
+                foreach ($guestCart->cartItems as $item) {
+                    $userCart->cartItems()->updateOrCreate(
+                        ['product_id' => $item->product_id],
+                        [
+                            'quantity' => $item->quantity,
+                            'price' => $item->price,
+                        ]
+                    );
+                }
+                // Delete the guest cart after merging
+                $guestCart->delete();
+            }
+
+
             //check if user has two factor authentication on
             switch ($user->twoWay){
                 case 1:
@@ -66,16 +91,9 @@ class Login extends Controller
                     $url = route('login');
                     break;
                 default:
-                    //$user->notify(new LoginMail($user,$request));
-                    $dataUser = [
-                        'twoWayPassed'=>1
-                    ];
+                    $dataUser = ['twoWayPassed' => 1];
                     $message = "Login successful.";
-                    if ($user->is_admin ==1){
-                        $url = route('admin.admin.dashboard');
-                    }else {
-                        $url = route('user.dashboard');
-                    }
+                    $url = session()->pull('url.intended', $user->is_admin == 1 ? route('admin.admin.dashboard') : route('user.dashboard')); // Redirect to intended URL or default
                     break;
             }
             User::where('id',$user->id)->update($dataUser);//update user
@@ -100,11 +118,7 @@ class Login extends Controller
 
         TwoFactor::where('user',$user->id)->delete();
 
-        if ($user->is_admin ==1){
-            $url = route('admin.admin.dashboard');
-        }else {
-            $url = route('user.dashboard');
-        }
+        $url = session()->pull('url.intended', $user->is_admin == 1 ? route('admin.admin.dashboard') : route('user.dashboard')); // Redirect to intended URL or default
 
         return redirect($url)->with('success','Login successful.');
     }
@@ -116,6 +130,11 @@ class Login extends Controller
         $user->save();
 
         Auth::logout();
+
+        // Delete the user's cart or reset session ID
+        if ($user) {
+            Cart::where('user_id', $user->id)->delete();
+        }
 
         $request->session()->invalidate();
 

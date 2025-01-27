@@ -20,14 +20,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('index',[HomeController::class,'index']);
-Route::get('about',[HomeController::class,'about']);
-Route::get('terms',[HomeController::class,'terms']);
-Route::get('terms',[HomeController::class,'terms']);
-Route::get('privacy',[HomeController::class,'privacy']);
-Route::get('faqs',[HomeController::class,'faqs']);
-Route::get('faq',[HomeController::class,'faqs']);
-Route::get('contact',[HomeController::class,'contact']);
+Route::get('about',[HomeController::class,'about'])->name('about');
+Route::get('search',[HomeController::class,'search'])->name('search');
+Route::get('search-result',[HomeController::class,'searchResult'])->name('search.result');
+Route::get('shop',[HomeController::class,'shop'])->name('shop');
+Route::get('product/{id}/detail',[HomeController::class,'productDetail'])->name('product.detail');
+Route::get('products/category/{slug}',[HomeController::class,'categoryProducts'])->name('products.category');
+Route::get('contact',[HomeController::class,'contact'])->name('contact');
+Route::get('tracking',[HomeController::class,'track'])->name('tracking');
+Route::get('terms-conditions',[HomeController::class,'terms'])->name('terms');
+Route::any('cart/{id}/add',[HomeController::class,'addToCart'])->name('cart.add');
+
+//Cart
+Route::get('carts',[HomeController::class,'cart'])->name('carts');
+Route::delete('carts/item/{id}', [HomeController::class, 'removeCartItem'])->name('cart.item.remove');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
+    Route::post('checkout/process', [HomeController::class, 'processCheckout'])->name('checkout.process');
+    Route::get('checkout/bank', [HomeController::class, 'bank'])->name('checkout.bank');
+});
+
+
+
 Route::get('flight-booking',[HomeController::class,'flightBooking'])->name('flight-booking');
 Route::post('flight-booking/process',[HomeController::class,'processFlightBooking'])->name('flight-booking.process');
 //Services

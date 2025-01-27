@@ -4,34 +4,47 @@ namespace App\Http\Controllers;
 
 use App\Mail\AdminBookingNotification;
 use App\Mail\BookingReceived;
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Country;
 use App\Models\Delivery;
 use App\Models\DeliveryStage;
 use App\Models\FlightBooking;
 use App\Models\FlightTicket;
 use App\Models\GeneralSetting;
-use App\Models\Service;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\User;
 use App\Notifications\InvestmentMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\ReCaptcha;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request  $request)
     {
-        $web = GeneralSetting::where('id',1)->first();
+        $web = GeneralSetting::find(1);
+
+        // Fetch paginated products (12 per page)
+        $products = Product::orderBy('created_at', 'desc')->paginate(12);
+
+        if ($request->ajax()) {
+            return view('home.partials.product-card', compact('products'))->render();
+        }
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Home Page',
-            'services'  =>Service::where('status',1)->get(),
+            'products'  => $products,
         ];
 
-        return view('home.home',$dataView);
+        return view('home.home', $dataView);
     }
 
     public function about()
@@ -83,7 +96,6 @@ class HomeController extends Controller
         return view('home.faq',$dataView);
     }
 
-
     public function contact()
     {
         $web = GeneralSetting::where('id',1)->first();
@@ -97,66 +109,6 @@ class HomeController extends Controller
         return view('home.contact',$dataView);
     }
 
-    public function tour()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Tour Services',
-        ];
-
-        return view('home.tour',$dataView);
-    }
-    public function travel()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Travel Agency Services',
-        ];
-
-        return view('home.travel',$dataView);
-    }
-    public function logistics()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Logistics Services',
-        ];
-
-        return view('home.logistics',$dataView);
-    }
-    public function visa()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Visa Preparation Services',
-        ];
-
-        return view('home.visa',$dataView);
-    }
-    public function flightTracking()
-    {
-        $web = GeneralSetting::where('id',1)->first();
-
-        $dataView = [
-            'siteName'  => $web->name,
-            'web'       => $web,
-            'pageName'  => 'Flight Tracking Services',
-        ];
-
-        return view('home.flight',$dataView);
-    }
     //process package
     public function processPackage(Request  $request)
     {
@@ -184,92 +136,318 @@ class HomeController extends Controller
         return view('home.package_tracking_detail', compact('package', 'stages','web'));
 
     }
-    //process flight
-    public function processFLight(Request $request)
+
+    public function categoryProducts(Request  $request,$id)
     {
-        $request->validate([
-            'pnr' => 'required|string|max:6|min:6',
-        ]);
-
-        $pnr = $request->input('pnr');
-        $flight = FlightTicket::where('pnr', $pnr)->first();
-
-        if (!$flight) {
-            return redirect()->back()->with('error','PNR not found. Please try again.');
-        }
-
-        return redirect(route('home.flight.detail',['pnr'=>$flight->pnr]))->with('success','Flight found');
-    }
-    //flight detail
-    public function flightDetail($pnr)
-    {
-        $flight = FlightTicket::where('pnr', $pnr)->firstOrFail();
         $web = GeneralSetting::find(1);
 
-        return view('home.flight_tracking_detail', compact('flight','web'));
+        $category = ProductCategory::where('slug', $id)->firstOrFail();
 
-    }
-    //flight booking
-    public function flightBooking()
-    {
-        $web = GeneralSetting::where('id',1)->first();
+        // Fetch paginated products (12 per page)
+        $products = Product::where('category_id',$category->id)->orderBy('created_at', 'desc')->paginate(12);
+
+        if ($request->ajax()) {
+            return view('home.partials.product-card-inner', compact('products'))->render();
+        }
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
-            'pageName'  => 'Flight Booking',
-            'services'  =>Service::where('status',1)->get(),
-            'froms'     =>Country::where('status',1)->get(),
-            'tos'       =>Country::where('status',1)->get(),
-            'countries' =>Country::where('status',1)->get(),
+            'pageName'  => "{$category->name} Products",
+            'products'  => $products,
         ];
 
-        return view('home.flight_booking',$dataView);
+        return view('home.category_products', $dataView);
     }
-
-    public function processFlightBooking(Request  $request)
+    public function shop(Request  $request)
     {
         $web = GeneralSetting::find(1);
-        //validate request
-        $request->validate([
-            'tripType' => 'required',
-            'departureDate' => 'required|date',
-            'returnDate' => 'nullable|date',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone' => 'required|string|max:15',
-            'residence' => 'required|string',
-            'destination' => 'required|string',
-            'nationality' => 'required|string',
-            'class' => 'required|string',
-            'numberOfAdults' => 'required|integer|min:1',
-            'numberOfChildren' => 'required|integer|min:0',
-            'g-recaptcha-response' => ['required', new ReCaptcha]
-        ]);
 
-        $booking = FlightBooking::create([
-            'trip_type' => $request->tripType,
-            'departure_date' => $request->departureDate,
-            'return_date' => $request->returnDate,
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'departure_country' => $request->residence,
-            'destination_country' => $request->destination,
-            'nationality' => $request->nationality,
-            'class' => $request->class,
-            'number_of_adults' => $request->numberOfAdults,
-            'number_of_children' => $request->numberOfChildren,
-        ]);
-        Mail::to($request->email)->send(new BookingReceived($booking));
 
-        $admin = User::where('is_admin',1)->first();
+        // Fetch paginated products (12 per page)
+        $products = Product::orderBy('created_at', 'desc')->paginate(30);
 
-        if (!empty($admin)){
-            Mail::to($admin->email)->send(new AdminBookingNotification($booking));
+        if ($request->ajax()) {
+            return view('home.partials.product-card', compact('products'))->render();
         }
 
-        return redirect()->back()->with('success', 'Your booking request has been received.');
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => "All Products",
+            'products'  => $products,
+        ];
+
+        return view('home.shop', $dataView);
+    }
+    public function searchResult(Request $request)
+    {
+        $web = GeneralSetting::find(1);
+
+        // Retrieve the search query from the request
+        $searchQuery = $request->input('q');
+
+        // Fetch products matching the search query or return all if no query is provided
+        $products = Product::when($searchQuery, function ($query, $searchQuery) {
+            return $query->where('name', 'like', '%' . $searchQuery . '%');
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(20); // Adjust the number of products per page as needed
+
+        // Handle AJAX requests for loading products
+        if ($request->ajax()) {
+            return view('home.partials.product-card', compact('products'))->render();
+        }
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => "Search Results",
+            'products'  => $products,
+            'query'     => $searchQuery, // Pass the query for use in the view
+        ];
+
+        return view('home.search-result', $dataView);
+    }
+
+    public function search(Request  $request)
+    {
+        $web = GeneralSetting::find(1);
+
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => "Search for a product",
+        ];
+
+        return view('home.search', $dataView);
+    }
+    public function track(Request  $request)
+    {
+        $web = GeneralSetting::find(1);
+
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => "Track your Order",
+        ];
+
+        return view('home.track', $dataView);
+    }
+
+
+
+    public function productDetail($id)
+    {
+        $web = GeneralSetting::find(1);
+
+        $product = Product::findOrFail($id);
+
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => $product->name,
+            'product'   => $product,
+        ];
+
+        return view('home.product_detail', $dataView);
+    }
+
+    public function addToCart(Request $request, $productId)
+    {
+        $product = Product::findOrFail($productId);
+        if ($request->ajax()) {
+
+            // Check stock availability
+            if ($product->stock < $request->quantity) {
+                return response()->json(['success' => false, 'message' => 'Insufficient stock available.']);
+            }
+
+            // Find or create the cart
+            $cart = Cart::firstOrCreate(
+                ['user_id' => auth()->id(), 'session_id' => session()->getId()],
+                ['created_at' => now(), 'updated_at' => now()]
+            );
+
+            // Add product to cart items
+            $cart->cartItems()->updateOrCreate(
+                ['product_id' => $productId],
+                [
+                    'quantity' => $request->quantity,
+                    'price' => $product->discount_price ?? $product->price,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+
+            return response()->json(['success' => true, 'message' => 'Product added to cart.']);
+        }else{
+            // Check stock availability
+            if ($product->stock < $request->quantity) {
+                return back()->with('error', 'Insufficient stock available.');
+            }
+
+            // Find or create the cart
+            $cart = Cart::firstOrCreate(
+                ['user_id' => auth()->id(), 'session_id' => session()->getId()],
+                ['created_at' => now(), 'updated_at' => now()]
+            );
+
+            // Add product to cart items
+            $cart->cartItems()->updateOrCreate(
+                ['product_id' => $productId],
+                [
+                    'quantity' => DB::raw('quantity + ' . ($request->quantity ?? 1)),
+                    'price' => $product->discount_price ?? $product->price,
+                    'updated_at' => now(),
+                ]
+            );
+
+
+            return back()->with('success', 'Product added to cart.');
+        }
+
+    }
+
+    //cart
+    public function cart()
+    {
+        $web = GeneralSetting::find(1);
+
+        $cart = Cart::with('cartItems.product')->where(function ($query) {
+            $query->where('user_id', auth()->id())
+                ->orWhere('session_id', session()->getId());
+        })->first();
+
+        $cartItems = $cart ? $cart->cartItems : [];
+        $totalAmount = $cartItems ? collect($cartItems)->sum(function ($item) {
+            return $item->quantity * $item->price;
+        }) : 0;
+
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => "Cart",
+            'cartItems' =>$cartItems,
+            'totalAmount'=>$totalAmount
+        ];
+
+        return view('home.carts', $dataView);
+    }
+
+    public function removeCartItem($id)
+    {
+        $cartItem = CartItem::findOrFail($id);
+        $cartItem->delete();
+
+        return response()->json(['success' => true, 'message' => 'Item removed from cart.']);
+    }
+
+    //checkout
+    public function checkout()
+    {
+        $web = GeneralSetting::find(1);
+
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => "Checkout",
+        ];
+
+        return view('home.checkout', $dataView);
+    }
+
+    //checkout
+    public function processCheckout(Request $request)
+    {
+        // Start a transaction to ensure data consistency
+        DB::beginTransaction();
+
+        try {
+            // Validate the input
+            $validatedData = $request->validate([
+                'payment_method' => 'required|string|in:Cash Transfer',
+            ]);
+
+            // Fetch the cart for the current user or session
+            $cart = Cart::with('cartItems.product')->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('session_id', session()->getId());
+            })->first();
+
+            // Ensure the cart exists and has items
+            if (!$cart || $cart->cartItems->isEmpty()) {
+                return back()->with('error', 'Your cart is empty.');
+            }
+
+            // Calculate total price and prepare order data
+            $totalPrice = $cart->cartItems->sum(function ($item) {
+                return $item->quantity * $item->price;
+            });
+
+            $order = Order::create([
+                'user_id'        => auth()->id(),
+                'status'         => 'pending',
+                'total_price'    => $totalPrice,
+                'tax_amount'     => 0, // Adjust if tax logic is implemented
+                'shipping_fee'   => 0, // Adjust if shipping logic is implemented
+                'shipping_address' => auth()->user()->address, // Update with actual address if needed
+                'billing_address'  => auth()->user()->address, // Update with actual address if needed
+                'payment_method' => $validatedData['payment_method'],
+                'payment_status' => 'unpaid',
+                'tracking_number' => Str::random(10), // Generate a tracking number
+            ]);
+
+            // Add each cart item to order_items
+            foreach ($cart->cartItems as $item) {
+                $order->orderItems()->create([
+                    'product_id'    => $item->product_id,
+                    'product_name'  => $item->product->name,
+                    'price'         => $item->price,
+                    'discount_price'=> $item->product->discount_price ?? null,
+                    'quantity'      => $item->quantity,
+                    'tax'           => 0, // Adjust if tax logic is implemented
+                ]);
+
+                // Decrease product stock
+                $item->product->decrement('stock', $item->quantity);
+            }
+
+            // Clear the cart after successful checkout
+            $cart->delete();
+
+            // Commit the transaction
+            DB::commit();
+
+            // Redirect to bank instruction page
+            session(['bank_message' => 'Order successfully placed. Since you selected Bank method as payment method, please contact support for the Bank Details.']);
+            return redirect()->route('checkout.bank')->with('success', 'Order placed successfully.');
+        } catch (\Exception $e) {
+            // Rollback the transaction on error
+            DB::rollBack();
+
+            // Return back with error message
+            return back()->with('error', 'Checkout failed: ' . $e->getMessage());
+        }
+    }
+
+    public function bank()
+    {
+        $web = GeneralSetting::find(1);
+
+
+        $dataView = [
+            'siteName'  => $web->name,
+            'web'       => $web,
+            'pageName'  => "Bank Instruction",
+        ];
+
+        return view('home.bank', $dataView);
     }
 }
 

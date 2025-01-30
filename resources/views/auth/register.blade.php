@@ -129,7 +129,7 @@
                                     <div class="col-12">
                                         <p class="account-desc">
                                             Already have an account?
-                                            <a href="{{ route('login') }}l">Login</a>
+                                            <a href="{{ route('login') }}">Login</a>
                                         </p>
                                     </div>
                                 </div>

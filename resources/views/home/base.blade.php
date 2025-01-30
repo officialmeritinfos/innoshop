@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{asset('home/css/responsive.css')}}">
 
     <title>{{$pageName}} - {{$siteName}}</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- Favicon Link -->
     <link rel="icon" type="image/png" href="{{asset('home/images/'.$web->logo)}}">
     @stack('css')

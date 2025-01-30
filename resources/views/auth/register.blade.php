@@ -33,7 +33,7 @@
                 <div class="col-lg-6">
                     <div class="user-form">
                         <div class="contact-form">
-                            <h2>Log In</h2>
+                            <h2>Register</h2>
                             <form class="user-form" method="post" action="{{route('auth.register')}}" >
                                 @include('templates.notification')
                                 @csrf
@@ -98,6 +98,27 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+
+                                                <strong>ReCaptcha:</strong>
+
+                                                <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+
+                                                @if ($errors->has('g-recaptcha-response'))
+
+                                                    <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+
+                                                @endif
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
 
 
                                     <div class="col-lg-12 ">

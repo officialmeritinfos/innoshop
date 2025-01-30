@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Notifications\EmailVerifyMail;
 use App\Notifications\InvestmentMail;
 use App\Notifications\WelcomeMail;
+use App\Rules\ReCaptcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -45,6 +46,7 @@ class Register extends Controller
             'phone'=>['nullable'],
             'country'=>['required'],
             'address'=>['required'],
+            'g-recaptcha-response' => ['required', new ReCaptcha],
         ]);
         if ($validator->fails()){
             return back()->with('errors',$validator->errors());
